@@ -16,6 +16,7 @@ ci_results.json
 # ChromaDB
 chroma_db/
 .smart-mcp/
+.test_chroma/
 
 # Environment
 .env
