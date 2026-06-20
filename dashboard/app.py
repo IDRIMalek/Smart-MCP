@@ -1,10 +1,9 @@
 """
-📊 Smart MCP Pipeline — Tableau de Bord
-Simplifié, parlant, avec GANTT et support tests manuels.
-Mode AUTO → lance des tests automatiques
-Mode MANUEL → enregistre les tests venant de Hermes WebUI
+📊 Smart MCP Pipeline — Tableau de Bord v2
+ChromaDB patterns + Tests >200 + Mode Auto/Manuel amélioré
+IP dynamique (détection auto de 192.168.1.100)
 """
-import json, os, sys, threading, time
+import json, os, sys, threading, time, socket
 from datetime import datetime
 from pathlib import Path
 
@@ -12,9 +11,23 @@ import dash, plotly.graph_objects as go
 from dash import dcc, html, Input, Output, State, callback, ctx
 from flask import Flask, request, jsonify
 
-sys.path.insert(0, str(Path(__file__).parent))
-from test_runner import get_stats, run_batch, _save_results, _load_results, RESULTS_FILE
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from brain.rag import RAGBrain, get_brain
+from dashboard.test_runner import get_stats, run_batch, _save_results, _load_results, RESULTS_FILE
 
+# ── Détection IP locale dynamique ──────────────────────
+def _local_ip():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.settimeout(0.1)
+        s.connect(("192.168.1.1", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except:
+        return "192.168.1.100"
+
+LOCAL_IP = _local_ip()
 APP_TITLE = "🧪 Smart MCP Pipeline"
 AUTO_REFRESH_MS = 3000
 
@@ -27,11 +40,21 @@ MACRO_COLORS = {
     "TEXTE": "#CE93D8",
 }
 
+# ── Connexion ChromaDB (chemin absolu — HOME peut être modifié par Hermes) ──
+CHROMA_PATH = "/home/malek/.hermes/profiles/default2/home/.smart-mcp/brain"
+try:
+    brain = RAGBrain(persist_dir=CHROMA_PATH)
+    patterns = brain.list_patterns()
+    stats_chroma = brain.get_stats()
+except Exception as e:
+    print(f"[ChromaDB] Erreur: {e}")
+    patterns = []
+    stats_chroma = {"patterns_count": 0, "feedback_count": 0, "types": {}}
+
 # ── Helpers ──────────────────────────────────────────
 
 def _c(s):
-    if s >= 1000:
-        return f"{s/1000:.1f}s"
+    if s >= 1000: return f"{s/1000:.1f}s"
     return f"{s:.0f}ms"
 
 def _run_tests_bg(macro_filter=""):
@@ -47,14 +70,24 @@ def _clear_results():
     if RESULTS_FILE.exists():
         RESULTS_FILE.unlink()
 
+def _pattern_badge(tag: str) -> str:
+    tag_colors = {
+        "forme": "#FF6B6B", "shape": "#FF6B6B",
+        "architecture": "#4FC3F7", "microservices": "#4FC3F7", "pipeline": "#4FC3F7",
+        "couleur": "#81C784", "color": "#81C784", "palette": "#81C784",
+        "sequence": "#FFD54F", "data": "#FF9800",
+    }
+    c = tag_colors.get(tag, "#888")
+    return f'<span style="background:{c};color:#fff;padding:1px 6px;border-radius:8px;font-size:10px;margin:1px">{tag}</span>'
 
-# ── API Flask pour tests manuels ──────────────────────
+
+# ── API Flask ──────────────────────────────────────
 
 server = Flask(__name__)
 
 @server.route("/api/result", methods=["POST"])
 def api_add_result():
-    """Reçoit un résultat de test manuel depuis Hermes WebUI"""
+    """Reçoit un résultat de test depuis Hermes WebUI (mode MANUEL)"""
     try:
         data = request.get_json()
         if not data:
@@ -76,24 +109,42 @@ def api_get_results():
 def api_get_stats():
     return jsonify(get_stats())
 
+@server.route("/api/chromadb", methods=["GET"])
+def api_chromadb():
+    """Expose les patterns ChromaDB via API REST"""
+    try:
+        return jsonify({
+            "patterns_count": len(patterns),
+            "types": stats_chroma.get("types", {}),
+            "patterns": patterns[:50]
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-# ── Dash app ──────────────────────────────────────────
+
+# ── Dash app ──────────────────────────────────────
 
 app = dash.Dash(__name__, title=APP_TITLE, server=server)
 app.layout = html.Div([
 
-    # Header
+    # ── Header ──
     html.Div([
         html.H1(APP_TITLE, style={"margin": "0", "fontSize": "20px"}),
         html.Span(id="mode-badge", style={"marginLeft": "12px", "padding": "2px 10px",
                                            "borderRadius": "10px", "display": "inline-block",
                                            "fontSize": "12px", "fontWeight": "bold"}),
         html.Span(id="total-badge", style={"fontSize": "13px", "color": "#aaa", "marginLeft": "15px"}),
-        html.Span(id="last-update", style={"fontSize": "12px", "color": "#666", "marginLeft": "auto"}),
+        html.Span(f"🌐 {LOCAL_IP}:8050", style={"fontSize": "11px", "color": "#4FC3F7",
+                                                 "marginLeft": "auto", "fontFamily": "monospace"}),
+        html.Span(id="last-update", style={"fontSize": "12px", "color": "#666", "marginLeft": "15px"}),
     ], style={"display": "flex", "alignItems": "center", "padding": "12px 20px",
               "background": "#1a1a2e", "color": "white", "borderRadius": "8px 8px 0 0"}),
 
-    # Controls bar
+    # ── ChromaDB Patterns Section ──
+    html.Div(id="chromadb-section", style={"padding": "12px 20px", "background": "#16213e",
+                                            "borderBottom": "1px solid #282a36"}),
+
+    # ── Controls bar ──
     html.Div([
         html.Div([
             html.Button("▶️ Tous", id="btn-run-all", n_clicks=0,
@@ -150,11 +201,10 @@ app.layout = html.Div([
         ], style={"flex": "2", "padding": "12px", "background": "#1a1a2e", "borderRadius": "8px", "margin": "0 6px"}),
     ], style={"display": "flex", "padding": "6px 14px 8px 14px", "gap": "4px"}),
 
-    # Mode Manuel : instructions
-    html.Div(id="manual-instructions", style={"display": "none", "padding": "8px 20px",
-                                               "background": "#1a3a2a",
-                                               "borderLeft": "4px solid #4CAF50",
-                                               "fontSize": "12px", "color": "#aaa"}),
+    # Mode Manuel : formulaire intégré (plus de curl)
+    html.Div(id="manual-form", style={"display": "none", "padding": "12px 20px",
+                                       "background": "#1a3a2a",
+                                       "borderLeft": "4px solid #4CAF50"}),
 
     # Filters
     html.Div([
@@ -207,7 +257,107 @@ app.layout = html.Div([
            "background": "#0f3460", "minHeight": "100vh", "color": "#ccc"})
 
 
-# ── Callbacks ────────────────────────────────────────
+# ── Callback ChromaDB ──────────────────────────────
+
+@callback(
+    Output("chromadb-section", "children"),
+    Input("auto-refresh", "n_intervals"),
+)
+def render_chromadb(n):
+    """Affiche les stats ChromaDB en haut du dashboard"""
+    count = len(patterns)
+    types = stats_chroma.get("types", {})
+    forme = types.get("forme", 0)
+    archi = types.get("architecture", 0)
+    generic = types.get("generic", 0)
+
+    # Tags cloud
+    all_tags = set()
+    for p in patterns[:20]:
+        for t in p.get("tags", []):
+            all_tags.add(t.strip())
+
+    tag_badges = [html.Span(t, style={
+        "background": "#4FC3F7" if t in ("architecture","microservices","pipeline","sequence","data","etl","3-tiers","ci/cd") else
+                      "#FF6B6B" if t in ("forme","shape","carre","cercle","triangle","losange","cylindre") else
+                      "#81C784" if t in ("couleur","color","palette") else "#888",
+        "color": "white", "padding": "2px 8px", "borderRadius": "10px",
+        "fontSize": "10px", "margin": "2px", "display": "inline-block"
+    }) for t in sorted(all_tags)[:25]]
+
+    return html.Div([
+        html.Div([
+            html.H3("🧠 ChromaDB — Patterns", style={"margin": "0 0 8px 0", "fontSize": "15px", "color": "#eee"}),
+            # Stats cards
+            html.Div([
+                html.Div([
+                    html.Span("📦", style={"fontSize": "24px"}),
+                    html.Div([
+                        html.Div(str(count), style={"fontSize": "28px", "fontWeight": "bold", "color": "#4FC3F7"}),
+                        html.Div("Patterns", style={"fontSize": "11px", "color": "#888"}),
+                    ], style={"marginLeft": "10px"}),
+                ], style={"display": "flex", "alignItems": "center", "background": "#1a1a2e",
+                          "padding": "8px 16px", "borderRadius": "8px", "flex": "1"}),
+                html.Div([
+                    html.Span("🔴", style={"fontSize": "24px"}),
+                    html.Div([
+                        html.Div(str(forme), style={"fontSize": "28px", "fontWeight": "bold", "color": "#FF6B6B"}),
+                        html.Div("Formes", style={"fontSize": "11px", "color": "#888"}),
+                    ], style={"marginLeft": "10px"}),
+                ], style={"display": "flex", "alignItems": "center", "background": "#1a1a2e",
+                          "padding": "8px 16px", "borderRadius": "8px", "flex": "1"}),
+                html.Div([
+                    html.Span("🔵", style={"fontSize": "24px"}),
+                    html.Div([
+                        html.Div(str(archi), style={"fontSize": "28px", "fontWeight": "bold", "color": "#4FC3F7"}),
+                        html.Div("Architecture", style={"fontSize": "11px", "color": "#888"}),
+                    ], style={"marginLeft": "10px"}),
+                ], style={"display": "flex", "alignItems": "center", "background": "#1a1a2e",
+                          "padding": "8px 16px", "borderRadius": "8px", "flex": "1"}),
+                html.Div([
+                    html.Span("🟢", style={"fontSize": "24px"}),
+                    html.Div([
+                        html.Div(str(generic), style={"fontSize": "28px", "fontWeight": "bold", "color": "#81C784"}),
+                        html.Div("Génériques", style={"fontSize": "11px", "color": "#888"}),
+                    ], style={"marginLeft": "10px"}),
+                ], style={"display": "flex", "alignItems": "center", "background": "#1a1a2e",
+                          "padding": "8px 16px", "borderRadius": "8px", "flex": "1"}),
+            ], style={"display": "flex", "gap": "8px", "marginBottom": "8px"}),
+            # Tags cloud
+            html.Div([
+                html.Span("🏷️ Tags : ", style={"fontSize": "11px", "color": "#aaa", "marginRight": "6px"}),
+                *tag_badges,
+            ], style={"display": "flex", "flexWrap": "wrap", "alignItems": "center", "padding": "4px 0"}),
+            # Pattern list (scrollable)
+            html.Details([
+                html.Summary("📋 Liste des 26 patterns (cliquer pour ouvrir)",
+                            style={"fontSize": "12px", "color": "#aaa", "cursor": "pointer",
+                                   "padding": "4px 0"}),
+                html.Div([
+                    html.Table([
+                        html.Thead(html.Tr([
+                            html.Th("#", style={"padding": "2px 6px", "fontSize": "10px", "color": "#555"}),
+                            html.Th("Titre", style={"padding": "2px 6px", "fontSize": "10px", "color": "#aaa"}),
+                            html.Th("Tags", style={"padding": "2px 6px", "fontSize": "10px", "color": "#aaa"}),
+                            html.Th("Source", style={"padding": "2px 6px", "fontSize": "10px", "color": "#aaa"}),
+                        ])),
+                        html.Tbody([
+                            html.Tr([
+                                html.Td(str(i+1), style={"padding": "2px 6px", "fontSize": "10px", "color": "#555"}),
+                                html.Td(p.get("title","")[:50], style={"padding": "2px 6px", "fontSize": "10px", "color": "#ccc"}),
+                                html.Td(",".join(p.get("tags",[]))[:30], style={"padding": "2px 6px", "fontSize": "9px", "color": "#888"}),
+                                html.Td(p.get("source","")[:10], style={"padding": "2px 6px", "fontSize": "10px", "color": "#666"}),
+                            ], style={"borderBottom": "1px solid #282a36"})
+                            for i, p in enumerate(patterns)
+                        ])
+                    ], style={"width": "100%", "borderCollapse": "collapse", "fontSize": "11px"})
+                ], style={"maxHeight": "300px", "overflowY": "auto", "marginTop": "4px"}),
+            ], style={"marginTop": "4px"}),
+        ]),
+    ])
+
+
+# ── Callbacks ──────────────────────────────────────
 
 @callback(
     [Output("paused", "data"), Output("btn-pause", "children")],
@@ -233,56 +383,131 @@ def ask_reset(n):
      Output("btn-mode", "style"),
      Output("mode-badge", "children"),
      Output("mode-badge", "style"),
-     Output("manual-instructions", "children"),
-     Output("manual-instructions", "style")],
+     Output("manual-form", "children"),
+     Output("manual-form", "style")],
     Input("btn-mode", "n_clicks"),
     State("manual-mode", "data"),
     prevent_initial_call=True,
 )
 def toggle_mode(n, mode):
+    """Bascule AUTO ↔ MANUEL avec formulaire intégré (plus de curl)"""
     new_mode = not mode
     if new_mode:
-        badge_text = "🔴 MANUEL"
+        badge = "🔴 MANUEL"
         badge_style = {"background": "#d9534f", "color": "white", "marginLeft": "12px",
                        "padding": "2px 10px", "borderRadius": "10px", "display": "inline-block",
                        "fontSize": "12px", "fontWeight": "bold"}
         btn_style = {"background": "#d9534f", "color": "white", "border": "none",
                      "padding": "6px 12px", "borderRadius": "4px", "cursor": "pointer",
                      "fontSize": "12px", "fontWeight": "bold"}
-        instructions = html.Div([
-            html.Strong("📋 Mode Manuel activé"),
-            html.Br(), html.Br(),
-            "Les tests automatiques sont désactivés. Pour enregistrer un test depuis Hermes WebUI :",
-            html.Pre("""curl -X POST http://192.168.1.100:8050/api/result \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "test_id": "man-01",
-    "prompt": "dessine un carre rouge",
-    "expected_macro": "FORME",
-    "status": "success",
-    "model_name": "qwen3.5:9b-hermes",
-    "model_params": {"max_tokens": 16384, "temperature": 0.3},
-    "classification": {"macro_class": "FORME", "confidence": 0.95},
-    "xml_generated": true,
-    "xml_valid": true,
-    "xml_cell_count": 5,
-    "timing_ms": {"total": 5000}
-}'""", style={"background": "#111", "padding": "8px", "borderRadius": "4px",
-                    "fontSize": "11px", "overflowX": "auto", "color": "#4FC3F7"}),
-        ])
-        show_instructions = {"display": "block", "padding": "8px 20px", "background": "#1a3a2a",
-                             "borderLeft": "4px solid #4CAF50", "fontSize": "12px", "color": "#aaa"}
+        # Formulaire intégré — plus besoin de curl
+        form = html.Div([
+            html.H4("📝 Enregistrer un test manuel", style={"margin": "0 0 6px 0", "fontSize": "13px", "color": "#eee"}),
+            html.Div([
+                html.Div([
+                    html.Label("Test ID :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                    dcc.Input(id="man-test-id", type="text", placeholder="ex: man-042", value=f"man-{int(time.time())%100000}",
+                             style={"width": "140px", "padding": "4px 6px", "fontSize": "11px", "background": "#111",
+                                    "border": "1px solid #333", "color": "#4FC3F7", "borderRadius": "4px"}),
+                ], style={"flex": "1"}),
+                html.Div([
+                    html.Label("Macro :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                    dcc.Dropdown(id="man-macro", options=[
+                        {"label": "🔴 FORME", "value": "FORME"},
+                        {"label": "🔵 TABLEAU", "value": "TABLEAU"},
+                        {"label": "🟢 KANBAN", "value": "KANBAN"},
+                        {"label": "🟡 AGENDA", "value": "AGENDA"},
+                        {"label": "🟠 GANTT", "value": "GANTT"},
+                        {"label": "🟣 TEXTE", "value": "TEXTE"},
+                    ], value="FORME", clearable=False, style={"width": "130px", "fontSize": "11px"}),
+                ], style={"flex": "1"}),
+                html.Div([
+                    html.Label("Statut :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                    dcc.Dropdown(id="man-status", options=[
+                        {"label": "✅ Success", "value": "success"},
+                        {"label": "⚠️ Classifié OK", "value": "classified_ok"},
+                        {"label": "🟡 XML invalide", "value": "xml_invalid"},
+                        {"label": "❌ Échec", "value": "failed"},
+                    ], value="success", clearable=False, style={"width": "130px", "fontSize": "11px"}),
+                ], style={"flex": "1"}),
+                html.Div([
+                    html.Label("Modèle :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                    dcc.Input(id="man-model", type="text", placeholder="modèle utilisé",
+                             value="qwen3.5:9b-hermes",
+                             style={"width": "150px", "padding": "4px 6px", "fontSize": "11px", "background": "#111",
+                                    "border": "1px solid #333", "color": "#4FC3F7", "borderRadius": "4px"}),
+                ], style={"flex": "1"}),
+            ], style={"display": "flex", "gap": "8px", "flexWrap": "wrap", "marginBottom": "8px"}),
+            html.Div([
+                html.Label("Prompt (optionnel) :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                dcc.Input(id="man-prompt", type="text", placeholder="Décris brièvement le test",
+                         style={"width": "100%", "maxWidth": "500px", "padding": "4px 6px", "fontSize": "11px",
+                                "background": "#111", "border": "1px solid #333", "color": "#ccc", "borderRadius": "4px"}),
+            ], style={"marginBottom": "8px"}),
+            html.Div([
+                html.Label("XML généré (optionnel) :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                dcc.Textarea(id="man-xml", placeholder="<mxCell ... (optionnel)",
+                            style={"width": "100%", "height": "50px", "fontSize": "10px",
+                                   "background": "#111", "border": "1px solid #333", "color": "#81C784",
+                                   "borderRadius": "4px", "fontFamily": "monospace"}),
+            ], style={"marginBottom": "8px"}),
+            html.Div([
+                html.Button("💾 Enregistrer le test", id="btn-man-save", n_clicks=0,
+                           style={"background": "#4CAF50", "color": "white", "border": "none",
+                                  "padding": "6px 16px", "borderRadius": "4px", "cursor": "pointer",
+                                  "fontSize": "12px", "fontWeight": "bold"}),
+                html.Span(id="man-save-status", style={"fontSize": "11px", "color": "#aaa", "marginLeft": "12px"}),
+                html.Span("💡 Test enregistré directement dans results.json — visible dans le tableau ci-dessous",
+                         style={"fontSize": "10px", "color": "#666", "marginLeft": "12px", "fontStyle": "italic"}),
+            ]),
+        ], style={"padding": "8px 0"})
     else:
-        badge_text = "🟢 AUTO"
+        badge = "🟢 AUTO"
         badge_style = {"background": "#5cb85c", "color": "white", "marginLeft": "12px",
                        "padding": "2px 10px", "borderRadius": "10px", "display": "inline-block",
                        "fontSize": "12px", "fontWeight": "bold"}
         btn_style = {"background": "#5cb85c", "color": "white", "border": "none",
                      "padding": "6px 12px", "borderRadius": "4px", "cursor": "pointer",
                      "fontSize": "12px", "fontWeight": "bold"}
-        instructions = ""
-        show_instructions = {"display": "none"}
-    return new_mode, badge_text, btn_style, badge_text, badge_style, instructions, show_instructions
+        form = ""
+        badge_style_inner = {"display": "none"}
+    return new_mode, badge, btn_style, badge, badge_style, form, {"display": "block" if new_mode else "none",
+                                                                    "padding": "12px 20px",
+                                                                    "background": "#1a3a2a",
+                                                                    "borderLeft": "4px solid #4CAF50"} if new_mode else {"display": "none"}
+
+
+@callback(
+    Output("man-save-status", "children"),
+    Input("btn-man-save", "n_clicks"),
+    [State("man-test-id", "value"), State("man-macro", "value"),
+     State("man-status", "value"), State("man-model", "value"),
+     State("man-prompt", "value"), State("man-xml", "value")],
+    prevent_initial_call=True,
+)
+def save_manual_test(n, test_id, macro, status, model, prompt, xml):
+    """Sauvegarde un test manuel directement (pas besoin de curl)"""
+    try:
+        result = {
+            "test_id": test_id or f"man-{int(time.time())%100000}",
+            "expected_macro": macro or "FORME",
+            "status": status or "success",
+            "model_name": model or "unknown",
+            "prompt": prompt or "",
+            "xml_generated": bool(xml and xml.strip()),
+            "xml_valid": bool(xml and "<mxCell" in xml),
+            "source": "manual",
+            "timestamp": datetime.now().isoformat(),
+            "timing_ms": {"total": 0},
+            "classification": {"macro_class": macro or "FORME", "confidence": 1.0},
+            "xml_cell_count": xml.count("mxCell") if xml else 0,
+        }
+        results = _load_results()
+        results.append(result)
+        _save_results(results)
+        return f"✅ Enregistré — {len(results)} tests au total"
+    except Exception as e:
+        return f"❌ Erreur: {e}"
 
 
 @callback(
@@ -316,22 +541,15 @@ def update_dashboard(n_int, n_all, n_forme, n_tableau, n_kanban, n_agenda, n_gan
     if paused and triggered == "auto-refresh":
         return (dash.no_update,) * 7
 
-    # En mode MANUEL, ignorer les boutons de test auto
+    # En mode AUTO, lancer les batchs de test
     if not manual:
-        if triggered == "btn-run-all":
-            _run_tests_bg()
-        elif triggered == "btn-run-forme":
-            _run_tests_bg("FORME")
-        elif triggered == "btn-run-tableau":
-            _run_tests_bg("TABLEAU")
-        elif triggered == "btn-run-kanban":
-            _run_tests_bg("KANBAN")
-        elif triggered == "btn-run-agenda":
-            _run_tests_bg("AGENDA")
-        elif triggered == "btn-run-gantt":
-            _run_tests_bg("GANTT")
-        elif triggered == "btn-run-texte":
-            _run_tests_bg("TEXTE")
+        if triggered == "btn-run-all": _run_tests_bg()
+        elif triggered == "btn-run-forme": _run_tests_bg("FORME")
+        elif triggered == "btn-run-tableau": _run_tests_bg("TABLEAU")
+        elif triggered == "btn-run-kanban": _run_tests_bg("KANBAN")
+        elif triggered == "btn-run-agenda": _run_tests_bg("AGENDA")
+        elif triggered == "btn-run-gantt": _run_tests_bg("GANTT")
+        elif triggered == "btn-run-texte": _run_tests_bg("TEXTE")
 
     if triggered == "confirm-reset":
         _clear_results()
@@ -396,13 +614,11 @@ def update_dashboard(n_int, n_all, n_forme, n_tableau, n_kanban, n_agenda, n_gan
     # ── Tableau ──
     raw_results = stats.get("recent", [])
 
-    # Options du filtre modèle
     all_models = sorted(set(r.get("model_name", "unknown") for r in raw_results))
     model_options = [{"label": "📦 Tous modeles", "value": ""}]
     for m in all_models:
         model_options.append({"label": f"🤖 {m}", "value": m})
 
-    # Appliquer les filtres
     if f_source:
         raw_results = [r for r in raw_results if r.get("source", "auto") == f_source]
     if f_macro:
@@ -461,9 +677,9 @@ def update_dashboard(n_int, n_all, n_forme, n_tableau, n_kanban, n_agenda, n_gan
 
 
 if __name__ == "__main__":
-    print(f"📊 {APP_TITLE}")
-    print(f"   http://127.0.0.1:8050")
+    print(f"📊 {APP_TITLE} v2")
+    print(f"   🌐 http://{LOCAL_IP}:8050")
+    print(f"   🧠 ChromaDB: {len(patterns)} patterns")
     print(f"   API POST /api/result  (mode manuel)")
-    print(f"   API GET  /api/results")
-    print(f"   API GET  /api/stats")
+    print(f"   API GET  /api/chromadb")
     app.run(debug=False, host="0.0.0.0", port=8050)
