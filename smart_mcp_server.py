@@ -301,10 +301,11 @@ def smart_diagram(prompt: str) -> dict:
             best = patterns[0]
             context = f"Exemple similaire: {best['title']} (score: {best['similarity']})\n{best['xml'][:500]}"
 
-        # ── 3. Générer XML via LLM ──
+        # ── 3. Générer XML via LLM (routage intelligent selon complexité) ──
         t0 = time.time()
         used_cloud = False
-        xml_raw = llm.generate(prompt, context=context)
+        complexity = classification.get("complexity", "medium")
+        xml_raw = llm.generate(prompt, context=context, complexity=complexity)
 
         if xml_raw:
             # Extraire le XML pur (```xml, texte avant/après, etc.)

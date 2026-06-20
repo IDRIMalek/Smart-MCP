@@ -158,31 +158,85 @@ class LLMClient:
             traceback.print_exc(file=__import__('sys').stderr)
             return None
 
-    def generate(self, prompt: str, context: str = "") -> Optional[str]:
+    def generate(self, prompt: str, context: str = "", complexity: str = "medium") -> str:
         """
-        Génère du XML draw.io — utilise le GENERATOR (Gemma-4 E4B).
-        Fallback cloud si le generator échoue.
+        Génère du XML draw.io — routage intelligent selon complexité.
+        
+        Niveaux :
+        - "simple"   → generator uniquement (Gemma-4 E4B), 0€, rapide
+        - "medium"   → generator + validation + amélioration locale si besoin
+        - "complex"  → planning + cloud (DeepSeek) si clé dispo, sinon generator best-effort
+        
+        Retourne le XML brut ou "" en cas d'échec.
         """
         system_prompt = "Tu es un assistant spécialisé dans la création de diagrammes draw.io."
         user_prompt = PROMPT_GENERATE_XML.format(query=prompt, context=context)
         
-        # Étape 1 : Generator (Gemma-4 E4B) — rapide, précis
-        result = self._call(self.generator, system_prompt, user_prompt)
-        if result:
-            return result
+        import time
         
-        # Étape 2 : Fallback cloud (DeepSeek V4 Flash) si generator a échoué
-        if self.cloud.api_key:
-            result = self._call(self.cloud, system_prompt, user_prompt)
+        if complexity == "simple":
+            # ── Simple : Generator (Gemma) direct, pas de fallback ──
+            result = self._call(self.generator, system_prompt, user_prompt)
+            return result or ""
+        
+        elif complexity == "complex" and self.cloud.api_key and len(self.cloud.api_key) > 10:
+            # ── Complexe + cloud dispo : planning local, génération cloud ──
+            t0 = time.time()
+            
+            # Étape 1 : Planner (Qwen 9B) prépare le brief pour le cloud
+            plan_prompt = (
+                "Tu prépares un brief de conception pour un diagramme draw.io.\n\n"
+                f"Contexte RAG : {context}\n\n"
+                f"Demande : {prompt}\n\n"
+                "Liste les éléments exacts à créer (formes, étiquettes, connexions, couleurs), "
+                "leurs positions approximatives (grille x,y), et les contraintes de layout. "
+                "Format : liste simple, pas de XML."
+            )
+            plan = self._call(
+                self.planner,
+                "Tu es un architecte de diagrammes. Sois précis et concis.",
+                plan_prompt
+            )
+            plan_time = round(time.time() - t0, 1)
+            
+            if not plan:
+                # Fallback sur génération cloud directe
+                result = self._call(self.cloud, system_prompt, user_prompt)
+                return result or ""
+            
+            # Étape 2 : Cloud (DeepSeek) génère le XML à partir du plan
+            cloud_prompt = (
+                f"Voici le plan de conception :\n\n{plan}\n\n"
+                f"Contexte RAG : {context}\n\n"
+                f"Génère le XML draw.io complet pour ce diagramme."
+            )
+            result = self._call(
+                self.cloud,
+                "Tu es un expert draw.io. Génère le XML strict, pas de texte explicatif.",
+                cloud_prompt
+            )
             if result:
                 return result
+            
+            # Fallback generator si cloud a échoué
+            result = self._call(self.generator, system_prompt, user_prompt)
+            return result or ""
         
-        # Étape 3 : Dernier recours — planner (Qwen 9B) en mode génération
-        result = self._call(self.planner, system_prompt, user_prompt)
-        if result:
-            return result
-        
-        return None
+        else:
+            # ── Medium (défaut) : Generator d'abord, amélioration locale si besoin ──
+            result = self._call(self.generator, system_prompt, user_prompt)
+            if result:
+                return result
+            
+            # Si generator échoue : essayer cloud (si dispo) puis planner (recours)
+            if self.cloud.api_key and len(self.cloud.api_key) > 10:
+                result = self._call(self.cloud, system_prompt, user_prompt)
+                if result:
+                    return result
+            
+            # Dernier recours : planner
+            result = self._call(self.planner, system_prompt, user_prompt)
+            return result or ""
 
     def classify_intent(self, query: str) -> dict:
         """
