@@ -1,0 +1,647 @@
+<mxfile host="app.diagrams.net" agent="Hermes Agent">
+  <diagram id="smart-mcp-v3b" name="Smart MCP v3 — F1-F15 + Zones A-E">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ═══════ ZONE A: Interface ═══════ -->
+        <mxCell id="bg-a" value="" style="rounded=1;fillColor=#E8F0FE;strokeColor=#8DB3E2;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="20" y="25" width="760" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-a" value="&lt;b&gt;Zone A — Interface Utilisateur&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="760" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- F1: WebUI Hermes -->
+        <mxCell id="F1" value="&lt;b&gt;F1 : WebUI Hermes&lt;/b&gt;&lt;hr&gt;Interface utilisateur principale&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;#port:8080&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="45" y="40" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F2: Smart MCP Panel -->
+        <mxCell id="F2" value="&lt;b&gt;F2 : Smart MCP Panel&lt;/b&gt;&lt;hr&gt;Ajouté au WebUI&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;Toggle ✨ auto/manual&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="240" y="40" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════ ZONE B: Pont Intelligent ═══════ -->
+        <mxCell id="bg-b" value="" style="rounded=1;fillColor=#FCE4D6;strokeColor=#ED7D31;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="20" y="155" width="760" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-b" value="&lt;b&gt;Zone B — Smart MCP : Le Pont Intelligent&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="20" y="140" width="760" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- F3: Router Classifier -->
+        <mxCell id="F3" value="&lt;b&gt;F3 : Routeur/Classifieur&lt;/b&gt;&lt;hr&gt;SIMPLE / CODE / COMPLEXE&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;Qwen 2.5:7B + Classifieurs&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="45" y="170" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F4: RAG Brain -->
+        <mxCell id="F4" value="&lt;b&gt;F4 : RAG Brain&lt;/b&gt;&lt;hr&gt;ChromaDB + embeddings&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;26 patterns stockés&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="240" y="170" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F5: Cascade Optim -->
+        <mxCell id="F5" value="&lt;b&gt;F5 : Cascade Optim&lt;/b&gt;&lt;hr&gt;N1 (4B) → N1.5 (14B) → N2 (32B)&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;Escalade progressive&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="435" y="170" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F6: Judge Verif -->
+        <mxCell id="F6" value="&lt;b&gt;F6 : Judge/Verif&lt;/b&gt;&lt;hr&gt;Qwen 2.5:1.5B évalue qualité&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;Note /10, filtre &lt;6&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="620" y="170" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════ ZONE C: Tests ═══════ -->
+        <mxCell id="bg-c" value="" style="rounded=1;fillColor=#E2EFDA;strokeColor=#70AD47;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <axiosData>dt2|{"x":"20","y":"345","width":"760","height":"170"}</axiosData>
+        </mxCell>
+        <mxCell id="lbl-c" value="&lt;b&gt;Zone C — Tests &amp; Feedback&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="20" y="330" width="760" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- F9: Test Runner -->
+        <mxCell id="F9" value="&lt;b&gt;F9 : Test Runner&lt;/b&gt;&lt;hr&gt;test_runner.py&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;~200 tests automatisés&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="45" y="355" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F10: Dashboard -->
+        <mxCell id="F10" value="&lt;b&gt;F10 : Dashboard&lt;/b&gt;&lt;hr&gt;Plotly dash analytics&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;port 8050📊&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="240" y="355" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F11: Feedback Loop -->
+        <mxCell id="F11" value="&lt;b&gt;F11 : Feedback Loop&lt;/b&gt;&lt;hr&gt;Amélioration continue&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;0 feedbacks stockés&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="435" y="355" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════ ZONE D: Drawio ═══════ -->
+        <mxCell id="bg-d" value="" style="rounded=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="20" y="535" width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-d" value="&lt;b&gt;Zone D — Génération Diagrammes&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="20" y="520" width="370" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- F12: Drawio MCP Server -->
+        <mxCell id="F12" value="&lt;b&gt;F12 : Drawio MCP Server&lt;/b&gt;&lt;hr&gt;Serveur local patché&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;port 8080, bind 0.0.0.0&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="35" y="550" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F13: Diagram Generator -->
+        <mxCell id="F13" value="&lt;b&gt;F13 : Diagram Generator&lt;/b&gt;&lt;hr&gt;Agent de génération&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;V4 Flash via OpenRouter&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="220" y="550" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════ ZONE E: Intégration & Monitoring ═══════ -->
+        <mxCell id="bg-e" value="" style="rounded=1;fillColor=#FFF2CC;strokeColor=#BF8F00;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="410" y="535" width="370" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-e" value="&lt;b&gt;Zone E — Intégration &amp; Monitoring&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="410" y="520" width="370" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- F14: CI/CD Pipeline -->
+        <mxCell id="F14" value="&lt;b&gt;F14 : CI/CD Pipeline&lt;/b&gt;&lt;hr&gt;GitHub Actions&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;lint + tests automatiques&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="425" y="550" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- F15: Monitoring -->
+        <mxCell id="F15" value="&lt;b&gt;F15 : Monitoring&lt;/b&gt;&lt;hr&gt;Dashboard temps réel&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot;&gt;logstalgia, webhooks&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="620" y="550" width="150" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════ CONNECTIONS ═══════ -->
+
+        <!-- C1: F1 → F2 (user action) -->
+        <mxCell id="C1" value="[C1] prompt" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F1" target="F2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C2: F2 → F3 (call router) -->
+        <mxCell id="C2" value="[C2] draw" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F2" target="F3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C3: F3 → F5 (complex → cascade) -->
+        <mxCell id="C3" value="[C3] COMPLEXE" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F3" target="F5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C4: F5 → F6 (cascade → judge) -->
+        <mxCell id="C4" value="[C4] note" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F5" target="F6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C5: F6 → F13 (validé → génération) -->
+        <mxCell id="C5" value="[C5] génère" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;dashed=1;" edge="1" parent="1" source="F6" target="F13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="695" y="290" />
+              <mxPoint x="300" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- C6: F3 → F13 (simple → direct) -->
+        <mxCell id="C6" value="[C6] SIMPLE" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="F3" target="F13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- C7: F13 → F12 (use drawio server) -->
+        <mxCell id="C7" value="[C7] render" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8064A2;fontSize=8;fontColor=#8064A2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="F13" target="F12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C8: F9 ↔ F10 (tests → dashboard) -->
+        <mxCell id="C8" value="[C8] results.json" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6B8E23;fontSize=8;fontColor=#6B8E23;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="F9" target="F10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C9: F4 ⇄ F13 (RAG loop) -->
+        <mxCell id="C9" value="[C9] patterns" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B9BD5;fontSize=8;fontColor=#5B9BD5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F4" target="F5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C10: F10 → F11 (feedback from dashboard) -->
+        <mxCell id="C10" value="[C10] feedback" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6B8E23;fontSize=8;fontColor=#6B8E23;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F10" target="F11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C12: F11 → F4 (retrain RAG) -->
+        <mxCell id="C12" value="[C12] retrain" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6B8E23;fontSize=8;fontColor=#6B8E23;dashed=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="F11" target="F4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C13: F14 → F9 (CI triggers tests) -->
+        <mxCell id="C13" value="[C13] triggers" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BF8F00;fontSize=8;fontColor=#BF8F00;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="F14" target="F9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C14: F14 → F15 (CI → monitoring) -->
+        <mxCell id="C14" value="[C14] status" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BF8F00;fontSize=8;fontColor=#BF8F00;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="F14" target="F15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- C15: F2 ↔ F9 (toggle manual ↔ auto test) -->
+        <mxCell id="C15" value="[C15] manual↔auto" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#888;fontSize=8;fontColor=#888;dashed=1;exitX=0;exitY=1;entryX=0;entryY=0;" edge="1" parent="1" source="F2" target="F9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="315" y="100" />
+              <mxPoint x="120" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- C18: F13 → F4 (RAG loop) -->
+        <mxCell id="C18" value="[C18] store pattern" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#888;fontSize=7;fontColor=#888;dashed=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="F13" target="F4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="660" />
+              <mxPoint x="300" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+<diagram id="sjyycmt0-so5b" name="🌐 Macro-Vue Système"><mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- TITLE -->
+        <mxCell id="title" value="🌐 MACRO-VUE SYSTÈME — Smart MCP Ecosystem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=16;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <!-- LEGEND -->
+        <mxCell id="legend" value="&lt;b&gt;Légende :&lt;/b&gt;&lt;br&gt;🟦 Zone A : Interface (utilisateur)&lt;br&gt;🟧 Zone B : Smart MCP (classifieur/cascade/Judge)&lt;br&gt;🟩 Zone C : Tests &amp;xt Feedback&lt;br&gt;🟪 Zone D : Drawio MCP (génération diagrammes)&lt;br&gt;🟨 Zone E : Intégration &amp; Monitoring" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;fontColor=#888;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="180" height="100" as="geometry" />
+        </mxCell>
+        <!-- Zone A -->
+        <mxCell id="ZA-bg" value="" style="rounded=1;fillColor=#E8F0FE;strokeColor=#8DB3E2;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="500" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="ZA-label" value="&lt;b&gt;Zone A : Interface Utilisateur&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="135" width="500" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="F1" value="&lt;b&gt;F1 : WebUI Hermes&lt;/b&gt;&lt;hr&gt;Port 8080 + Plugin Smart MCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F2" value="&lt;b&gt;F2 : Smart MCP Panel&lt;/b&gt;&lt;hr&gt;Toggle ✨ auto/manual" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="220" y="170" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F16" value="&lt;b&gt;F16 : Banc de Test&lt;/b&gt;&lt;hr&gt;Profil local-diagram uniquement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="170" width="140" height="50" as="geometry" />
+        </mxCell>
+        <!-- C1 : F1 → F2 -->
+        <mxCell id="C1" value="prompt" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F1" target="F2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- C2 : F2 → F16 -->
+        <mxCell id="C2" value="auto/manual" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#888;fontSize=8;fontColor=#888;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F2" target="F16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Zone B -->
+        <mxCell id="ZB-bg" value="" style="rounded=1;fillColor=#FCE4D6;strokeColor=#ED7D31;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="1520" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="ZB-label" value="&lt;b&gt;Zone B : Smart MCP — Le Pont Intelligent&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="345" width="1520" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="F3" value="&lt;b&gt;F3 : Routeur/Classifieur&lt;/b&gt;&lt;hr&gt;SIMPLE / CODE / COMPLEXE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="60" y="380" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F4" value="&lt;b&gt;F4 : RAG Brain&lt;/b&gt;&lt;hr&gt;ChromaDB + embeddings — 26 patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="220" y="380" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F5" value="&lt;b&gt;F5 : Cascade Optim&lt;/b&gt;&lt;hr&gt;N1 (4B) → N1.5 (14B) → N2 (32B)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="380" y="380" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F6" value="&lt;b&gt;F6 : Judge/Verif&lt;/b&gt;&lt;hr&gt;Qwen 2.5:1.5B évalue qualité" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="540" y="380" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7" value="&lt;b&gt;F7 : Collecteur Intentions&lt;/b&gt;&lt;hr&gt;Capture contexte utilisateur" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="700" y="380" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F8" value="&lt;b&gt;F8 : Agent Réflexion&lt;/b&gt;&lt;hr&gt;Analyse &amp; critique réponse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="860" y="380" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F12" value="&lt;b&gt;F12 : Drawio MCP Server&lt;/b&gt;&lt;hr&gt;Serveur local patché port 8080" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="380" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F13" value="&lt;b&gt;F13 : Diagram Generator&lt;/b&gt;&lt;hr&gt;Agent de génération (V4 Flash)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="380" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F17" value="&lt;b&gt;F17 : Amélioration Continue&lt;/b&gt;&lt;hr&gt;Feedback → RAG retrain → Amélioration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;strokeWidth=2;fontSize=10;fontColor=#333;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="380" width="180" height="50" as="geometry" />
+        </mxCell>
+        <!-- Edges Zone B -->
+        <mxCell id="C3" value="draw" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F3" target="F5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C4" value="COMPLEXE" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F5" target="F6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C5" value="validé → génère" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="F6" target="F13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C6" value="SIMPLE" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;fontSize=8;fontColor=#333;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="F3" target="F13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C9" value="patterns RAG" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B9BD5;fontSize=8;fontColor=#5B9BD5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F4" target="F5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C18" value="store pattern" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#888;fontSize=7;fontColor=#888;dashed=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="F13" target="F4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- F7 → F8 -->
+        <mxCell id="C7" value="contexte" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8064A2;fontSize=8;fontColor=#8064A2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F7" target="F8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- F8 → F13 -->
+        <mxCell id="C8" value="critique" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8064A2;fontSize=8;fontColor=#8064A2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F8" target="F13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- F13 → F12 -->
+        <mxCell id="C10" value="render" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8064A2;fontSize=8;fontColor=#8064A2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="F13" target="F12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- F17 → F4 (feedback retrain) -->
+        <mxCell id="C17" value="retrain" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BF8F00;fontSize=8;fontColor=#BF8F00;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F17" target="F4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Zone C -->
+        <mxCell id="ZC-bg" value="" style="rounded=1;fillColor=#E2EFDA;strokeColor=#70AD47;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="690" width="1520" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC-label" value="&lt;b&gt;Zone C : Tests, Dashboard &amp; CI/CD&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="675" width="1520" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="F9" value="&lt;b&gt;F9 : Test Runner&lt;/b&gt;&lt;hr&gt;test_runner.py — &amp;gt;200 tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="60" y="710" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F10" value="&lt;b&gt;F10 : Dashboard&lt;/b&gt;&lt;hr&gt;Plotly dash — port 8050" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="240" y="710" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F11" value="&lt;b&gt;F11 : Feedback Loop&lt;/b&gt;&lt;hr&gt;Amélioration continue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="420" y="710" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F14" value="&lt;b&gt;F14 : CI/CD Pipeline&lt;/b&gt;&lt;hr&gt;GitHub Actions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="600" y="710" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F15" value="&lt;b&gt;F15 : Monitoring&lt;/b&gt;&lt;hr&gt;Dashboard temps réel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;strokeWidth=2;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+          <mxGeometry x="780" y="710" width="150" height="50" as="geometry" />
+        </mxCell>
+        <!-- Zone C edges -->
+        <mxCell id="C11" value="results.json" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6B8E23;fontSize=8;fontColor=#6B8E23;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F9" target="F10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C12" value="feedback" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6B8E23;fontSize=8;fontColor=#6B8E23;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F10" target="F11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C13" value="triggers" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BF8F00;fontSize=8;fontColor=#BF8F00;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F14" target="F9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="C14" value="status" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#BF8F00;fontSize=8;fontColor=#BF8F00;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="F14" target="F15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- External systems -->
+        <mxCell id="EXT1" value="🌍&lt;br&gt;&lt;b&gt;OpenRouter / LLM Cloud&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#666;strokeWidth=1;fontSize=9;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="710" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EXT2" value="💾&lt;br&gt;&lt;b&gt;GitHub&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#666;strokeWidth=1;fontSize=9;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="710" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EXT3" value="📦&lt;br&gt;&lt;b&gt;Ollama local&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#666;strokeWidth=1;fontSize=9;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="710" width="120" height="50" as="geometry" />
+        </mxCell>
+        <!-- Legend bottom -->
+        <mxCell id="legend-bottom" value="&lt;b&gt;F1-F17 : Figures clés du système&lt;/b&gt;&lt;br&gt;---&amp;gt; flux direct | - - -&amp;gt; flux indirect/RAG" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=9;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="890" width="300" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel></diagram><diagram id="kfzlj283-wd4o" name="⚡ Pipeline Optimisation"><mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="⚡ PIPELINE OPTIMISATION — Routeur/Cascade/Judge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=16;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;b&gt;Pipeline :&lt;/b&gt;&lt;br&gt;1. Question entrante&lt;br&gt;2. Routeur classifie (SIMPLE/CODE/COMPLEXE)&lt;br&gt;3. Aiguillage vers le bon chemin&lt;br&gt;4. Cascade D1→D2→D3 si nécessaire&lt;br&gt;5. Judge évalue (note/10)&lt;br&gt;6. Si note ≥ 6 → génération diagramme&lt;br&gt;7. Stockage pattern dans RAG&lt;br&gt;8. Feedback utilisateur boucle" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="250" height="200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel></diagram><diagram id="wcgbyqym-aqe7" name="🖥️ Infrastructure &amp;amp; Services"><mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="🖥️ INFRASTRUCTURE &amp; SERVICES — Stack Malek" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=16;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;b&gt;Matériel :&lt;/b&gt;&lt;br&gt;Ryzen 9 — 46GB RAM — 2TB NVMe&lt;br&gt;RTX 3060 12GB (CUDA 13.0, driver 580.159.03)&lt;br&gt;iGPU Radeon 780M&lt;br&gt;&lt;br&gt;&lt;b&gt;Services :&lt;/b&gt;&lt;br&gt;Ollama GPU :11434 (actif)&lt;br&gt;Ollama CPU :11435 (disabled)&lt;br&gt;Ollama iGPU :11436 (disabled)&lt;br&gt;Hermes Gateway (actif)&lt;br&gt;Drawio MCP :8080&lt;br&gt;Dashboard :8050&lt;br&gt;Wekan (Kanban)" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="280" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="&lt;b&gt;Docker :&lt;/b&gt;&lt;br&gt;7 standalone : immich, agent-zero:5080, portainer, backrest&lt;br&gt;CapRover Swarm : nextcloud, bitwarden, immich" style="text;html=1;strokeColor=none;fillColor=#E8F0FE;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="360" y="80" width="280" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel></diagram><diagram id="ufditwp2-oqgl" name="📚 Workflows &amp;amp; Savoir-Faire"><mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="📚 WORKFLOWS &amp; SAVOIR-FAIRE — Process Smart MCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=16;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;b&gt;Workflows maîtrisés :&lt;/b&gt;&lt;br&gt;• Création profil Hermes cold-start&lt;br&gt;• Configuration modèles locaux (Modelfile anti-truncation)&lt;br&gt;• Pipeline drawio multi-page&lt;br&gt;• Tests CI automatisés&lt;br&gt;• Dashboard Plotly temps réel&lt;br&gt;• Canal Wekan pour kanban intelligents" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="300" height="160" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel></diagram><diagram id="8wbyp1uy-ixxj" name="📊 Benchmarks &amp;amp; Décisions"><mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="📊 BENCHMARKS &amp; DÉCISIONS — Modèles &amp; Performances" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=16;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;b&gt;Décisions clés :&lt;/b&gt;&lt;br&gt;• Default2 → OpenRouter DeepSeek V4 Flash (131K ctx)&lt;br&gt;• Local-gpu → Gemma-4 E4B (UD-Q4_K_XL, 6.1GB VRAM)&lt;br&gt;• Local-diagram → qwen3.5:9b-hermes (Modelfile 65K ctx)&lt;br&gt;• RTX 3060 fix : NVreg_EnableGpuFirmware=0 dans GRUB" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="350" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel></diagram><diagram id="carte-systemique-40306c9e" name="🧠 Carte Systémique"><mxGraphModel>
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <!-- TITLE -->
+    <mxCell id="2" value="🗺️ CARTE SYSTÉMIQUE — NOS CONVERSATIONS HERMES" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=14;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+      <mxGeometry x="100" y="10" width="600" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="3" value="Cette carte regroupe l'ensemble de nos conversations et travaux autour de l'écosystème Hermes / Smart MCP. Elle est conçue comme une ancre visuelle persistante." style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#888;" vertex="1" parent="1">
+      <mxGeometry x="100" y="40" width="600" height="30" as="geometry" />
+    </mxCell>
+    <!-- A: Fondations -->
+    <mxCell id="ZA-bg" value="" style="rounded=1;fillColor=#E8F0FE;strokeColor=#8DB3E2;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="80" width="760" height="130" as="geometry" />
+    </mxCell>
+    <mxCell id="ZA-lbl" value="&lt;b&gt;A — Fondations Hardware / OS / GPU&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="65" width="760" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="A1" value="&lt;b&gt;A1 : Hardware&lt;/b&gt;&lt;hr&gt;Ryzen 9 + 46GB RAM&lt;br&gt;RTX 3060 12GB, iGPU 780M" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="40" y="100" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="A2" value="&lt;b&gt;A2 : GPU Fix&lt;/b&gt;&lt;hr&gt;NVreg_EnableGpuFirmware=0&lt;br&gt;gpu-health-check.service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="180" y="100" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="A3" value="&lt;b&gt;A3 : Ollama&lt;/b&gt;&lt;hr&gt;GPU :11434 actif&lt;br&gt;CPU :11435, iGPU :11436 désactivés" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="320" y="100" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="A4" value="&lt;b&gt;A4 : Docker&lt;/b&gt;&lt;hr&gt;7 standalone + CapRover Swarm&lt;br&gt;Portainer, Wekan, Agent-Zero" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="460" y="100" width="120" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="A5" value="&lt;b&gt;A5 : Réseau&lt;/b&gt;&lt;hr&gt;192.168.1.100 — Drawio :8080&lt;br&gt;Dashboard :8050 — Ollama :11434" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="610" y="100" width="140" height="50" as="geometry" />
+    </mxCell>
+    <!-- B: Profils Hermes -->
+    <mxCell id="ZB-bg" value="" style="rounded=1;fillColor=#FCE4D6;strokeColor=#ED7D31;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="230" width="760" height="130" as="geometry" />
+    </mxCell>
+    <mxCell id="ZB-lbl" value="&lt;b&gt;B — Profils Hermes &amp; Modèles&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="215" width="760" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="B1" value="&lt;b&gt;B1 : default2&lt;/b&gt;&lt;hr&gt;OpenRouter DeepSeek V4 Flash&lt;br&gt;131K ctx — 0.30€/M tokens" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="40" y="250" width="130" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="B2" value="&lt;b&gt;B2 : local-gpu&lt;/b&gt;&lt;hr&gt;Gemma-4 E4B (UD-Q4_K_XL)&lt;br&gt;6.1GB VRAM — 131K ctx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="200" y="250" width="130" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="B3" value="&lt;b&gt;B3 : local-diagram&lt;/b&gt;&lt;hr&gt;qwen3.5:9b-hermes (65K ctx)&lt;br&gt;Banc de test diagrammes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="360" y="250" width="130" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="B4" value="&lt;b&gt;B4 : global&lt;/b&gt;&lt;hr&gt;Profil de base&lt;br&gt;(non utilisé actuellement)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="520" y="250" width="130" height="50" as="geometry" />
+    </mxCell>
+    <!-- C: Smart MCP Pipeline -->
+    <mxCell id="ZC-bg" value="" style="rounded=1;fillColor=#E2EFDA;strokeColor=#70AD47;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="380" width="760" height="200" as="geometry" />
+    </mxCell>
+    <mxCell id="ZC-lbl" value="&lt;b&gt;C — Projet Smart MCP&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="365" width="760" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="C1" value="&lt;b&gt;C1 : Routeur&lt;/b&gt;&lt;hr&gt;Classifie SIMPLE/CODE/COMPLEXE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="40" y="400" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C2" value="&lt;b&gt;C2 : Cascade&lt;/b&gt;&lt;hr&gt;N1(4B) → N1.5(14B) → N2(32B)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="180" y="400" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C3" value="&lt;b&gt;C3 : Judge&lt;/b&gt;&lt;hr&gt;Évalue qualité (note/10)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="320" y="400" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C4" value="&lt;b&gt;C4 : RAG Brain&lt;/b&gt;&lt;hr&gt;ChromaDB — 26 patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="460" y="400" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C5" value="&lt;b&gt;C5 : Drawio MCP&lt;/b&gt;&lt;hr&gt;Génération diagrammes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="600" y="400" width="140" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C6" value="&lt;b&gt;C6 : Tests &amp; CI/CD&lt;/b&gt;&lt;hr&gt;test_runner.py + GitHub Actions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="40" y="480" width="140" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C7" value="&lt;b&gt;C7 : Dashboard&lt;/b&gt;&lt;hr&gt;Plotly 8050 — résultats tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="210" y="480" width="140" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C8" value="&lt;b&gt;C8 : ChromaDB Viz&lt;/b&gt;&lt;hr&gt;Visualisation base patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="380" y="480" width="140" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="C9" value="&lt;b&gt;C9 : GitHub&lt;/b&gt;&lt;hr&gt;github.com/IDRIMalek/Smart-MCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="550" y="480" width="140" height="50" as="geometry" />
+    </mxCell>
+    <!-- D: Infrastructure Hermes -->
+    <mxCell id="ZD-bg" value="" style="rounded=1;fillColor=#E4DFEC;strokeColor=#8064A2;strokeWidth=2;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="600" width="760" height="100" as="geometry" />
+    </mxCell>
+    <mxCell id="ZD-lbl" value="&lt;b&gt;D — Infrastructure Hermes Agent&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#333;" vertex="1" parent="1">
+      <mxGeometry x="20" y="585" width="760" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="D1" value="&lt;b&gt;D1 : Gateway&lt;/b&gt;&lt;hr&gt;Pont modèles + plugins" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#666;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="40" y="615" width="140" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="D2" value="&lt;b&gt;D2 : Skills&lt;/b&gt;&lt;hr&gt;Procédures réutilisables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#666;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="210" y="615" width="140" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="D3" value="&lt;b&gt;D3 : Mémoire&lt;/b&gt;&lt;hr&gt;MEMORY.md + USER.md persistants" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#666;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="380" y="615" width="140" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="D4" value="&lt;b&gt;D4 : SOUL.md&lt;/b&gt;&lt;hr&gt;Personnalité agent - instructions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#666;fontSize=8;" vertex="1" parent="1">
+      <mxGeometry x="550" y="615" width="140" height="50" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel></diagram><diagram id="taq3j036-xse7" name="🏗️ Architecture Contextes LLM"><mxGraphModel>
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <!-- ==================== TITLE ==================== -->
+    <mxCell id="2" value="🧠 HERMES — Architecture, Contextes &amp; Tools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=14;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+      <mxGeometry x="100" y="10" width="600" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="3" value="&lt;b&gt;Context windows :&lt;/b&gt;&lt;br&gt;• System prompt (10-30K tokens) : mémoire, user profile, skills, instructions de conduite&lt;br&gt;• Context window (8-131K tokens) : tout ce que vous avez dit + outputs d'outils&lt;br&gt;• Session DB : stockage persistant des conversations (FTS5 pour recherche)&lt;br&gt;&lt;br&gt;&lt;b&gt;Outils clés :&lt;/b&gt;&lt;br&gt;• memory() / skill_manage() / session_search() — mémoire persistante&lt;br&gt;• mcp_drawio_* — diagrammes drawio interactifs&lt;br&gt;• terminal() / write_file() / patch() — exécution système et code" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="40" y="60" width="350" height="200" as="geometry" />
+    </mxCell>
+    <mxCell id="4" value="&lt;b&gt;Problèmes résolus :&lt;/b&gt;&lt;br&gt;• ✗ PCI remove/rescan (casse le lien PCIe)&lt;br&gt;• ✗ Fallback silencieux Ollama (modèle dérivé inexistant → troncature 2048)&lt;br&gt;• ✗ Modelfile sans num_ctx (défaut 2048 → réponses vides WebUI)&lt;br&gt;• ✓ Modelfile num_ctx≥65536 pour tous les modèles WebUI&lt;br&gt;• ✓ Modèle dérivé créé avant config dans config.yaml" style="text;html=1;strokeColor=none;fillColor=#FFF2CC;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="420" y="60" width="350" height="150" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel></diagram><diagram id="buywf6D7PgYwizoDFIXQ" name="⚙️ Optimisation Architecture"><mxGraphModel dx="2667" dy="994" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="⚙️ OPTIMISATION ARCHITECTURE — Perf &amp; Coûts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=14;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="100" y="10" width="600" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="&lt;b&gt;Optimisations appliquées :&lt;/b&gt;&lt;br&gt;• Compression contexte (threshold=0.65, target=0.35) pour modèles cloud&lt;br&gt;• Modelfile anti-truncation (num_ctx≥65536) pour tous modèles locaux&lt;br&gt;• Keep-alive Ollama 24h (évite reloads coûteux)&lt;br&gt;• Cascade adaptative (4B d'abord, escalade si nécessaire)&lt;br&gt;• Profil local-diagram dédié aux tests (pas de coût API)&lt;br&gt;&lt;br&gt;&lt;b&gt;Objectifs :&lt;/b&gt;&lt;br&gt;• &amp;lt; 5€/mois en API (DeepSeek V4 Flash très économique)&lt;br&gt;• &amp;gt; 200 tests CI sans dépendance LLM&lt;br&gt;• Diagrammes 100% locaux possibles via qwen3.5:9b-hermes" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="350" height="250" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel></diagram><diagram id="kanban" name="📋 Kanban"><mxGraphModel grid="0" page="0" pageWidth="1800" pageHeight="1400" dx="0" dy="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- ========== SECTION 1: Hermes ========== -->
+        <mxCell id="hdr-1" value="&lt;b&gt;🧑‍💻 Hermès (Agent Principal)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#e94560;fontColor=#e94560;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr-todo" value="&lt;b&gt;À FAIRE&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr-doing" value="&lt;b&gt;EN COURS&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#70AD47;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="260" y="80" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr-done" value="&lt;b&gt;FAIT&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="480" y="80" width="200" height="20" as="geometry" />
+        </mxCell>
+        <!-- TODO items -->
+        <mxCell id="todo-1" value="• Push GitHub (credentials)&lt;br&gt;• F16/F17 diagrammes détaillés&lt;br&gt;• Toggle auto/manual amélioré&lt;br&gt;• Dashboard ChromaDB&lt;br&gt;• &amp;gt;200 tests non-régression" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=8;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="200" height="120" as="geometry" />
+        </mxCell>
+        <!-- DOING items -->
+        <mxCell id="doing-1" value="• Diagramme persistant F1-F17&lt;br&gt;• Tests dashboard &amp; CI&lt;br&gt;• Bilan session utilisateur" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#70AD47;fontSize=8;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="260" y="110" width="200" height="80" as="geometry" />
+        </mxCell>
+        <!-- DONE items -->
+        <mxCell id="done-1" value="• Diagramme F1-F15 Zones A-E✓&lt;br&gt;• Méga-diagramme 10 pages✓&lt;br&gt;• RAG Brain ChromaDB✓&lt;br&gt;• Dashboard Plotly 8050✓&lt;br&gt;• CI/CD GitHub Actions✓&lt;br&gt;• Modèles locaux fonctionnels✓" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAEEF3;strokeColor=#5B9BD5;fontSize=8;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="480" y="110" width="200" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel></diagram><diagram id="owmwi978-qdes" name="🧪 Test"><mxGraphModel>
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="2" value="Boîte Rouge" style="rounded=1;fillColor=#FF0000;strokeColor=#CC0000;fontColor=#FFF;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="40" y="40" width="100" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="3" value="Boîte Bleue" style="rounded=1;fillColor=#0000FF;strokeColor=#0000CC;fontColor=#FFF;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="180" y="40" width="100" height="60" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel></diagram><diagram id="249r6j6f-ssdg" name="🧪 Banc de Test Auto (F16)"><mxGraphModel>
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <!-- TITLE -->
+    <mxCell id="title" value="🧪 F16 — Banc de Test Automatisé" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=14;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+      <mxGeometry x="100" y="10" width="600" height="30" as="geometry" />
+    </mxCell>
+    <!-- Flux -->
+    <mxCell id="step1" value="&lt;b&gt;1. Tentative Diagramme&lt;/b&gt;&lt;hr&gt;Utilisateur fait une tentative&lt;br&gt;sur profil local-diagram" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#5B9BD5;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="40" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="step2" value="&lt;b&gt;2. Enregistrement&lt;/b&gt;&lt;hr&gt;La tentative est sauvegardée&lt;br&gt;dans results.json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="230" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="step3" value="&lt;b&gt;3. Test Automatique&lt;/b&gt;&lt;hr&gt;test_runner.py exécute&lt;br&gt;les séquences de test" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="420" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="step4" value="&lt;b&gt;4. Dashboard&lt;/b&gt;&lt;hr&gt;Résultats visibles&lt;br&gt;sur dashboard 8050" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="610" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <!-- Edges -->
+    <mxCell id="e1" value="" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="step1" target="step2" />
+    <mxCell id="e2" value="" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="step2" target="step3" />
+    <mxCell id="e3" value="" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="step3" target="step4" />
+    <!-- Légende -->
+    <mxCell id="legend" value="&lt;b&gt;Concept :&lt;/b&gt;&lt;br&gt;Le mode Manuel bascule automatiquement le test&lt;br&gt;runner pour capturer chaque tentative comme un test.&lt;br&gt;Pas de curl, pas de code à taper — juste le test.&lt;br&gt;&lt;br&gt;&lt;b&gt;Profil :&lt;/b&gt; local-diagram (qwen3.5:9b-hermes)&lt;br&gt;&lt;b&gt;Stockage :&lt;/b&gt; Smart-MCP/results.json + ChromaDB" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="40" y="150" width="350" height="120" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel></diagram><diagram id="6r6igdfs-9mgw" name="🔄 Amélioration Continue &amp;amp; RAG (F17)"><mxGraphModel>
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <!-- TITLE -->
+    <mxCell id="title" value="🔄 F17 — Amélioration Continue &amp; RAG Retrain" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;fontSize=14;fontStyle=1;arcSize=10;" vertex="1" parent="1">
+      <mxGeometry x="100" y="10" width="600" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="step1" value="&lt;b&gt;1. Nouveau Pattern&lt;/b&gt;&lt;hr&gt;Diagramme validé par le Judge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4DFEC;strokeColor=#8064A2;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="40" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="step2" value="&lt;b&gt;2. ChromaDB Store&lt;/b&gt;&lt;hr&gt;Pattern + embedding stockés&lt;br&gt;dans diagram_patterns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#5B9BD5;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="230" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="step3" value="&lt;b&gt;3. Feedback&lt;/b&gt;&lt;hr&gt;Feedback utilisateur enregistré&lt;br&gt;dans feedback_history" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C4D79B;strokeColor=#6B8E23;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="420" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="step4" value="&lt;b&gt;4. RAG Retrain&lt;/b&gt;&lt;hr&gt;Brain amélioré pour&lt;br&gt;prochains diagrammes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF8F00;fontSize=9;" vertex="1" parent="1">
+      <mxGeometry x="610" y="60" width="150" height="60" as="geometry" />
+    </mxCell>
+    <!-- Edges -->
+    <mxCell id="e1" value="" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="step1" target="step2" />
+    <mxCell id="e2" value="" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="step2" target="step3" />
+    <mxCell id="e3" value="" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="step3" target="step4" />
+    <mxCell id="loop" value="boucle continue ♻️" style="curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#888;fontSize=8;fontColor=#888;dashed=1;" edge="1" parent="1" source="step4" target="step1" />
+    <!-- Stats -->
+    <mxCell id="stats" value="&lt;b&gt;État actuel :&lt;/b&gt;&lt;br&gt;• diagram_patterns : 26 patterns (53 chunks)&lt;br&gt;• feedback_history : 0 feedbacks&lt;br&gt;• Embedding model : default (all-MiniLM-L6-v2)&lt;br&gt;• Path : ~/.hermes/profiles/default2/home/.smart-mcp/brain/" style="text;html=1;strokeColor=none;fillColor=#F8F9FA;align=left;fontSize=9;fontColor=#333;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="40" y="150" width="350" height="100" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel></diagram></mxfile>

@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net" modified="2023-10-27T10:00:00.000Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" version="24.6.0">
+  <diagram name="Architecture Microservices" id="arch_microservice_v1">
+    <mxGraphModel dx="1839" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" fold="1" page="1" pageScale="1.5" pageWidth="826" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" value="" style="rounded=0;whiteSpace=wrap;" vertex="1" parent="0">
+          <mxGeometry x="-250" y="-68.74" width="1000" height="680" as="geometry"/>
+        </mxCell>
+        <mxCell id="gw" value="API Gateway" style="rounded=1;fillColor=#FFE0B2;strokeColor=#FF9800;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="170" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="auth" value="Service Auth" style="rounded=1;fillColor=#BBDEFB;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="users" value="Service Utilisateurs" style="rounded=1;fillColor=#BBDEFB;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="orders" value="Service Commandes" style="rounded=1;fillColor=#BBDEFB;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="payments" value="Service Paiements" style="rounded=1;fillColor=#BBDEFB;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="170" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="db" value="PostgreSQL" style="rounded=1;fillColor=#E8F5E9;strokeColor=#4CAF50;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="100" width="150" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="mq" value="RabbitMQ" style="rounded=1;fillColor=#FFF9C4;strokeColor=#FFC107;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="340" width="150" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-gw-auth" value="" style="endArrow=classic;startArrow=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="100" as="sourcePoint"/>
+            <mxPoint x="125" y="165" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-auth-users" value="" style="endArrow=classic;startArrow=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="190" as="sourcePoint"/>
+            <mxPoint x="125" y="245" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-users-orders" value="" style="endArrow=classic;startArrow=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="125" y="270" as="sourcePoint"/>
+            <mxPoint x="125" y="325" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-orders-mq" value="" style="endArrow=classic;startArrow=classic;dashed=1;fontSize=12;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="325" as="sourcePoint"/>
+            <mxPoint x="320" y="370" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-db-orders" value="" style="endArrow=classic;startArrow=none;fontSize=12;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="200" as="sourcePoint"/>
+            <mxPoint x="210" y="325" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

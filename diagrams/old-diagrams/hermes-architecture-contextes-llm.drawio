@@ -1,0 +1,243 @@
+<mxfile host="app.diagrams.net"><diagram id="taq3j036-xse7" name="Page-1"><mxGraphModel>
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    
+    <!-- ==================== TITLE ==================== -->
+    <mxCell id="2" value="🧠 HERMES — Architecture, Contextes &amp; LLMs" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#e94560;fontSize=22;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="40" y="20" width="1920" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- ==================== ZONE 1: UTILISATEUR ==================== -->
+    <mxCell id="3" value="👤 VOUS (Malek)" style=" rounded=1;fillColor=#16213e;strokeColor=#0f3460;fontSize=14;fontStyle=1;fontColor=#e94560;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="40" y="90" width="300" height="160" as="geometry" />
+    </mxCell>
+    <mxCell id="4" value="🌐 WebUI browser" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#3498db;fontSize=12;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="125" width="120" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="5" value="📱 Telegram / Discord / ..." style=" rounded=1;fillColor=#1a2a3e;strokeColor=#2ecc71;fontSize=12;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="200" y="125" width="120" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="6" value="Chaque plateforme = session différente" style="text;html=1;fontSize=10;fontColor=#7f8c8d;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="165" width="260" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="7" value="← Les sessions ne se mélangent PAS entre platesformes" style="text;html=1;fontSize=9;fontColor=#e74c3c;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="60" y="190" width="260" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== ZONE 2: PROFILS HERMES ==================== -->
+    <mxCell id="8" value="⚙️ PROFILS HERMES" style=" rounded=1;fillColor=#16213e;strokeColor=#0f3460;fontSize=16;fontStyle=1;fontColor=#f39c12;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="40" y="280" width="300" height="370" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="9" value="📁 default" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#3498db;fontSize=14;fontStyle=1;fontColor=#3498db;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="320" width="260" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="10" value="config.yaml (MCP drawio ✅) · skills/ · plugins/ · memories/ · cron/" style="text;html=1;fontSize=10;fontColor=#bdc3c7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="365" width="240" height="30" as="geometry" />
+    </mxCell>
+
+    <mxCell id="11" value="📁 freelance" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#2ecc71;fontSize=14;fontStyle=1;fontColor=#2ecc71;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="405" width="260" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="12" value="config.yaml (MCP drawio ❌) · skills/ · plugins/ · memories/ · cron/" style="text;html=1;fontSize=10;fontColor=#bdc3c7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="450" width="240" height="30" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="13" value="⬅️ Chaque profil est INDÉPENDANT" style=" rounded=1;fillColor=#2c1a1a;strokeColor=#e74c3c;fontSize=11;fontStyle=1;fontColor=#e74c3c;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="495" width="260" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="14" value="⚡ Les MCP (drawio) et skills NE SONT PAS partagés entre profils" style="text;html=1;fontSize=9;fontColor=#e74c3c;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="60" y="535" width="260" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="15" value="💡 Solution: copier mcp_servers: dans le profil cible" style="text;html=1;fontSize=10;fontColor=#2ecc71;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="60" y="575" width="260" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== ZONE 3: CYCLE AGENT ==================== -->
+    <mxCell id="16" value="🔄 CYCLE AGENT (AIAgent.run_conversation)" style=" rounded=1;fillColor=#16213e;strokeColor=#0f3460;fontSize=16;fontStyle=1;fontColor=#9b59b6;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="380" y="90" width="460" height="560" as="geometry" />
+    </mxCell>
+
+    <!-- Boucle -->
+    <mxCell id="17" value="📤 User Message" style="ellipse;fillColor=#1a3a2e;strokeColor=#2ecc71;fontSize=12;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="430" y="125" width="160" height="36" as="geometry" />
+    </mxCell>
+    <mxCell id="18" value="➕" style="ellipse;fillColor=#1a1a2e;strokeColor=#7f8c8d;fontSize=16;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="605" y="125" width="30" height="36" as="geometry" />
+    </mxCell>
+    <mxCell id="19" value="📦 Messages précédents" style=" rounded=1;fillColor=#2a1a3e;strokeColor=#9b59b6;fontSize=11;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="645" y="115" width="140" height="55" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="20" value="📦 CONTEXT COMPLET (System + User + Historique)" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#e94560;fontSize=12;fontStyle=1;fontColor=#e94560;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="430" y="185" width="260" height="36" as="geometry" />
+    </mxCell>
+
+    <!-- Flèche vers LLM -->
+    <mxCell id="21" value="📨 Appel API LLM" style=" rounded=1;fillColor=#1a3a2e;strokeColor=#2ecc71;fontSize=12;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="430" y="240" width="260" height="36" as="geometry" />
+    </mxCell>
+
+    <!-- LLM response -->
+    <mxCell id="22" value="🤖 Réponse LLM" style=" rounded=1;fillColor=#2a1a3e;strokeColor=#9b59b6;fontSize=12;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="430" y="295" width="260" height="36" as="geometry" />
+    </mxCell>
+
+    <!-- Tool call? -->
+    <mxCell id="23" value="🔧 Tool call ?" style="diamond;fillColor=#16213e;strokeColor=#f39c12;fontSize=13;fontStyle=1;fontColor=#f39c12;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="485" y="350" width="130" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- OUI -> Tool -->
+    <mxCell id="24" value="✅ OUI → Exécute tool (MCP drawio, terminal, etc.)" style=" rounded=1;fillColor=#1a3a2e;strokeColor=#2ecc71;fontSize=11;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="640" y="355" width="180" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="25" value="Résultat → context" style="text;html=1;fontSize=9;fontColor=#7f8c8d;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="685" y="400" width="90" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- NON -> Réponse finale -->
+    <mxCell id="26" value="❌ NON → Réponse finale à l'utilisateur" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#3498db;fontSize=11;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="430" y="425" width="180" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- Limite de tours -->
+    <mxCell id="27" value="⏱️ max_iterations = 90 tours max" style=" rounded=1;fillColor=#2c1a1a;strokeColor=#e74c3c;fontSize=10;fontStyle=1;fontColor=#e74c3c;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="430" y="490" width="180" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- Note contexte qui sature -->
+    <mxCell id="28" value="" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#e74c3c;fontSize=11;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="430" y="540" width="370" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="29" value="🔥 LE PROBLÈME : SATURATION DU CONTEXTE" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#e74c3c;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="440" y="545" width="350" height="25" as="geometry" />
+    </mxCell>
+    <mxCell id="30" value="Chaque tour ajoute: user_msg + assistant_msg + tool_results + memoire + skills
+Au bout de 20-40 tours, le context window est plein → l'IA oublie le début
+⬇️" style="text;html=1;fontSize=10;fontColor=#bdc3c7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="440" y="575" width="350" height="45" as="geometry" /></mxCell>
+    <mxCell id="31" value="💡 Nouveau profil = contexte vide + moins de mémoire + moins de skills chargés → + rapide" style="text;html=1;fontSize=10;fontColor=#2ecc71;align=center;verticalAlign=bottom;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="440" y="585" width="350" height="35" as="geometry" />
+    </mxCell>
+    <mxCell id="42" value="= frais" style="text;html=1;fontSize=9;fontColor=#7f8c8d;align=center;verticalAlign=bottom;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="440" y="600" width="350" height="20" as="geometry" /></mxCell>
+
+    <!-- ==================== ZONE 4: LLM BACKENDS ==================== -->
+    <mxCell id="32" value="🤖 BACKENDS LLM" style=" rounded=1;fillColor=#16213e;strokeColor=#0f3460;fontSize=16;fontStyle=1;fontColor=#2ecc71;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="880" y="90" width="460" height="560" as="geometry" />
+    </mxCell>
+
+    <!-- OpenRouter -->
+    <mxCell id="33" value="☁️ OpenRouter (Cloud)" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#e94560;fontSize=14;fontStyle=1;fontColor=#e94560;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="910" y="125" width="400" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="34" value=" deepseek/deepseek-v4-flash (défaut) · context_length: 65536 (64K tokens)" style="text;html=1;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="930" y="170" width="360" height="25" as="geometry" />
+    </mxCell>
+    <mxCell id="35" value="deepseek-v4-flash:  🔥 Très puissant · contexte 64K · rapide MAIS coûte en tokens" style="text;html=1;fontSize=10;fontColor=#bdc3c7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="930" y="195" width="360" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="36" value="💡 OpenRouter facture à chaque appel — plus le contexte est gros, plus ça coûte" style="text;html=1;fontSize=9;fontColor=#e74c3c;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="930" y="240" width="360" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- Fallback Local -->
+    <mxCell id="37" value="🖥️ Fallback local (Ollama × 3 instances)" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#f39c12;fontSize=14;fontStyle=1;fontColor=#f39c12;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="910" y="280" width="400" height="40" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="38" value="🟢 GPU (RTX 3060) · port 11434 · FLASH_ATTENTION=1
+   qwen3.5-4b-agent-opt (4B paramètres, contexte 32K)
+   Utilisé si OpenRouter tombe → fallback" style="text;html=1;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="930" y="325" width="360" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="39" value="🔵 CPU · port 11435 · Modèles lourds (contexte max)
+🟣 iGPU · port 11436 · Équilibre" style="text;html=1;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="930" y="395" width="360" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Tailles de contexte -->
+    <mxCell id="40" value="📏 TAILLES DE CONTEXTE" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#9b59b6;fontSize=14;fontStyle=1;fontColor=#9b59b6;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="910" y="470" width="400" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="41" value="DeepSeek V4 Flash → 64K tokens (32K mots environ)
+Qwen 3.5 4B → 32K tokens (16K mots)
+qwen2.5-coder:14b → 32K tokens
+↳ 1 token ≈ 0.75 mot en français" style="text;html=1;fontSize=10;fontColor=#bdc3c7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="930" y="510" width="360" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="42_dup1" value="🔑 CLÉ : quand le contexte sature, le LLM commence à perdre les messages les plus anciens = perte de mémoire de la conversation" style="rounded=1;fillColor=#2c1a1a;strokeColor=#e74c3c;fontSize=10;fontStyle=1;fontColor=#e74c3c;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="910" y="590" width="400" height="40" as="geometry" /></mxCell>
+
+    <!-- ==================== ZONE 5: CONTEXTE VISUEL ==================== -->
+    <mxCell id="43" value="📊 COMMENT LE CONTEXTE SE REMPLIT" style=" rounded=1;fillColor=#16213e;strokeColor=#0f3460;fontSize=16;fontStyle=1;fontColor=#e94560;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="1380" y="90" width="580" height="560" as="geometry" />
+    </mxCell>
+
+    <!-- Barre de progression -->
+    <mxCell id="44" value="Tour 1 : [📦 system prompt ████████░░░░░░░░░░░░░░░░░░] 25%" style=" rounded=1;fillColor=#1a3a2e;strokeColor=#2ecc71;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1410" y="125" width="520" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="45" value="Tour 10: [📦 historique ██████████████████████░░░░░░░░] 60%" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#3498db;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1410" y="170" width="520" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="46" value="Tour 20: [📦 historique ████████████████████████████░░] 85%" style=" rounded=1;fillColor=#2a1a3e;strokeColor=#9b59b6;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1410" y="215" width="520" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="47" value="Tour 30: [📦 HISTORIQUE ████████████████████████████] 100% SATURÉ" style=" rounded=1;fillColor=#2c1a1a;strokeColor=#e74c3c;fontSize=11;fontStyle=1;fontColor=#e74c3c;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1410" y="260" width="520" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- Détail de ce qui prend de la place -->
+    <mxCell id="48" value="📋 CE QUI CONSOMME LE CONTEXTE" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#f39c12;fontSize=13;fontStyle=1;fontColor=#f39c12;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1410" y="310" width="520" height="30" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="49" value="📝 System prompt = instructions de base + skills chargés (~2000-5000 tokens)" style=" rounded=1;fillColor=#2c1a1a;strokeColor=#e74c3c;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="350" width="500" height="25" as="geometry" />
+    </mxCell>
+    <mxCell id="50" value="🧠 Memoire injectée = vos notes personnelles (~2000 tokens)" style=" rounded=1;fillColor=#2c1a1a;strokeColor=#e74c3c;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="385" width="500" height="25" as="geometry" />
+    </mxCell>
+    <mxCell id="51" value="🛠️ Résultats des tools (terminal, MCP, etc.) = très lourds" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#f39c12;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="420" width="500" height="25" as="geometry" />
+    </mxCell>
+    <mxCell id="52" value="💬 Historique des messages utilisateur ↔ assistant" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#3498db;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="455" width="500" height="25" as="geometry" />
+    </mxCell>
+    <mxCell id="53" value="📎 Context files (AGENTS.md, etc.) = lourd au début" style=" rounded=1;fillColor=#2a1a3e;strokeColor=#9b59b6;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="490" width="500" height="25" as="geometry" />
+    </mxCell>
+
+    <!-- Pourquoi nouveau profil = plus rapide -->
+    <mxCell id="54" value="" style=" rounded=1;fillColor=#1a3a2e;strokeColor=#2ecc71;fontSize=11;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="1410" y="535" width="520" height="100" as="geometry" />
+    </mxCell>
+    <mxCell id="55" value="✅ NOUVEAU PROFIL = TOUT REPRENDRE À ZÉRO" style="text;html=1;fontSize=14;fontStyle=1;fontColor=#2ecc71;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="540" width="500" height="25" as="geometry" />
+    </mxCell>
+    <mxCell id="56" value="• Contexte vide → pas d'historique à trimballer
+• Moins de mémoire chargée (celle du profil freelance)
+• Skills différents (peut-être moins chargés)
+• LLM peut se concentrer sur la question immédiate" style="text;html=1;fontSize=10;fontColor=#bdc3c7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1"><mxGeometry x="1420" y="570" width="500" height="55" as="geometry" /></mxCell>
+
+    <!-- ==================== FLÈCHES ==================== -->
+    <mxCell id="57" value="" style=" endArrow=classic;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="17" target="21">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="58" value="" style=" endArrow=classic;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;" edge="1" parent="1" source="21" target="22">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="59" value="" style=" endArrow=classic;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="22" target="23">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="60" value="" style=" endArrow=classic;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="23" target="24">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="61" value="" style=" endArrow=classic;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="23" target="26">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="62" value="" style=" endArrow=classic;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="24" target="19">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+  <mxCell id="arrow-1" value="" style="endArrow=classic;startArrow=none;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=1;exitY=0.5;entryX=0;entryY=0.25;strokeColor=#f39c12;" edge="1" parent="1" source="3" target="16"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="arrow-2" value="" style="endArrow=classic;startArrow=none;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#9b59b6;" edge="1" parent="1" source="16" target="8"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="arrow-3" value="" style="endArrow=classic;startArrow=none;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#2ecc71;" edge="1" parent="1" source="16" target="32"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="arrow-4" value="" style="endArrow=classic;startArrow=none;html=1;rounded=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#e94560;" edge="1" parent="1" source="32" target="43"><mxGeometry relative="1" as="geometry" /></mxCell></root>
+</mxGraphModel></diagram></mxfile>

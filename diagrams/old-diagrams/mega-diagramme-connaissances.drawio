@@ -1,0 +1,393 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="page-macro" name="🌐 Macro-Vue Système">
+    <mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titre" value="🌐 Système Hermès de Malek — Vue d'Ensemble" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1520" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Data Engineer freelance · Vezin le Coquet (35) · TJM 400-600€/j" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#666;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="300" y="55" width="1000" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-user" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4f8;strokeColor=#4a90d9;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="1520" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-user-label" value="👤 MALEK IDRI — Utilisateur" style="text;html=1;strokeColor=none;fillColor=#e8f4f8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#4a90d9;" vertex="1" parent="1">
+          <mxGeometry x="40" y="75" width="220" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="user-avatar" value="👤" style="shape=ellipse;html=1;fillColor=#4a90d9;strokeColor=none;fontSize=36;fontColor=#fff;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="65" y="110" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="user-info" value="&lt;b&gt;Malek IDRI&lt;/b&gt;&lt;br&gt;🏠 Vezin le Coquet (35)&lt;br&gt;💼 Data Engineer freelance (reflectas.fr)&lt;br&gt;📧 idri.malek@gmail.com&lt;br&gt;🔗 linkedin.com/in/malek-idri-303a0613&lt;br&gt;💰 TJM 400€/j (long) · 600€/j (court)&lt;br&gt;🏛️ CAE Élan Créateur (~30€/mois)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#4a90d9;strokeWidth=1;fontSize=11;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="155" y="105" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-models" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#7f8c8d;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="1520" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-models-label" value="🤖 MODÈLES — Hiérarchie Locale → Cloud" style="text;html=1;strokeColor=none;fillColor=#f5f5f5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#7f8c8d;" vertex="1" parent="1">
+          <mxGeometry x="40" y="225" width="350" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="n1" value="&lt;b&gt;🏎️ N1 — qwen3.5-4b-agent-opt&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;GPU RTX 3060 12Go · Port 11434&lt;br&gt;Context 4K · ~80 t/s · 3.8Go VRAM&lt;br&gt;⭐ Questions SIMPLES, classification&lt;br&gt;⚡ Le plus rapide pour les tâches trivia&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="260" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" value="&lt;b&gt;🥇 N1.5 — qwen2.5-coder:14b&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;GPU RTX 3060 12Go · Port 11434&lt;br&gt;Context 32K · ~8.7 t/s · 14.8B Q4_K_M&lt;br&gt;⭐ CODE, drawio XML, algorithmes&lt;br&gt;🥇 Meilleur modèle GPU pour le code&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="&lt;b&gt;⏳ N2 — qwen2.5:14b / qwen3:4b&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;iGPU Radeon 780M · Port 11436&lt;br&gt;Context 64K · ~30-100s réponse&lt;br&gt;⭐ Raisonnement, fallback GPU&lt;br&gt;💾 8Go mémoire partagée&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="590" y="260" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="&lt;b&gt;🐌 N3 — qwen3:30b-a3b&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;CPU AMD Ryzen · Port 11435&lt;br&gt;Context 64K · ~5 min réponse&lt;br&gt;⭐ Réflexion profonde&lt;br&gt;🧠 30B MoE (3B actifs)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="830" y="260" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="&lt;b&gt;☁️ N4 — deepseek-v4-flash&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Cloud OpenRouter (payant)&lt;br&gt;Context 128K+ · ~5s réponse&lt;br&gt;⭐ Expert, raisonnement complexe&lt;br&gt;💰 671B MoE — pay-per-token&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdebd0;strokeColor=#e67e22;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="260" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-local-cloud" value="⬆ escalade progressive" style="endArrow=classic;html=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#f39c12;strokeWidth=2;fontColor=#f39c12;" edge="1" parent="1" source="n15" target="n4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-n1-n15" value="si insuffisant →" style="endArrow=classic;html=1;fontSize=9;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#27ae60;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="290" y="340" as="sourcePoint" />
+            <mxPoint x="320" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zone-tools" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f1c40f;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="460" width="1520" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-tools-label" value="🔧 OUTILS &amp; COMPÉTENCES" style="text;html=1;strokeColor=none;fillColor=#fef9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#f1c40f;" vertex="1" parent="1">
+          <mxGeometry x="40" y="445" width="250" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="tool-drawio" value="&lt;b&gt;📐 Drawio MCP&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Serveur Node.js (npx)&lt;br&gt;@next-ai-drawio/mcp-server&lt;br&gt;Port proxy 6002 (ufw)&lt;br&gt;Canal privilégié pour schémas&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f1c40f;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="480" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tool-terminal" value="&lt;b&gt;💻 Terminal&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Shell local (bash)&lt;br&gt;Python · Node.js · Docker&lt;br&gt;Git (gh CLI)&lt;br&gt;Ollama CLI&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="280" y="480" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tool-webui" value="&lt;b&gt;🌐 WebUI Hermes&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Interface principale&lt;br&gt;Markdown · Mermaid&lt;br&gt;MCP tools intégrés&lt;br&gt;Dashboard Plotly&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="490" y="480" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tool-skills" value="&lt;b&gt;📚 Skills Hermes&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Procédures réutilisables&lt;br&gt;cascade-optim · router-optim&lt;br&gt;pipeline-optim · drawio-mcp&lt;br&gt;91 skills total (20 archivées)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="700" y="480" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tool-memory" value="&lt;b&gt;🧠 Mémoire Persistante&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;User Profile (66%)&lt;br&gt;Memory notes (68%)&lt;br&gt;Infra · CUDA · Docx · Bench&lt;br&gt;Tout ce qu'il faut savoir&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#e74c3c;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="930" y="480" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tool-cron" value="&lt;b&gt;⏰ Cron Jobs&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Tâches planifiées&lt;br&gt;Sessions automatiques&lt;br&gt;Quiz formation (stopped)&lt;br&gt;Élagué : 163 sessions cron&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#e67e22;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="480" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-projets" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebdef0;strokeColor=#8e44ad;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="660" width="1520" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-projets-label" value="📋 PROJETS &amp; WORKFLOWS" style="text;html=1;strokeColor=none;fillColor=#ebdef0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#8e44ad;" vertex="1" parent="1">
+          <mxGeometry x="40" y="645" width="250" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="proj-bench" value="&lt;b&gt;📊 Benchmarks GPU&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;RTX 3060 vs iGPU vs CPU&lt;br&gt;15/06/2026 : qwen2.5-coder:14b 🥇&lt;br&gt;Dashboards Plotly interactifs&lt;br&gt;Script final: benchmark_all_final.py&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=1;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="680" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="proj-doc" value="&lt;b&gt;📝 Business Plan .docx&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Édition in-place python-docx&lt;br&gt;Template questions conservées&lt;br&gt;Autodiagnostic · Concurrence&lt;br&gt;Clients · Revenus (ARE 1700€)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=1;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="320" y="680" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="proj-cascade" value="&lt;b&gt;⚡ Pipeline Optimisation&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Routeur → Cascade → Juge&lt;br&gt;Script launcher : hermes-opt&lt;br&gt;Économie tokens cloud&lt;br&gt;Voir Page 2 pour détails&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=1;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="580" y="680" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="proj-drawio" value="&lt;b&gt;📐 Méga Diagrammes&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Multi-page drawio MCP&lt;br&gt;Architecture · Pipeline · Infra&lt;br&gt;📄 Voir toutes les pages du présent document&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=1;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="840" y="680" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="legende" value="&lt;b&gt;Légende&lt;/b&gt;&lt;hr&gt;🟢 N1 · qwen3.5-4b · GPU · SIMPLE&lt;br&gt;🔵 N1.5 · qwen2.5-coder:14b · GPU · CODE/DRAWIO 🥇&lt;br&gt;🔵 N2 · iGPU · Fallback&lt;br&gt;🔴 N3 · CPU · Réflexion profonde&lt;br&gt;🟠 N4 · Cloud deepseek-v4-flash · Expert&lt;br&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;📅 Créé le 16/06/2026 · Méga-Diagramme v1.0&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#bdc3c7;strokeWidth=1;fontSize=10;fontColor=#555;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="780" width="380" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="hhub92td-uod7" name="⚡ Pipeline Optimisation">
+    <mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titre" value="⚡ Pipeline d'Optimisation — Routeur → Cascade → Juge" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1520" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Pipeline hybride local/cloud pour minimiser les tokens cloud (payants)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="1000" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-user" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4f8;strokeColor=#4a90d9;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1520" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-user-label" value="👤 TOI — Dans la WebUI" style="text;html=1;strokeColor=none;fillColor=#e8f4f8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontStyle=1;fontColor=#4a90d9;" vertex="1" parent="1">
+          <mxGeometry x="40" y="65" width="220" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="user-avatar" value="👤" style="shape=ellipse;html=1;fillColor=#4a90d9;strokeColor=none;fontSize=36;fontColor=#fff;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="65" y="100" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="user-input" value="&lt;b&gt;Comment tu lances :&lt;/b&gt;&lt;br&gt;📌 &lt;b&gt;routeur:&lt;/b&gt; ma question → classification + routage direct&lt;br&gt;📌 &lt;b&gt;cascade:&lt;/b&gt; ma question → escalade progressive jusqu'à confiance&lt;br&gt;📌 &lt;b&gt;pipeline:&lt;/b&gt; ma question → tout le pipeline complet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#4a90d9;strokeWidth=1;fontSize=10;fontColor=#333;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="150" y="95" width="450" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-user-orch" value="détecte le trigger" style="endArrow=classic;html=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#4a90d9;strokeWidth=2;fontColor=#4a90d9;fontStyle=1;labelBackgroundColor=#fff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="130" as="sourcePoint" />
+            <mxPoint x="750" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="orchestrator" value="&lt;b&gt;🧠 Ordonnanceur (DeepSeek V4 Flash)&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Modèle cloud de la WebUI&lt;br&gt;1️⃣ Détecte trigger (routeur:/cascade:/pipeline:)&lt;br&gt;2️⃣ Charge la skill correspondante&lt;br&gt;3️⃣ Lance le script local &lt;i&gt;hermes-opt&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e6f1;strokeColor=#2980b9;strokeWidth=2;fontSize=11;fontColor=#1a1a2e;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="750" y="95" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-orch-script" value="lance hermes-opt" style="endArrow=classic;html=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#2980b9;strokeWidth=2;fontColor=#2980b9;fontStyle=1;labelBackgroundColor=#fff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1030" y="130" as="sourcePoint" />
+            <mxPoint x="1150" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="script-box" value="&lt;b&gt;📜 Script hermes-opt&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Launcher unifié :&lt;br&gt;python3 hermes-opt routeur|cascade|pipeline&lt;br&gt;Interroge Ollama (GPU/iGPU/CPU)&lt;br&gt;Retourne résultat structuré&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9e79f;strokeColor=#f1c40f;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="95" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="router-box" value="&lt;b&gt;🔀 1. ROUTEUR&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;qwen3.5-4b-agent-opt (GPU 11434)&lt;br&gt;Classifie la question en 3 catégories :&lt;br&gt;&lt;b&gt;🟢 SIMPLE&lt;/b&gt; → météo, calcul, trivia&lt;br&gt;&lt;b&gt;🔵 CODE&lt;/b&gt; → scripts, algo, drawio XML&lt;br&gt;&lt;b&gt;🔴 COMPLEXE&lt;/b&gt; → débogage, recherche&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="260" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-r-simple" value="SIMPLE" style="endArrow=classic;html=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#27ae60;strokeWidth=2;fontColor=#27ae60;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="330" as="sourcePoint" />
+            <mxPoint x="160" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-r-code" value="CODE" style="endArrow=classic;html=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#2980b9;strokeWidth=2;fontColor=#2980b9;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="330" as="sourcePoint" />
+            <mxPoint x="300" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-r-complexe" value="COMPLEXE" style="endArrow=classic;html=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#e74c3c;strokeWidth=2;fontColor=#e74c3c;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="440" y="330" as="sourcePoint" />
+            <mxPoint x="440" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="simple-target" value="&lt;b&gt;🟢 SIMPLE → N1 (4B GPU)&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;qwen3.5-4b-agent-opt:latest&lt;br&gt;Context 4K · 80 t/s · Gratuit&lt;br&gt;Réponse immédiate&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="390" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="code-target" value="&lt;b&gt;🔵 CODE → N1.5 (14B coder GPU) 🥇&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;qwen2.5-coder:14b&lt;br&gt;Context 32K · 8.7 t/s · Gratuit&lt;br&gt;Scripts · Drawio XML · Algo&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#333;align=left;VerticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="290" y="390" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="complexe-target" value="&lt;b&gt;🔴 COMPLEXE → Cloud&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;deepseek-v4-flash (OpenRouter)&lt;br&gt;~5s · Payant (mais puissant)&lt;br&gt;Débogage avancé, recherche&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="540" y="390" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cascade-zone" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="200" width="740" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="cascade-zone-label" value="📊 2. CASCADE PROGRESSIVE — Escalade automatique" style="text;html=1;strokeColor=none;fillColor=#fef9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontStyle=1;fontColor=#f39c12;" vertex="1" parent="1">
+          <mxGeometry x="820" y="185" width="400" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="cascade-flow" value="&lt;b&gt;N1 (4B GPU)&lt;/b&gt;&lt;br&gt;score ≥ 4/5 → ✅ STOP&lt;br&gt;score &amp;lt; 4 → ⬇ escalade&lt;br&gt;&lt;hr&gt;&lt;b&gt;N1.5 (14B coder GPU)&lt;/b&gt;&lt;br&gt;score ≥ 4/5 → ✅ STOP&lt;br&gt;score &amp;lt; 4 → ⬇ escalade&lt;br&gt;&lt;hr&gt;&lt;b&gt;N2 (14B iGPU)&lt;/b&gt;&lt;br&gt;score ≥ 4/5 → ✅ STOP&lt;br&gt;score &amp;lt; 4 → ⬇ escalade&lt;br&gt;&lt;hr&gt;&lt;b&gt;N3 (30B CPU)&lt;/b&gt;&lt;br&gt;score ≥ 4/5 → ✅ STOP&lt;br&gt;score &amp;lt; 4 → ⬇ escalade&lt;br&gt;&lt;hr&gt;&lt;b&gt;N4 (Cloud DeepSeek)&lt;/b&gt;&lt;br&gt;Réponse finale garantie" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f39c12;strokeWidth=1;fontSize=9;fontColor=#333;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="850" y="215" width="300" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="juge-zone" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4ecf7;strokeColor=#8e44ad;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="510" width="680" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="juge-zone-label" value="⚖️ 3. JUGE — Évaluation Qualité" style="text;html=1;strokeColor=none;fillColor=#f4ecf7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontStyle=1;fontColor=#8e44ad;" vertex="1" parent="1">
+          <mxGeometry x="40" y="495" width="250" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="juge-box" value="&lt;b&gt;⚖️ Juge : Qwen2.5:1.5B&lt;/b&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Pertinence&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐ 1-5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Exactitude&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐ 1-5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Hallucinations&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⚠️ 1-5 (1 = pas d'hallu)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Usage&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Après chaque réponse cascade&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Décision&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Score ≥4 → ✅ · &amp;lt;4 → ⬇ escalade&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebdef0;strokeColor=#8e44ad;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="70" y="525" width="280" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="juge-result" value="&lt;b&gt;📊 Résultat remonté à toi&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:10px'&gt;Exemple :&lt;br&gt;🔀 Routeur → CODE&lt;br&gt;📊 Cascade → N1.5 (score 4.5/5)&lt;br&gt;⚖️ Juge → 4.2/5 ✅&lt;br&gt;💡 Économie : ~10K tokens cloud&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="390" y="525" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-cascade-juge" value="résultat + score" style="endArrow=classic;html=1;fontSize=10;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#8e44ad;strokeWidth=2;fontColor=#8e44ad;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1180" y="400" as="sourcePoint" />
+            <mxPoint x="400" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legende" value="&lt;b&gt;Légende&lt;/b&gt;&lt;hr&gt;🟢 SIMPLE → N1 qwen3.5-4b (80 t/s)&lt;br&gt;🔵 CODE → N1.5 qwen2.5-coder:14b 🥇 (8.7 t/s)&lt;br&gt;🔴 COMPLEXE → N4 Cloud DeepSeek (payant)&lt;br&gt;🟡 Cascade → escalade jusqu'à confiance ≥4/5&lt;br&gt;🟣 Juge → évaluation qualité par Qwen2.5:1.5B&lt;br&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;💡 Utilisation : &lt;i&gt;routeur:&lt;/i&gt; &lt;i&gt;cascade:&lt;/i&gt; &lt;i&gt;pipeline:&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#bdc3c7;strokeWidth=1;fontSize=10;fontColor=#555;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="820" y="530" width="350" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="wcgbyqym-aqe7" name="🖥️ Infrastructure &amp; Services">
+    <mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titre" value="🖥️ Infrastructure &amp; Services — Machine locale" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1520" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Linux · RTX 3060 12Go · Radeon 780M · AMD Ryzen 9" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="400" y="50" width="800" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-ollama" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#7f8c8d;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1100" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-ollama-label" value="🦙 3 INSTANCES OLLAMA" style="text;html=1;strokeColor=none;fillColor=#f5f5f5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#7f8c8d;" vertex="1" parent="1">
+          <mxGeometry x="40" y="65" width="250" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="ollama-gpu" value="&lt;b&gt;🟢 GPU — Instance Principale&lt;/b&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;11434&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;RTX 3060 12Go (NVIDIA)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Service&lt;/b&gt;&lt;/td&gt;&lt;td&gt;ollama-gpu.service (systemd user)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Flags&lt;/b&gt;&lt;/td&gt;&lt;td&gt;FLASH_ATT=1, KEEP_ALIVE=24h, NUM_PARALLEL=4&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Modèles&lt;/b&gt;&lt;/td&gt;&lt;td&gt;qwen3.5-4b, qwen2.5-coder:14b 🥇&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ollama-igpu" value="&lt;b&gt;🔵 iGPU — Instance Secondaire&lt;/b&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;11436&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Radeon 780M (AMD iGPU)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Service&lt;/b&gt;&lt;/td&gt;&lt;td&gt;ollama-gpu.service (ou séparé)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Flags&lt;/b&gt;&lt;/td&gt;&lt;td&gt;FLASH_ATT=1, KEEP_ALIVE=24h&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Modèles&lt;/b&gt;&lt;/td&gt;&lt;td&gt;qwen2.5:14b, qwen3:4b&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="390" y="100" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ollama-cpu" value="&lt;b&gt;🔴 CPU — Instance Lente&lt;/b&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;11435&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;AMD Ryzen 9 (CPU-only)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Service&lt;/b&gt;&lt;/td&gt;&lt;td&gt;ollama-cpu.service (ou séparé)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Flags&lt;/b&gt;&lt;/td&gt;&lt;td&gt;KEEP_ALIVE=24h&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Modèles&lt;/b&gt;&lt;/td&gt;&lt;td&gt;qwen3:30b-a3b (MoE 3B actifs)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="720" y="100" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ollama-notes" value="&lt;b&gt;📌 Notes importantes&lt;/b&gt;&lt;hr&gt;🔄 Switcher Ollama (port 8503) : &lt;i&gt;~workspace/ollama_switcher.py&lt;/i&gt;&lt;br&gt;🔧 NVIDIA fix : drop-in &lt;i&gt;nopersistence-fix.conf&lt;/i&gt; pour nvidia-persistenced.service&lt;br&gt;🧪 Vérif CUDA : grepper &lt;i&gt;cuda_v13|ggml-cuda|libcuda|libcublas|libcudart|libnvml&lt;/i&gt; sur &lt;b&gt;TOUS&lt;/b&gt; les llama-server PIDs&lt;br&gt;⚠️ &lt;b&gt;PIÈGE :&lt;/b&gt; Ne JAMAIS grep 'cuda|nvml' brut (match le chemin binaire!) — toujours les libs spécifiques" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="245" width="960" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-services" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebdef0;strokeColor=#8e44ad;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="1100" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-services-label" value="⚙️ SERVICES SYSTEMD" style="text;html=1;strokeColor=none;fillColor=#ebdef0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#8e44ad;" vertex="1" parent="1">
+          <mxGeometry x="40" y="345" width="250" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-drawio" value="&lt;b&gt;📐 Drawio MCP Proxy&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Service : drawio-mcp-proxy.service&lt;br&gt;Port 6002/tcp (ufw ouvert)&lt;br&gt;Proxy Python drawio-proxy.py&lt;br&gt;0.0.0.0:6002 → 127.0.0.1:6003+&lt;br&gt;Dépend de npx @next-ai-drawio/mcp-server&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="380" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-switcher" value="&lt;b&gt;🔄 Ollama Switcher&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Script : ollama_switcher.py&lt;br&gt;Port 8503 (interface web)&lt;br&gt;Bascule entre instances GPU/iGPU/CPU&lt;br&gt;Sélection du modèle actif&lt;br&gt;Accès via http://localhost:8503&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="330" y="380" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-hermes" value="&lt;b&gt;🌐 Hermes WebUI&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Interface Web Hermes Agent&lt;br&gt;Modèle par défaut : deepseek-v4-flash&lt;br&gt;Provider : OpenRouter (payant)&lt;br&gt;Context max : 65536 tokens&lt;br&gt;Sessions stockées dans SQLite (78 Mo)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="600" y="380" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-mcp" value="&lt;b&gt;🧩 MCP Servers&lt;/b&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;Config: config.yaml[mcp_servers]&lt;br&gt;Drawio : npx @next-ai-drawio/mcp-server&lt;br&gt;Hérité par les subagents (delegation.inherit_mcp_toolsets=true)&lt;br&gt;Disponible pour tous les profils&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="870" y="380" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-notes" value="&lt;b&gt;📌 Rappels système&lt;/b&gt;&lt;hr&gt;🔹 Base sessions : ~/.hermes/sessions/sessions.db (SQLite, 260 sessions, 9091 messages après nettoyage)&lt;br&gt;🔹 Skills : 91 total (63 actives agent, 20 archivées par curator) dans ~/.hermes/skills/&lt;br&gt;🔹 Config : ~/.hermes/config.yaml (version 23)&lt;br&gt;🔹 Profil unique par défaut (Malek01 à créer)&lt;br&gt;🔹 Seul profil actif : &lt;b&gt;default&lt;/b&gt; — modèles cloud DeepSeek V4 Flash&lt;br&gt;🔹 Fallback : qwen3.5-4b-agent-opt (GPU local si cloud indisponible)&lt;br&gt;🔹 Curator : activé, intervalle 7 jours, purge skills builtins &amp; archive skills &gt;90 jours" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;strokeWidth=2;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="500" width="1060" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="legende" value="&lt;b&gt;Légende&lt;/b&gt;&lt;hr&gt;🟢 GPU (port 11434) — instance principale, RTX 3060&lt;br&gt;🔵 iGPU (port 11436) — instance secondaire, Radeon 780M&lt;br&gt;🔴 CPU (port 11435) — instance lente, AMD Ryzen 9&lt;br&gt;🟣 Services systemd&lt;br&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;📅 Créé le 16/06/2026 · Méga-Diagramme v1.0&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#bdc3c7;strokeWidth=1;fontSize=10;fontColor=#555;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="630" width="380" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ufditwp2-oqgl" name="📚 Workflows &amp; Savoir-Faire">
+    <mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titre" value="📚 Workflows &amp; Savoir-Faire" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1520" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Procédures éprouvées, pièges évités, conventions établies" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="400" y="50" width="800" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-wf-drawio" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f1c40f;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="740" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-drawio-label" value="📐 Drawio MCP — Workflow" style="text;html=1;strokeColor=none;fillColor=#fef9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#f1c40f;" vertex="1" parent="1">
+          <mxGeometry x="40" y="65" width="220" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-drawio-steps" value="&lt;b&gt;Étapes :&lt;/b&gt;&lt;br&gt;1️⃣ skill_view('drawio-mcp-setup') ← charger la skill&lt;br&gt;2️⃣ mcp_drawio_start_session() ← lancer session navigateur&lt;br&gt;3️⃣ Création : mcp_drawio_create_new_diagram(xml) ← DESTRUCTIF (remplace tout)&lt;br&gt;4️⃣ Ajout page : mcp_drawio_add_page(name, xml) ← AJOUTE sans toucher les autres&lt;br&gt;5️⃣ Édition : mcp_drawio_get_diagram() → edit_diagram(opérations)&lt;br&gt;6️⃣ Export : mcp_drawio_export_diagram(path)&lt;br&gt;&lt;hr&gt;&lt;b&gt;⚠️ Pièges :&lt;/b&gt;&lt;br&gt;• Toujours get_diagram AVANT edit_diagram (perte des modifs utilisateur sinon)&lt;br&gt;• create_new_diagram = COMPLETEMENT DESTRUCTIF (toutes les pages + modifs non sauvées)&lt;br&gt;• Le proxy utilise 0.0.0.0:6002 (accessible réseau local — ufw configuré)&lt;br&gt;• format auto-détecté depuis l'extension (.drawio, .png, .svg)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f1c40f;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="700" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-wf-doc" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4f8;strokeColor=#4a90d9;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="760" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-doc-label" value="📝 Documents .docx — Édition In-Place" style="text;html=1;strokeColor=none;fillColor=#e8f4f8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#4a90d9;" vertex="1" parent="1">
+          <mxGeometry x="800" y="65" width="320" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-doc-steps" value="&lt;b&gt;Workflow Business Plan :&lt;/b&gt;&lt;br&gt;1️⃣ Prendre le .docx existant (template avec logo&amp;structure)&lt;br&gt;2️⃣ Éditer IN-PLACE avec python-docx (terminal, pas sandbox)&lt;br&gt;3️⃣ Conserver TOUTES les questions du template (elles existent — ne pas recréer)&lt;br&gt;&lt;hr&gt;&lt;b&gt;Sections souvent oubliées :&lt;/b&gt;&lt;br&gt;• Autodiagnostic&lt;br&gt;• Concurrents / clients en attente / CA prévisionnel&lt;br&gt;• Revenus actuels (ARE ~1700€/mois)&lt;br&gt;• Situation familiale (marié, Vezin le Coquet 35)&lt;br&gt;&lt;hr&gt;&lt;b&gt;💰 CAE :&lt;/b&gt; Élan Créateur, ~30€/mois compta incluse (pas de comptable séparé)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#4a90d9;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="820" y="100" width="720" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-wf-cuda" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="330" width="740" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-cuda-label" value="🧪 CUDA Verification — PIÈGE CRITIQUE" style="text;html=1;strokeColor=none;fillColor=#fadbd8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="40" y="315" width="310" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-cuda-steps" value="&lt;b&gt;⛔ Ce qu'il NE FALLAIT PAS faire :&lt;/b&gt;&lt;br&gt;grep 'cuda|nvml' /proc/*/maps → FAUX ! Match le chemin du binaire, pas les vraies libs CUDA&lt;br&gt;&lt;br&gt;&lt;b&gt;✅ Ce qu'il FAUT faire :&lt;/b&gt;&lt;br&gt;grep 'cuda_v13|ggml-cuda|libcuda|libcublas|libcudart|libnvml' sur &lt;b&gt;TOUS&lt;/b&gt; les llama-server PIDs&lt;br&gt;&lt;br&gt;&lt;b&gt;🎯 Pourquoi :&lt;/b&gt;&lt;br&gt;Ollama lance plusieurs processus llama-server. Un seul utilise CUDA activement. Vérifier head seulement = faux négatif.&lt;br&gt;&lt;br&gt;&lt;b&gt;🔧 Fix NVIDIA :&lt;/b&gt; drop-in nopersistence-fix.conf pour nvidia-persistenced.service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#e74c3c;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="345" width="700" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-wf-viz" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebdef0;strokeColor=#8e44ad;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="330" width="760" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-viz-label" value="📊 Dashboard &amp; Visualisation" style="text;html=1;strokeColor=none;fillColor=#ebdef0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#8e44ad;" vertex="1" parent="1">
+          <mxGeometry x="800" y="315" width="250" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-viz-steps" value="&lt;b&gt;Préférences de Malek :&lt;/b&gt;&lt;br&gt;✅ HTML/JS pur (Plotly, pas Streamlit — écran noir détesté)&lt;br&gt;✅ Dashboards interactifs (speed bar, radar qualité, heatmap)&lt;br&gt;✅ Benchmarks MESURÉS (pas estimés) — Plotly interactif&lt;br&gt;✅ Schémas drawio multi-page comme interface mentale principale&lt;br&gt;✅ Diagrammes d'architecture, pipeline, workflow&lt;br&gt;❌ PAS de Streamlit (écran noir, lent, inadapté)&lt;br&gt;❌ PAS de suppositions — toujours mesurer&lt;br&gt;&lt;br&gt;&lt;b&gt;Itératif :&lt;/b&gt; préférer des suggestions concrètes, pas des questions ouvertes&lt;br&gt;&lt;b&gt;Transparence :&lt;/b&gt; donner des estimations réalistes et justifiées" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="820" y="345" width="720" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-wf-skills" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="1520" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-skills-label" value="🧠 Gestion des Skills &amp; Mémoire" style="text;html=1;strokeColor=none;fillColor=#d5f5e3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="40" y="505" width="260" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="wf-skills-rules" value="&lt;b&gt;Règles d'or :&lt;/b&gt;&lt;br&gt;1️⃣ Toujours charger les skills qui matchent (skill_view) avant de coder — elles contiennent les chemins exacts, les pièges et les workflows éprouvés&lt;br&gt;2️⃣ Skills &gt; mémoire pour les procédures (10K+ chars vs 2200 chars limités)&lt;br&gt;3️⃣ Mémoire = faits durables (nom, préférences, infras). PAS de logs, statuts, progresses&lt;br&gt;4️⃣ Compacter et fusionner régulièrement (user profil 68%, memory notes 66%)&lt;br&gt;5️⃣ Skills list : append 'skill_view(name)' automatiquement si pertinent&lt;br&gt;6️⃣ Patching : si une skill est incomplète/erronée, la patcher IMMÉDIATEMENT (skill_manage patch)&lt;br&gt;7️⃣ skills_list + skill_view sont le premier réflexe avant toute action&lt;br&gt;&lt;hr&gt;&lt;b&gt;Skills clés pour Malek :&lt;/b&gt; cascade-optim · router-optim · pipeline-optim · drawio-mcp-setup · hermes-agent · debugging · test-driven-development" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#27ae60;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="535" width="1480" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="legende" value="&lt;b&gt;Légende&lt;/b&gt;&lt;hr&gt;🟡 Drawio MCP — canal privilégié pour les schémas&lt;br&gt;🔵 Documents .docx — édition in-place avec python-docx&lt;br&gt;🔴 CUDA Trap — piège critique à ne jamais reproduire&lt;br&gt;🟣 Visualisation — préférences Plotly / drawio / HTML&lt;br&gt;🟢 Skills &amp; Mémoire — bonnes pratiques&lt;br&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;📅 Créé le 16/06/2026 · Méga-Diagramme v1.0&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#bdc3c7;strokeWidth=1;fontSize=9;fontColor=#555;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="700" width="400" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="8wbyp1uy-ixxj" name="📊 Benchmarks &amp; Décisions">
+    <mxGraphModel dx="1333" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titre" value="📊 Benchmarks &amp; Décisions Clés" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1520" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Tous les résultats sont mesurés (pas estimés) — Dashboards Plotly interactifs" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="50" width="1000" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-bench" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#7f8c8d;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="780" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-bench-label" value="🏆 Résultats Benchmarks du 15/06/2026" style="text;html=1;strokeColor=none;fillColor=#f5f5f5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#7f8c8d;" vertex="1" parent="1">
+          <mxGeometry x="40" y="65" width="350" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-gpu-title" value="&lt;b&gt;🟢 GPU (RTX 3060 12Go — port 11434)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=11;fontColor=#1a1a2e;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="740" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-gpu-coder" value="&lt;b&gt;🥇 qwen2.5-coder:14b&lt;/b&gt; · 14.8B Q4_K_M · ctx 32768 · &lt;b&gt;8.7 t/s&lt;/b&gt; · ⭐ Tâches CODE + drawio XML + algorithmes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="130" width="740" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-gpu-4b" value="&lt;b&gt;🏎️ qwen3.5-4b-agent-opt&lt;/b&gt; · 4B · ctx 4096 · &lt;b&gt;~80 t/s&lt;/b&gt; · ⭐ Classification (routeur) + tâches SIMPLES" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="165" width="740" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-gpu-phi4" value="&lt;b&gt;phi4:14b&lt;/b&gt; · 14B · ctx 16384 · &lt;b&gt;~7 t/s&lt;/b&gt; · Testé mais non retenu (moins bon que qwen2.5-coder)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#bdc3c7;strokeWidth=1;fontSize=10;fontColor=#555;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="200" width="740" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-igpu" value="&lt;b&gt;🔵 iGPU (Radeon 780M — port 11436)&lt;/b&gt; · qwen2.5:14b · ctx 64K · ~30-100s · Fallback quand GPU occupé" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="230" width="740" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="bench-cpu" value="&lt;b&gt;🔴 CPU (Ryzen 9 — port 11435)&lt;/b&gt; · qwen3:30b-a3b MoE · ctx 64K · ~5 min · Réflexion profonde uniquement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;strokeWidth=2;fontSize=10;fontColor=#333;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="260" width="740" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-decisions" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="80" width="720" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-decisions-label" value="📋 Décisions Clés" style="text;html=1;strokeColor=none;fillColor=#fef9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#f39c12;" vertex="1" parent="1">
+          <mxGeometry x="840" y="65" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="decisions-content" value="&lt;b&gt;🎯 Choix modèles :&lt;/b&gt;&lt;br&gt;• N1.5 qwen2.5-coder:14b 🏆 meilleur code + drawio&lt;br&gt;• N1 qwen3.5-4b pour routeur (ultra-rapide, suffisant pour classif)&lt;br&gt;• N4 deepseek-v4-flash en cloud pour le complexe&lt;br&gt;&lt;br&gt;&lt;b&gt;💰 Tarification freelance :&lt;/b&gt;&lt;br&gt;• TJM 400€/j (long terme) · 600€/j (court terme)&lt;br&gt;• Tarifs solidaires pour associations&lt;br&gt;• Client principal : cloud (reflectas.fr)&lt;br&gt;&lt;br&gt;&lt;b&gt;🏛️ Structure :&lt;/b&gt;&lt;br&gt;• CAE Élan Créateur (~30€/mois compta incluse)&lt;br&gt;• Démarrage freelance : juillet 2026&lt;br&gt;&lt;br&gt;&lt;b&gt;🔧 Architecture retenue :&lt;/b&gt;&lt;br&gt;• Pipeline hybride local/cloud (Routeur→Cascade→Juge)&lt;br&gt;• Drawio MCP comme canal privilégié&lt;br&gt;• Skills + Mémoire pour persistance du savoir&lt;br&gt;• Profile Malek01 : modèle local qwen2.5-coder:14b + drawio&lt;br&gt;&lt;br&gt;&lt;b&gt;🌐 Communication :&lt;/b&gt; LinkedIn &gt; site web (malek-idri-303a0613)&lt;br&gt;Pas de flyers. Site web à faire si besoin." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f39c12;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="860" y="100" width="680" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-dash" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebdef0;strokeColor=#8e44ad;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="350" width="740" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-dash-label" value="📈 Dashboards &amp; Scripts Sauvegardés" style="text;html=1;strokeColor=none;fillColor=#ebdef0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#8e44ad;" vertex="1" parent="1">
+          <mxGeometry x="40" y="335" width="310" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="dash-content" value="&lt;b&gt;Scripts de benchmark (gardés dans workspace/) :&lt;/b&gt;&lt;br&gt;• &lt;i&gt;benchmark_all_final.py&lt;/i&gt; — benchmark complet tous modèles&lt;br&gt;• &lt;i&gt;benchmark_dashboard_final.py&lt;/i&gt; — dashboard Plotly interactif&lt;br&gt;• &lt;i&gt;benchmark_viz_final.py&lt;/i&gt; — visualisation avancée&lt;br&gt;• &lt;i&gt;benchmark_ollama.py&lt;/i&gt; — benchmark Ollama standardisé&lt;br&gt;• &lt;i&gt;benchmark_speed_65k.py&lt;/i&gt; — test vitesse contexte 65K&lt;br&gt;&lt;br&gt;&lt;b&gt;Autres scripts système :&lt;/b&gt;&lt;br&gt;• &lt;i&gt;ollama_switcher.py&lt;/i&gt; — interface de bascule de modèles (port 8503)&lt;br&gt;• &lt;i&gt;drawio-proxy.py&lt;/i&gt; — proxy TCP pour drawio MCP (port 6002)&lt;br&gt;• &lt;i&gt;env-switch.sh&lt;/i&gt; — script bascule d'environnement&lt;br&gt;• Scripts docx — édition in-place (edit_docx.py, generate_doc.py, analyse_docx.py)&lt;br&gt;• 11 HTML dashboards — visualisations de benchmarks (gardés comme références)&lt;br&gt;• 25 scripts benchmark intermédiaires — supprimés (nettoyage 16/06/2026)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#8e44ad;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="60" y="365" width="700" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-stats" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="350" width="720" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-stats-label" value="🧹 Nettoyage du 16/06/2026" style="text;html=1;strokeColor=none;fillColor=#d5f5e3;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=14;fontStyle=1;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="840" y="335" width="260" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="stats-content" value="&lt;b&gt;État final après ménage :&lt;/b&gt;&lt;br&gt;• Sessions DB : 78.1 Mo (45 Mo récupérés!), 260 sessions, 9091 messages&lt;br&gt;• 163 sessions cron supprimées&lt;br&gt;• VACUUM effectué sur la base SQLite&lt;br&gt;&lt;br&gt;&lt;b&gt;Profils supprimés :&lt;/b&gt;&lt;br&gt;• cloud_deepseek_v4_flash (7.8 Mo)&lt;br&gt;• freelance (14 Mo)&lt;br&gt;• vie_perso (11 Mo)&lt;br&gt;&lt;br&gt;&lt;b&gt;Fichiers supprimés :&lt;/b&gt;&lt;br&gt;• 25 scripts benchmark intermédiaires&lt;br&gt;• 2 scripts shell obsolètes&lt;br&gt;• 4 fichiers test (drawio, HTML)&lt;br&gt;• 10 JSON de benchmarks bruts&lt;br&gt;• 1 profil résiduel (7.8 Mo)&lt;br&gt;&lt;br&gt;&lt;b&gt;Mémoire :&lt;/b&gt; 97% → 66% (735 chars libérés, fusionnée en 5 entrées)&lt;br&gt;&lt;b&gt;Final :&lt;/b&gt; 1 profil actif (default), workspace ~1.7 Mo / ~30 fichiers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#27ae60;strokeWidth=1;fontSize=9;fontColor=#333;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="860" y="365" width="680" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="legende" value="&lt;b&gt;Résumé pour le nouveau profil Malek01&lt;/b&gt;&lt;hr&gt;🏆 Modèle local principal : &lt;b&gt;qwen2.5-coder:14b&lt;/b&gt; (8.7 t/s, ctx 32K) — drawio + code&lt;br&gt;⚡ Routeur : qwen3.5-4b-agent-opt (80 t/s)&lt;br&gt;☁️ Cloud : deepseek-v4-flash (pour le complexe uniquement)&lt;br&gt;📐 Canal privilégié : &lt;b&gt;drawio MCP&lt;/b&gt; pour tous les schémas&lt;br&gt;🧠 Savoir : Skills (procédures) + Mémoire (faits durables)&lt;br&gt;🎨 Préférence : HTML pur / Plotly / drawio (PAS Streamlit)&lt;br&gt;&lt;hr&gt;&lt;font style='font-size:9px'&gt;📅 Créé le 16/06/2026 · Méga-Diagramme v1.0 — 5 pages&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#bdc3c7;strokeWidth=1;fontSize=9;fontColor=#555;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="570" width="600" height="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

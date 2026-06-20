@@ -1,0 +1,215 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="page-1" name="Smart MCP v3">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- TITRE -->
+        <mxCell id="titre" value="Smart MCP — Architecture Hermes (v3)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="10" width="1060" height="35" as="geometry"/>
+        </mxCell>
+        
+        <!-- ZONE A : UTILISATEUR + HERMES -->
+        <mxCell id="zone-a" value="ZONE A — Interaction via Hermes Chat" style="text;html=1;fontSize=10;fontColor=#16213e;align=left;whiteSpace=wrap;rounded=1;fillColor=#e8f0fe;strokeColor=#4285f4;verticalLabelPosition=top;labelPosition=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="55" width="320" height="240" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f1" value="[F1] Toi (Utilisateur)&#10;Tu tapes en francais dans Hermes Chat :&#10;&quot;Dessine un carre rouge&quot;&#10;&#10;Tu ✅ ou ❌ le resultat visuellement" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#fff3bf;strokeColor=#e9c46a;fontColor=#7c5e00;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="140" height="70" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f2" value="[F2] Hermes Agent&#10;Recoit ton message dans le chat&#10;&#10;Tools Hermes :&#10;  - mcp_smart_mcp_* (notre MCP)&#10;  - mcp_drawio_create* (direct)&#10;  - search_files, terminal, etc.&#10;&#10;Skills :&#10;  - smart-mcp skill (guide)&#10;&#10;= Appelle le tool Smart MCP" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#e8f0fe;strokeColor=#4285f4;fontColor=#1a237e;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="155" width="150" height="130" as="geometry"/>
+        </mxCell>
+        
+        <!-- C1: F1 vers F2 -->
+        <mxCell id="c1" value="[C1] Phrase en francais" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#A0A0A0;" edge="1" parent="1" source="f1" target="f2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- ZONE B : SMART MCP SERVER -->
+        <mxCell id="zone-b" value="ZONE B — Smart MCP Server (Python, registre comme MCP natif dans Hermes)" style="text;html=1;fontSize=10;fontColor=#1b4332;align=left;whiteSpace=wrap;rounded=1;fillColor=#d8f3dc;strokeColor=#2d6a4f;verticalLabelPosition=top;labelPosition=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="380" y="55" width="320" height="640" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f3" value="[F3] Smart MCP — Interface&#10;Registre dans config.yaml Hermes :&#10;&#10;mcpServers:&#10;  smart-mcp:&#10;    command: python&#10;    args: smart_mcp_server.py&#10;&#10;Outil expose : smart_mcp_process()" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#d8f3dc;strokeColor=#2d6a4f;fontColor=#1b4332;align=left;" vertex="1" parent="1">
+          <mxGeometry x="395" y="70" width="290" height="85" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f4" value="[F4] 1. Classification&#10;Qwen 9B local determine :&#10;type:shape-simple&#10;key_elements:[carre,rouge]&#10;Jamais de fallback cloud" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#fff3bf;strokeColor=#e9c46a;fontColor=#7c5e00;align=left;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="395" y="175" width="145" height="65" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f5" value="[F5] 2. RAG Search&#10;ChromeDB semantique :&#10;- Vectorise la description&#10;- Cosine similarity : top 3&#10;- Retourne 3 XML exemples" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#fff3bf;strokeColor=#e9c46a;fontColor=#7c5e00;align=left;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="395" y="260" width="145" height="65" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f6" value="[F6] 3. XML Generation&#10;&quot;Voici 3 exemples XML,&#10;adapte-les pour un carre rouge&quot;&#10;&#10;Essaie LOCAL [C11] d abord&#10;Si XML invalide : CLOUD [C12]" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#fff3bf;strokeColor=#e9c46a;fontColor=#7c5e00;align=left;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="395" y="345" width="145" height="75" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f7" value="[F7] 4. Draw.io Execution&#10;Appelle draw.io MCP :&#10;create_new_diagram(xml)&#10;= Diagramme dans navigateur" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#fff3bf;strokeColor=#e9c46a;fontColor=#7c5e00;align=left;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="395" y="445" width="145" height="55" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f17" value="[F17] 5. Validation auto (VLM) NOUVEAU&#10;2 modes :&#10;&#10;A) TOI (manuel) : regardes, ✅/❌&#10;&#10;B) VLM (auto) : Moondream/Llava&#10;  capture le rendu - compare&#10;  a la phrase originale - score&#10;  Si score > 80% : valide ✅" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#fff3bf;strokeColor=#e9c46a;fontColor=#7c5e00;align=left;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="395" y="525" width="145" height="85" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f8" value="[F8] 6. Apprentissage&#10;UNIQUEMENT si valide ✅ :&#10;add_pattern(description, xml)&#10;= ChromaDB s enrichit !" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#D0D0D0;strokeColor=#A0A0A0;fontColor=#808080;align=left;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="395" y="635" width="145" height="55" as="geometry"/>
+        </mxCell>
+        
+        <!-- Pipeline interne ZONE B -->
+        <mxCell id="c2" value="[C2] smart_mcp_process()" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#A0A0A0;" edge="1" parent="1" source="f3" target="f4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="c3" value="[C3]" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#A0A0A0;" edge="1" parent="1" source="f4" target="f5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="c4" value="[C4] exemples XML" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#A0A0A0;" edge="1" parent="1" source="f5" target="f6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="c5" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#A0A0A0;" edge="1" parent="1" source="f6" target="f7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="c6" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#A0A0A0;" edge="1" parent="1" source="f7" target="f17">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="c7" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#A0A0A0;" edge="1" parent="1" source="f17" target="f8">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- ZONE C : SERVICES EXTERNES -->
+        <mxCell id="zone-c" value="ZONE C — Services Externes" style="text;html=1;fontSize=10;fontColor=#3c096c;align=left;whiteSpace=wrap;rounded=1;fillColor=#e8dfff;strokeColor=#7b2d8e;verticalLabelPosition=top;labelPosition=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="730" y="55" width="360" height="640" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f9" value="[F9] ChromaDB (RAG)&#10;- Base vectorielle locale&#10;- Stocke patterns : texte + XML&#10;- Recherche cosine similarity&#10;Persistee sur disque" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#e8dfff;strokeColor=#7b2d8e;fontColor=#3c096c;align=left;" vertex="1" parent="1">
+          <mxGeometry x="745" y="70" width="160" height="75" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f10" value="[F10] Draw.io MCP Server&#10;(next-ai-drawio) port 8080&#10;Fonctionnel et teste&#10;- Recoit XML via MCP stdio&#10;- Affiche en temps reel" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#b7e4c7;strokeColor=#40916c;fontColor=#1b4332;align=left;" vertex="1" parent="1">
+          <mxGeometry x="745" y="170" width="160" height="75" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f11" value="[F11] Ollama — Modele Local&#10;- Qwen 3.5:9b — GPU:11434&#10;- Pour classification + XML basiques&#10;- RTX 3060 12GB VRAM&#10;Fonctionnel" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#b7e4c7;strokeColor=#40916c;fontColor=#1b4332;align=left;" vertex="1" parent="1">
+          <mxGeometry x="745" y="280" width="160" height="75" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f12" value="[F12] DeepSeek — Modele Cloud&#10;- DeepSeek V4 Flash&#10;- Via OpenRouter&#10;- Fallback si XML local invalide&#10;BLOQUE (cle API manquante)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#f8d7da;strokeColor=#e63946;fontColor=#7a1319;align=left;" vertex="1" parent="1">
+          <mxGeometry x="745" y="390" width="160" height="75" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f13" value="[F13] VLM Validateur (futur)&#10;- Moondream 1.8B (Ollama CPU)&#10;- Capture le rendu draw.io&#10;- Compare a la phrase originale&#10;- Note 0-100% de conformite&#10;A installer : ollama pull moondream&#10;&#10;Permet auto-apprentissage nocturne !" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#D0D0D0;strokeColor=#A0A0A0;fontColor=#808080;align=left;" vertex="1" parent="1">
+          <mxGeometry x="745" y="490" width="160" height="95" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f14" value="[F14] Navigateur (draw.io UI)&#10;- Tu vois le diagramme en direct&#10;- Tu peux le modifier a la souris&#10;- C est ici que tu ✅ ou ❌" style="rounded=1;whiteSpace=wrap;html=1;fontSize=8;fontStyle=0;fillColor=#D0D0D0;strokeColor=#A0A0A0;fontColor=#808080;align=left;" vertex="1" parent="1">
+          <mxGeometry x="940" y="170" width="140" height="65" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="f15" value="[F15] Projet (smart-mcp/)&#10;smart_mcp_server.py 🟡&#10;brain/rag.py 🟡&#10;models/llm_client.py 🟡&#10;mcp_client/drawio.py 🟢&#10;.env 🟡 (a creer)&#10;config.yaml 🟡 (a creer)&#10;.venv/ (chromadb...) ✅" style="rounded=1;whiteSpace=wrap;html=1;fontSize=7;fontStyle=0;fillColor=#fff3bf;strokeColor=#e9c46a;fontColor=#7c5e00;align=left;" vertex="1" parent="1">
+          <mxGeometry x="940" y="280" width="140" height="105" as="geometry"/>
+        </mxCell>
+        
+        <!-- C8: F5 vers F9 (RAG request) -->
+        <mxCell id="c8" value="[C8] Cherche patterns" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=1;exitY=0.5;entryX=0;entryY=0.3;strokeColor=#A0A0A0;" edge="1" parent="1" source="f5" target="f9">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- C9: F9 vers F5 (RAG response) -->
+        <mxCell id="c9" value="[C9] 3 XML exemples" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=0;exitY=0.7;entryX=1;entryY=0.7;strokeColor=#A0A0A0;dashed=1;" edge="1" parent="1" source="f9" target="f5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- C10: F7 vers F10 (Draw.io MCP) -->
+        <mxCell id="c10" value="[C10] create_new_diagram(xml)" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#A0A0A0;" edge="1" parent="1" source="f7" target="f10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- C11: F6 vers F11 (Local model) -->
+        <mxCell id="c11" value="[C11] Essaie LOCAL 1er" style="endArrow=classic;html=1;fontSize=8;fontColor=#40916c;exitX=0;exitY=0.3;entryX=1;entryY=0.3;strokeColor=#40916c;dashed=1;" edge="1" parent="1" source="f6" target="f11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="375"/>
+              <mxPoint x="735" y="305"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- C12: F6 vers F12 (Cloud model) -->
+        <mxCell id="c12" value="[C12] Si echec : Cloud" style="endArrow=classic;html=1;fontSize=8;fontColor=#e63946;exitX=0;exitY=0.7;entryX=1;entryY=0.5;strokeColor=#e63946;dashed=1;" edge="1" parent="1" source="f6" target="f12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="400"/>
+              <mxPoint x="735" y="425"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- C13: F10 vers F14 (Navigateur) -->
+        <mxCell id="c13" value="[C13] Affiche le diagramme" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#A0A0A0;" edge="1" parent="1" source="f10" target="f14">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- C14: F14 vers F1 (Validation humaine) -->
+        <mxCell id="c14" value="[C14] Tu ✅ ou ❌ dans le chat" style="endArrow=classic;html=1;fontSize=8;fontColor=#e94560;exitX=0;exitY=0.3;entryX=0.5;entryY=0.3;strokeColor=#e94560;dashed=1;" edge="1" parent="1" source="f14" target="f1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="190"/>
+              <mxPoint x="210" y="95"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- C15: F1 vers F17 (Validation OK) -->
+        <mxCell id="c15" value="[C15] C est bon ! Apprends" style="endArrow=classic;html=1;fontSize=8;fontColor=#40916c;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#40916c;" edge="1" parent="1" source="f1" target="f17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="110"/>
+              <mxPoint x="310" y="565"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- C16: F1 vers F6 (Validation FAIL) -->
+        <mxCell id="c16" value="[C16] Pas bon. Retente" style="endArrow=classic;html=1;fontSize=8;fontColor=#e63946;exitX=1;exitY=0.8;entryX=0;entryY=0.5;strokeColor=#e63946;dashed=1;" edge="1" parent="1" source="f1" target="f6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="160"/>
+              <mxPoint x="260" y="380"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- C17: F17 vers F13 (VLM validation) -->
+        <mxCell id="c17" value="[C17] Mode auto : VLM valide" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#808080;dashed=1;" edge="1" parent="1" source="f17" target="f13">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- C18: F8 vers F9 (Apprentissage vers ChromaDB) -->
+        <mxCell id="c18" value="[C18] add_pattern()" style="endArrow=classic;html=1;fontSize=8;fontColor=#808080;exitX=1;exitY=0.5;entryX=0;entryY=0.8;strokeColor=#A0A0A0;" edge="1" parent="1" source="f8" target="f9">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- C19: F2 vers F3 (Hermes appelle Smart MCP) -->
+        <mxCell id="c19" value="[C19] Appelle tool MCP&#10;smart_mcp_process()" style="endArrow=classic;html=1;fontSize=8;fontColor=#4285f4;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#4285f4;dashed=1;" edge="1" parent="1" source="f2" target="f3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Legende -->
+        <mxCell id="legend" value="Legende :&#10;Vert = Fonctionnel / OK&#10;Jaune = Concu mais pas ecrit&#10;Gris = Pas commence&#10;Rouge = Bloque&#10;&#10;Trait plein = Flux pipeline&#10;Pointille = Echange service" style="text;html=1;fontSize=8;fontColor=#000000;align=left;whiteSpace=wrap;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="940" y="400" width="140" height="100" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

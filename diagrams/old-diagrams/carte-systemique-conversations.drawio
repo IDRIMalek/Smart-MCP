@@ -1,0 +1,506 @@
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- TITLE -->
+    <mxCell id="2" value="🗺️ CARTE SYSTÉMIQUE — NOS CONVERSATIONS HERMES" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#e94560;fontSize=22;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="40" y="20" width="1920" height="50" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 1: INFRA OLLAMA ==================== -->
+    <mxCell id="3" value="🏗️ INFRASTRUCTURE OLLAMA" style=" rounded=1;fillColor=#16213e;strokeColor=#0f3460;fontSize=16;fontStyle=1;fontColor=#e94560;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="40" y="90" width="420" height="280" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="4" value="🟢 GPU (port 11434) — ollama-gpu.service" style=" rounded=1;fillColor=#1a3a2e;strokeColor=#2ecc71;fontSize=12;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="130" width="380" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="5" value=" FLASH_ATTENTION=1 · KEEP_ALIVE=24h · NUM_PARALLEL=4" style="text;html=1;fontSize=10;fontColor=#7f8c8d;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="160" width="360" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="6" value="🔵 CPU (port 11435)" style=" rounded=1;fillColor=#1a2a3e;strokeColor=#3498db;fontSize=12;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="190" width="180" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="7" value="🟣 iGPU (port 11436)" style=" rounded=1;fillColor=#2a1a3e;strokeColor=#9b59b6;fontSize=12;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="260" y="190" width="180" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="8" value="🔄 Ollama Switcher (port 8503)" style=" rounded=1;fillColor=#1a2e3e;strokeColor=#1abc9c;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="235" width="180" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="9" value="📋 Presets: ollama_presets.md" style=" rounded=1;fillColor=#1a2e3e;strokeColor=#f39c12;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="260" y="235" width="180" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="10" value="🔁 Helper: env-switch.sh" style=" rounded=1;fillColor=#1a2e3e;strokeColor=#e67e22;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="275" width="180" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="11" value="📁 Store: ~/.ollama/models/" style=" rounded=1;fillColor=#1a2e3e;strokeColor=#e74c3c;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="260" y="275" width="180" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 2: NVIDIA FIX ==================== -->
+    <mxCell id="12" value="🔧 NVIDIA CRASH FIX" style=" rounded=1;fillColor=#16213e;strokeColor=#e74c3c;fontSize=14;fontStyle=1;fontColor=#e74c3c;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="40" y="390" width="420" height="140" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="13" value="Problème: GPU s'endort → driver crash au réveil" style="text;html=1;fontSize=11;fontColor=#e74c3c;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="420" width="380" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="14" value="Solution: Drop-in systemd nopersistence-fix.conf" style=" rounded=1;fillColor=#3e1a1a;strokeColor=#e74c3c;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="448" width="380" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="15" value="┬─ /etc/systemd/system/nvidia-persistenced.service.d/" style="text;html=1;fontSize=10;fontColor=#95a5a6;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="80" y="478" width="360" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="16" value="└─ nopersistence-fix.conf (enlève --no-persistence-mode)" style="text;html=1;fontSize=10;fontColor=#95a5a6;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="80" y="496" width="360" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 3: BENCHMARKS ==================== -->
+    <mxCell id="17" value="📊 BENCHMARKS (15/06/2026)" style=" rounded=1;fillColor=#16213e;strokeColor=#f39c12;fontSize=14;fontStyle=1;fontColor=#f39c12;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="500" y="90" width="440" height="290" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="18" value="🏆 qwen2.5-coder:14b — ÉLU MEILLEUR MODÈLE GPU !" style=" rounded=1;fillColor=#3e2e1a;strokeColor=#f1c40f;fontSize=12;fontStyle=1;fontColor=#f1c40f;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="125" width="400" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="19" value=" TPS=8.7 · FT=0.80s · ctx=32768 · 14.8B Q4_K_M · Intel=8.5" style="text;html=1;fontSize=10;fontColor=#f39c12;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="540" y="157" width="360" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="20" value="Modèles testés:" style="text;html=1;fontSize=11;fontColor=#ecf0f1;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="185" width="400" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="21" value="• qwen2.5-coder:14b (GPU) — 8.7 t/s ★" style="text;html=1;fontSize=10;fontColor=#2ecc71;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="530" y="205" width="380" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="22" value="• qwen3.5-4b-agent-opt (GPU) — ~80 t/s" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="530" y="223" width="380" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="23" value="• N1.5 ajouté: qwen2.5-coder:14b dans la cascade" style="text;html=1;fontSize=10;fontColor=#f5b7b1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="530" y="241" width="380" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="24" value="Scripts: benchmark_speed.py · benchmark_all.py" style=" rounded=1;fillColor=#2a2a3e;strokeColor=#5dade2;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="270" width="190" height="26" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="25" value="Dashboards: benchmark_report.html · ..." style=" rounded=1;fillColor=#2a2a3e;strokeColor=#5dade2;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="730" y="270" width="190" height="26" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="26" value="📈 stats: ~91% SIMPLE (N1) · ~8% COMPLEXE (N2)" style="text;html=1;fontSize=10;fontColor=#7f8c8d;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="305" width="400" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 4: OPTIMISATION PIPELINE ==================== -->
+    <mxCell id="27" value="⚡ OPTIMISATION PIPELINE (Routeur → Cascade → Juge)" style=" rounded=1;fillColor=#16213e;strokeColor=#3498db;fontSize=14;fontStyle=1;fontColor=#3498db;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="500" y="400" width="440" height="430" as="geometry"/>
+    </mxCell>
+
+    <!-- Routeur -->
+    <mxCell id="28" value="ROUTEUR (router.py)" style=" rounded=1;fillColor=#1a3a5e;strokeColor=#3498db;fontSize=13;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="620" y="430" width="200" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="29" value="Classifie: SIMPLE / CODE / COMPLEXE" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="620" y="462" width="200" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="30" value="🟢 SIMPLE → qwen3.5-4b (ctx 4096, ~80 t/s)" style=" rounded=1;fillColor=#1a3a2e;strokeColor=#2ecc71;fontSize=10;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="490" width="190" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="31" value="🟡 CODE → qwen2.5-coder:14b (ctx 32768, 8.7 t/s)" style=" rounded=1;fillColor=#3e3a1a;strokeColor=#f1c40f;fontSize=10;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="725" y="490" width="195" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="32" value="🔴 COMPLEXE → DeepSeek V4 (cloud)" style=" rounded=1;fillColor=#3e1a1a;strokeColor=#e74c3c;fontSize=10;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="530" width="400" height="28" as="geometry"/>
+    </mxCell>
+
+    <!-- Cascade -->
+    <mxCell id="33" value="CASCADE (cascade.py)" style=" rounded=1;fillColor=#1a3a5e;strokeColor=#9b59b6;fontSize=13;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="620" y="575" width="200" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="34" value="N1 (qwen3.5-4b GPU) → N1.5 (qwen2.5-coder:14b) → N2 (14B iGPU) → N3 (30B CPU) → N4 (DeepSeek cloud)" style=" rounded=1;fillColor=#2a1a4e;strokeColor=#9b59b6;fontSize=9;fontColor=#d2b4de;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="615" width="400" height="36" as="geometry"/>
+    </mxCell>
+
+    <!-- Juge -->
+    <mxCell id="35" value="JUGE (judge.py)" style=" rounded=1;fillColor=#1a3a5e;strokeColor=#e67e22;fontSize=13;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="620" y="665" width="200" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="36" value="Évalue la qualité des réponses (~1.2s)" style="text;html=1;fontSize=10;fontColor=#f0b27a;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="620" y="697" width="200" height="16" as="geometry"/>
+    </mxCell>
+
+    <!-- Pipeline complet -->
+    <mxCell id="37" value="🔁 PIPELINE COMPLET" style=" rounded=1;fillColor=#3e1a3e;strokeColor=#e94560;fontSize=11;fontStyle=1;fontColor=#e94560;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="728" width="400" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="38" value="Launcher: hermes-opt (routeur|cascade|juge|pipeline|stats|test)" style="text;html=1;fontSize=9;fontColor=#7f8c8d;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="760" width="400" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="39" value="Cache sémantique: désactivé (pip install gptcache)" style="text;html=1;fontSize=9;fontColor=#7f8c8d;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="778" width="400" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="40" value="Skills: router-optim · cascade-optim · judge-optim · pipeline-optim" style="text;html=1;fontSize=9;fontColor=#95a5a6;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="520" y="796" width="400" height="16" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 5: DRAW.IO / MCP ==================== -->
+    <mxCell id="41" value="🎨 DRAW.IO / MCP INTÉGRATION" style=" rounded=1;fillColor=#16213e;strokeColor=#1abc9c;fontSize=14;fontStyle=1;fontColor=#1abc9c;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="980" y="90" width="500" height="330" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="42" value="MCP Server: npx @next-ai-drawio/mcp-server@latest" style=" rounded=1;fillColor=#1a4a3e;strokeColor=#1abc9c;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="125" width="460" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="43" value="Proxy TCP: drawio-proxy.py (0.0.0.0:6002 → 127.0.0.1:6003)" style=" rounded=1;fillColor=#1a4a3e;strokeColor=#48c9b0;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="163" width="460" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="44" value="Service systemd: drawio-mcp-proxy.service (enabled, restart=always)" style=" rounded=1;fillColor=#1a4a3e;strokeColor=#48c9b0;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="201" width="460" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="45" value="URL: http://192.168.1.100:6002/ (LAN)" style=" rounded=1;fillColor=#2a3a1e;strokeColor=#2ecc71;fontSize=11;fontColor=#2ecc71;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="242" width="220" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="46" value="Port 6002/tcp ouvert (ufw)" style="text;html=1;fontSize=10;fontColor=#7f8c8d;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1240" y="247" width="220" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="47" value="Outils MCP draw.io:" style="text;html=1;fontSize=11;fontColor=#1abc9c;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="282" width="460" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="48" value="┌─ start_session · create_new_diagram · edit_diagram" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="300" width="440" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="49" value="└─ get_diagram · export_diagram" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="316" width="440" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="50" value="Skill: drawio-mcp-setup (catégorie mcp/)" style=" rounded=1;fillColor=#2a3a1e;strokeColor=#f39c12;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="345" width="460" height="26" as="geometry"/>
+    </mxCell>
+
+    <!-- Schémas -->
+    <mxCell id="51" value="📄 Schémas draw.io existants:" style="text;html=1;fontSize=11;fontColor=#1abc9c;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="383" width="460" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="52" value="📗 hermes-optimisation-archi.drawio (schéma pipeline)" style=" rounded=0;fillColor=#2a2a3e;strokeColor=#85c1e9;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="403" width="460" height="26" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 6: HERMES CONFIG &amp; DASHBOARDS ==================== -->
+    <mxCell id="53" value="🖥️ HERMES CONFIG &amp; DASHBOARDS" style=" rounded=1;fillColor=#16213e;strokeColor=#e67e22;fontSize=14;fontStyle=1;fontColor=#e67e22;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="980" y="440" width="500" height="330" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="54" value="Config: ~/.hermes/config.yaml" style=" rounded=1;fillColor=#3e2e1a;strokeColor=#e67e22;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="475" width="460" height="26" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="55" value="mcp_servers.drawio ajouté · providers custom" style="text;html=1;fontSize=10;fontColor=#f0b27a;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="503" width="440" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="56" value="WebUI debugging: providers cache navigateur" style=" rounded=1;fillColor=#3e1a1a;strokeColor=#e74c3c;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="530" width="460" height="24" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="57" value="Fix: Ctrl+Shift+R (hard refresh) · cache: models_cache.json" style="text;html=1;fontSize=9;fontColor=#7f8c8d;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="556" width="440" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="58" value="HTML Dashboards livrés:" style="text;html=1;fontSize=11;fontColor=#e67e22;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="585" width="460" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="59" value="• hermes-dashboard.html · hermes-optimization-guide.html" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="605" width="230" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="60" value="• hermes-optimisation-tutoriel.html" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="623" width="230" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="61" value="• comparaison_rtx.html · royaume-hermes.html" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="641" width="230" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="62" value="• config-commander.html · gpu_ai_comparison.html" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1240" y="605" width="220" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="63" value="• workbench_providers.html · bench* dashboards" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1240" y="623" width="220" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="64" value="Gateway: hermes gateway restart" style=" rounded=1;fillColor=#2a2a3e;strokeColor=#5dade2;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="670" width="460" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 7: FORMATION / QUIZ ==================== -->
+    <mxCell id="65" value="📚 FORMATION / QUIZ HERMES" style=" rounded=1;fillColor=#16213e;strokeColor=#9b59b6;fontSize=14;fontStyle=1;fontColor=#9b59b6;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="980" y="790" width="500" height="200" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="66" value="Quiz automatiques via Telegram (cron job)" style=" rounded=1;fillColor=#2a1a4e;strokeColor=#9b59b6;fontSize=11;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="825" width="460" height="26" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="67" value="Questions #1 à #19: Gateway, Profile, Skills, Tools, Dashboard, WebUI, Fallback..." style="text;html=1;fontSize=10;fontColor=#d2b4de;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1010" y="855" width="450" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="68" value="Skill: hermes-formation (gamified-qcm)" style=" rounded=1;fillColor=#2a1a4e;strokeColor=#bb8fce;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="880" width="220" height="24" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="69" value="Plateforme: Telegram via Gateway Hermes" style=" rounded=1;fillColor=#2a1a4e;strokeColor=#bb8fce;fontSize=10;fontColor=#ffffff;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="1240" y="880" width="220" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== ZONE 8: SCRIPTS &amp; LIVRABLES ==================== -->
+    <mxCell id="70" value="📜 SCRIPTS &amp; LIVRABLES" style=" rounded=1;fillColor=#16213e;strokeColor=#5dade2;fontSize=14;fontStyle=1;fontColor=#5dade2;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="40" y="550" width="420" height="440" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="71" value="🐍 Scripts Python:" style="text;html=1;fontSize=11;fontColor=#5dade2;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="582" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="72" value="• router.py — Classifieur SIMPLE/CODE/COMPLEXE" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="602" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="73" value="• cascade.py — Cascade N1→N2→N3→N4" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="620" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="74" value="• judge.py — Évaluateur de qualité" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="638" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="75" value="• hermes-opt — Launcher unifié (routeur|cascade|juge|...)" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="656" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="76" value="• drawio-proxy.py — Proxy TCP draw.io" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="674" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="77" value="• benchmark_*.py — Scripts de benchmark" style="text;html=1;fontSize=10;fontColor=#85c1e9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="692" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="78" value="🐚 Scripts Shell:" style="text;html=1;fontSize=11;fontColor=#e67e22;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="716" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="79" value="• env-switch.sh — Bascule entre env GPU/CPU/iGPU" style="text;html=1;fontSize=10;fontColor=#f0b27a;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="736" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="80" value="• ollama_switcher.sh — Switch Ollama" style="text;html=1;fontSize=10;fontColor=#f0b27a;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="754" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="81" value="• optimize-system.sh — Optimisation système" style="text;html=1;fontSize=10;fontColor=#f0b27a;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="772" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="82" value="• run_benchmark.sh · speed_test.sh · igpu_test.sh" style="text;html=1;fontSize=10;fontColor=#f0b27a;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="790" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="83" value="• restart_after_reboot.sh — Post-reboot" style="text;html=1;fontSize=10;fontColor=#f0b27a;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="808" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="84" value="Configs &amp; Skills:" style="text;html=1;fontSize=11;fontColor=#2ecc71;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="832" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="85" value="• config.yaml — Config pipeline optimisation" style="text;html=1;fontSize=10;fontColor=#a3e4d7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="852" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="86" value="• cascade.yaml — Config cascade" style="text;html=1;fontSize=10;fontColor=#a3e4d7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="870" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="87" value="• nopersistence-fix.conf — Fix driver NVIDIA" style="text;html=1;fontSize=10;fontColor=#a3e4d7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="888" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="88" value="Skills: router-optim · cascade-optim · judge-optim · pipeline-optim" style="text;html=1;fontSize=9;fontColor=#a3e4d7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="906" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="89" value="drawio-mcp-setup · hermes-formation" style="text;html=1;fontSize=9;fontColor=#a3e4d7;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="70" y="924" width="370" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="90" value="📊 Logs: cascade-logs/cascade-stats.json · cascade.log" style="text;html=1;fontSize=10;fontColor=#95a5a6;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="950" width="380" height="16" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="91" value="📅 Timeline: 15 Juin 2026 — Journée complète !" style="text;html=1;fontSize=10;fontColor=#e94560;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="972" width="380" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ==================== CONNEXIONS SYSTÉMIQUES ==================== -->
+
+    <!-- INFRA → NVIDIA FIX (problème) -->
+    <mxCell id="101" value="crash GPU" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#e74c3c;strokeWidth=2;fontSize=9;fontColor=#e74c3c;align=center;verticalAlign=middle;" edge="1" parent="1" source="4" target="12">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="250" y="370"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- NVIDIA FIX → INFRA (retour) -->
+    <mxCell id="102" value="fix" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#2ecc71;strokeWidth=2;dashed=1;fontSize=9;fontColor=#2ecc71;align=center;verticalAlign=middle;" edge="1" parent="1" target="4" source="12">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="460" y="390"/>
+          <mxPoint x="460" y="145"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- INFRA → BENCHMARKS -->
+    <mxCell id="103" value="alimente les tests" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#f39c12;strokeWidth=1.5;fontSize=9;fontColor=#f39c12;align=center;verticalAlign=middle;" edge="1" parent="1" source="4" target="17">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="460" y="145"/>
+          <mxPoint x="500" y="145"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- BENCHMARKS → PIPELINE -->
+    <mxCell id="104" value="décision: ajout N1.5" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#f1c40f;strokeWidth=2;fontSize=9;fontColor=#f1c40f;align=center;verticalAlign=middle;" edge="1" parent="1" source="18" target="31">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="720" y="370"/>
+          <mxPoint x="820" y="370"/>
+          <mxPoint x="820" y="504"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- PIPELINE → DRAW.IO -->
+    <mxCell id="105" value="schéma exporté" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#1abc9c;strokeWidth=1.5;fontSize=9;fontColor=#1abc9c;align=center;verticalAlign=middle;" edge="1" parent="1" source="27" target="52">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="940" y="280"/>
+          <mxPoint x="1480" y="280"/>
+          <mxPoint x="1480" y="416"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- DRAW.IO → HERMES CONFIG -->
+    <mxCell id="106" value="MCP config" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#e67e22;strokeWidth=1.5;fontSize=9;fontColor=#e67e22;align=center;verticalAlign=middle;" edge="1" parent="1" source="42" target="54">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1230" y="420"/>
+          <mxPoint x="1230" y="488"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- INFRA → SCRIPTS -->
+    <mxCell id="107" value="scripts associés" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#5dade2;strokeWidth=1.5;fontSize=9;fontColor=#5dade2;align=center;verticalAlign=middle;" edge="1" parent="1" source="8" target="70">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="60" y="560"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- PIPELINE → SCRIPTS -->
+    <mxCell id="108" value="contient" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#5dade2;strokeWidth=1.5;fontSize=9;fontColor=#5dade2;align=center;verticalAlign=middle;" edge="1" parent="1" source="27" target="70">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="440" y="620"/>
+          <mxPoint x="440" y="810"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- FORMATION → HERMES CONFIG -->
+    <mxCell id="109" value="basé sur la config" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#9b59b6;strokeWidth=1.5;fontSize=9;fontColor=#9b59b6;align=center;verticalAlign=middle;" edge="1" parent="1" source="65" target="53">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1230" y="790"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- DRAW.IO → CURRENT DIAGRAM -->
+    <mxCell id="110" value="CE SCHÉMA !" style=" endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;strokeColor=#1abc9c;strokeWidth=2;dashed=1;fontSize=10;fontColor=#1abc9c;fontStyle=1;align=center;verticalAlign=middle;" edge="1" parent="1" source="42" target="2">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1000" y="60"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ==================== LEGENDE / TIMELINE ==================== -->
+    <mxCell id="111" value="LEGENDE &amp; TIMELINE" style=" rounded=1;fillColor=#1a1a2e;strokeColor=#7f8c8d;fontSize=12;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=top;whiteSpace=wrap;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="40" y="1010" width="1440" height="130" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="112" value="📅 Chronologie de la journée du 15 Juin 2026:" style="text;html=1;fontSize=11;fontColor=#e94560;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="1030" width="1400" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="113" value="⬇️ MATIN: Boot crash NVIDIA → Fix nopersistence-fix → Setup 3 instances Ollama → Benchmark GPU/CPU/iGPU → Build Pipeline (Routeur/Cascade/Juge)" style="text;html=1;fontSize=10;fontColor=#f39c12;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="1052" width="1400" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="114" value="⬇️ APRÈS-MIDI: Draw.io MCP server setup → Proxy TCP → Service systemd → Schémas pipeline → Dashboards HTML → Quiz Formation Telegram → Skills optimisation → CARTE SYSTÉMIQUE FINALE" style="text;html=1;fontSize=10;fontColor=#3498db;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="1072" width="1400" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="115" value="🔗 Légende des connexions: Flèches épaisses = dépendances directes  ·  Flèches pointillées = feedback/retour  ·  Même couleur = même thème" style="text;html=1;fontSize=10;fontColor=#7f8c8d;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="1095" width="1400" height="18" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="116" value="💡 Les fichiers workpiece (.py, .sh, .html, .drawio, .yaml, .conf) sont dans /home/malek/workspace/ — accessibles depuis le workspace" style="text;html=1;fontSize=10;fontColor=#5dade2;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="1118" width="1400" height="18" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

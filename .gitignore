@@ -30,8 +30,5 @@ chroma_db/
 .DS_Store
 Thumbs.db
 
-# Diagrams (user-made)
-*.drawio
-
 # Logs
 *.log

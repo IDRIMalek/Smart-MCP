@@ -1,0 +1,128 @@
+<mxfile host="app.diagrams.net"><diagram id="29a1njs6-p6gf" name="Page-1"><mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    
+    <!-- TITLE -->
+    <mxCell id="t1" value="Stratégie d'Auto-Apprentissage : Smart MCP Drawio" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fontStyle=1;fillColor=#1a1a2e;strokeColor=#16213e;fontColor=#e94560;align=center;" vertex="1" parent="1">
+      <mxGeometry x="40" y="20" width="720" height="50" as="geometry"/>
+    </mxCell>
+    
+    <!-- User -->
+    <mxCell id="user" value="🧑‍💻 Utilisateur" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#0f3460;strokeColor=#16213e;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+      <mxGeometry x="40" y="110" width="140" height="50" as="geometry"/>
+    </mxCell>
+    
+    <!-- Smart MCP Server -->
+    <mxCell id="smart" value="🧠 Smart MCP Server&#10;(Python + MCP SDK)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#533483;strokeColor=#16213e;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+      <mxGeometry x="280" y="110" width="160" height="50" as="geometry"/>
+    </mxCell>
+    
+    <!-- Edge: User → Smart MCP -->
+    <mxCell id="e1" value="&quot;Crée un diagramme archi&quot;" style="endArrow=classic;html=1;fontSize=11;fontColor=#a0a0a0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#a0a0a0;" edge="1" parent="1" source="user" target="smart">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- RAG Database -->
+    <mxCell id="rag" value="📚 Base RAG&#10;(ChromaDB)&#10;Exemples XML Drawio" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#e94560;strokeColor=#16213e;fontColor=#ffffff;align=center;arcSize=10;" vertex="1" parent="1">
+      <mxGeometry x="280" y="220" width="160" height="65" as="geometry"/>
+    </mxCell>
+    
+    <!-- Edge: Smart MCP → RAG lookup -->
+    <mxCell id="e2" value="🔍 Récupère top-K exemples" style="endArrow=classic;html=1;fontSize=11;fontColor=#a0a0a0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#a0a0a0;strokeWidth=1;dashed=1;" edge="1" parent="1" source="smart" target="rag">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Qwen 7B local -->
+    <mxCell id="qwen" value="🤖 Qwen 7B (local)&#10;Ollama GPU RTX 3060" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#00b4d8;strokeColor=#0077b6;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+      <mxGeometry x="40" y="330" width="160" height="50" as="geometry"/>
+    </mxCell>
+    
+    <!-- DeepSeek V4 Flash -->
+    <mxCell id="deepseek" value="🌐 DeepSeek V4 Flash&#10;(OpenRouter - Cloud)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;fillColor=#0077b6;strokeColor=#023e8a;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+      <mxGeometry x="280" y="330" width="160" height="50" as="geometry"/>
+    </mxCell>
+    
+    <!-- Draw.io MCP -->
+    <mxCell id="drawio" value="✏️ Draw.io MCP Server&#10;(next-ai-drawio)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#2d6a4f;strokeColor=#1b4332;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+      <mxGeometry x="540" y="110" width="160" height="50" as="geometry"/>
+    </mxCell>
+    
+    <!-- Edge: Smart → Qwen (primary) -->
+    <mxCell id="e3" value="1️⃣ Essai Qwen 7B" style="endArrow=classic;html=1;fontSize=11;fontColor=#00b4d8;exitX=0.3;exitY=1;entryX=0.5;entryY=0;strokeColor=#00b4d8;strokeWidth=2;" edge="1" parent="1" source="smart" target="qwen">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="330" y="200"/>
+          <mxPoint x="120" y="280"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- Edge: Qwen → Smart (failure) -->
+    <mxCell id="e4" value="❌ Échec (XML invalide)" style="endArrow=classic;html=1;fontSize=11;fontColor=#e94560;exitX=0.7;exitY=0;entryX=0.7;entryY=1;strokeColor=#e94560;dashed=1;strokeWidth=2;" edge="1" parent="1" source="qwen" target="smart">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Edge: Smart → DeepSeek (fallback) -->
+    <mxCell id="e5" value="2️⃣ Fallback DeepSeek" style="endArrow=classic;html=1;fontSize=11;fontColor=#0077b6;exitX=0.7;exitY=1;entryX=0.5;entryY=0;strokeColor=#0077b6;dashed=1;strokeWidth=2;" edge="1" parent="1" source="smart" target="deepseek">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="410" y="200"/>
+          <mxPoint x="360" y="280"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- Edge: Qwen → Draw.io -->
+    <mxCell id="e6" value="XML valide" style="endArrow=classic;html=1;fontSize=11;fontColor=#2d6a4f;exitX=1;exitY=0.5;entryX=0.2;entryY=0.5;strokeColor=#2d6a4f;" edge="1" parent="1" source="qwen" target="drawio">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="280" y="355"/>
+          <mxPoint x="580" y="135"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- Edge: DeepSeek → Draw.io -->
+    <mxCell id="e7" value="XML valide" style="endArrow=classic;html=1;fontSize=11;fontColor=#2d6a4f;exitX=1;exitY=0.5;entryX=0.8;entryY=0.5;strokeColor=#2d6a4f;" edge="1" parent="1" source="deepseek" target="drawio">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="480" y="355"/>
+          <mxPoint x="620" y="135"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- Feedback loop: DeepSeek success → RAG -->
+    <mxCell id="e8" value="✅ Enseigne l'exemple à la RAG" style="endArrow=classic;html=1;fontSize=11;fontColor=#e94560;exitX=0;exitY=0.5;entryX=1;entryY=0.5;strokeColor=#e94560;strokeWidth=2;" edge="1" parent="1" source="deepseek" target="rag">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="120" y="355"/>
+          <mxPoint x="440" y="252"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    
+    <!-- Console / Résultat -->
+    <mxCell id="output" value="🖥️ Diagramme Draw.io&#10;(Visible dans le navigateur)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fillColor=#1b4332;strokeColor=#2d6a4f;fontColor=#ffffff;align=center;" vertex="1" parent="1">
+      <mxGeometry x="540" y="220" width="160" height="50" as="geometry"/>
+    </mxCell>
+    
+    <!-- Edge: Draw.io → Output -->
+    <mxCell id="e9" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#2d6a4f;" edge="1" parent="1" source="drawio" target="output">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Edge: Smart → Draw.io -->
+    <mxCell id="e10" value="Passe la main au serveur draw.io" style="endArrow=classic;html=1;fontSize=11;fontColor=#a0a0a0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#a0a0a0;" edge="1" parent="1" source="smart" target="drawio">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    
+    <!-- Légende / Boîte des flèches -->
+    <!-- Timeline -->
+    <mxCell id="legend" value="Légende :&#10;━━━ Flux principal&#10;━ ━ ━ Fallback / Enseignement&#10;🔴 Rouge = Échec / Boucle d'apprentissage&#10;🔵 Bleu = Modèle local Qwen 7B&#10;🔷 Cyan = Modèle cloud (secours)" style="text;html=1;fontSize=11;fontColor=#a0a0a0;align=left;whiteSpace=wrap;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+      <mxGeometry x="460" y="310" width="260" height="100" as="geometry"/>
+    </mxCell>
+    
+  </root>
+</mxGraphModel></diagram></mxfile>

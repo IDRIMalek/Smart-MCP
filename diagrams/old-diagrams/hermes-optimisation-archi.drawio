@@ -1,0 +1,134 @@
+<mxfile host="embed.diagrams.net">
+  <diagram id="buywf6D7PgYwizoDFIXQ" name="Page-1">
+    <mxGraphModel dx="2667" dy="994" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;fontColor=#1a1a2e;" value="Architecture d'Optimisation — Routeur → Cascade → Juge" vertex="1">
+          <mxGeometry height="45" width="700" x="250" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#666;fontStyle=0;" value="Pipeline hybride local/cloud pour Hermes Agent — 3 instances Ollama + OpenRouter" vertex="1">
+          <mxGeometry height="20" width="600" x="300" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-user" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4f8;strokeColor=#4a90d9;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="120" width="1120" x="40" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-user-label" parent="1" style="text;html=1;strokeColor=none;fillColor=#e8f4f8;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontStyle=1;fontColor=#4a90d9;" value="🧑‍💻 TOI — Utilisateur (WebUI Hermes)" vertex="1">
+          <mxGeometry height="18" width="200" x="40" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="user-avatar" parent="1" style="shape=ellipse;html=1;fillColor=#4a90d9;strokeColor=none;fontSize=36;fontColor=#fff;align=center;verticalAlign=middle;fontStyle=1;" value="👤" vertex="1">
+          <mxGeometry height="60" width="60" x="70" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="user-input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#4a90d9;strokeWidth=1;fontSize=11;fontColor=#333;align=center;verticalAlign=middle;" value="&lt;b&gt;routeur:&lt;/b&gt; capitale de l'Algérie ?&lt;br&gt;&lt;b&gt;cascade:&lt;/b&gt; explique la fusion quantique&lt;br&gt;&lt;b&gt;pipeline:&lt;/b&gt; optimise cet algo" vertex="1">
+          <mxGeometry height="70" width="250" x="190" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-user-router" edge="1" parent="1" source="user-input" style="endArrow=classic;html=1;fontSize=11;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#4a90d9;strokeWidth=2;" target="router-box" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-user-router-label" connectable="0" parent="arrow-user-router" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#4a90d9;fontStyle=1;labelBackgroundColor=#fff;" value="trigger: routeur:/cascade:/pipeline:" vertex="1">
+          <mxGeometry relative="1" x="0.5" y="-2" as="geometry" />
+        </mxCell>
+        <mxCell id="orchestrator" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e6f1;strokeColor=#2980b9;strokeWidth=2;fontSize=12;fontColor=#1a1a2e;" value="&lt;b&gt;🧠 Ordonnanceur&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px'&gt;DeepSeek V4 Flash&lt;br&gt;(modèle cloud WebUI)&lt;br&gt;Détecte trigger → charge skill → lance script&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="560" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-orch-router" edge="1" parent="1" source="orchestrator" style="endArrow=classic;html=1;fontSize=11;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#2980b9;strokeWidth=2;" target="router-box" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-orch-label" connectable="0" parent="arrow-orch-router" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#2980b9;labelBackgroundColor=#fff;" value="lance &lt;i&gt;hermes-opt routeur/cascade/pipeline&lt;/i&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.4" y="2" as="geometry" />
+        </mxCell>
+        <mxCell id="router-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f39c12;strokeColor=#e67e22;strokeWidth=2;fontSize=13;fontColor=#fff;fontStyle=1;align=center;verticalAlign=middle;" value="&lt;b&gt;🔀 ROUTEUR&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px'&gt;Classifie la question en 3 catégories&lt;br&gt;qwen3.5-4b-agent-opt:latest (ctx 4096)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="230" x="420" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="router-simple" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#27ae60;strokeColor=#1e8449;strokeWidth=1;fontSize=11;fontColor=#fff;align=center;verticalAlign=middle;" value="&lt;b&gt;SIMPLE&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:9px'&gt;→ local qwen3.5-4b GPU (80 t/s)&lt;br&gt;Ex: météo, capitale, calcul simple&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="190" x="50" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="router-code" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2980b9;strokeColor=#1a5276;strokeWidth=1;fontSize=11;fontColor=#fff;align=center;verticalAlign=middle;" value="&lt;b&gt;CODE&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:9px'&gt;→ local qwen2.5-coder:14b GPU (8.7 t/s)&lt;br&gt;Ex: écrire script, refactor, algo&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="200" x="280" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="router-complexe" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e74c3c;strokeColor=#c0392b;strokeWidth=1;fontSize=11;fontColor=#fff;align=center;verticalAlign=middle;" value="&lt;b&gt;COMPLEXE&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:9px'&gt;→ cloud DeepSeek V4 Flash&lt;br&gt;Ex: débogage avancé, recherche&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="190" x="520" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-r-simple" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#27ae60;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-r-code" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#2980b9;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-r-complexe" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#e74c3c;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-models" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#7f8c8d;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="280" width="900" x="40" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-models-label" parent="1" style="text;html=1;strokeColor=none;fillColor=#f5f5f5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontStyle=1;fontColor=#7f8c8d;" value="🖥️ MODÈLES LOCAUX — 3 instances Ollama (GPU + iGPU + CPU)" vertex="1">
+          <mxGeometry height="18" width="380" x="40" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="model-n1" value="&lt;b&gt;🏎️ N1 — qwen3.5-4b-agent-opt&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;GPU RTX 3060 12Go&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;11434&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Qualité&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐⭐⭐ bonne pour sa taille&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Défauts&lt;/b&gt;&lt;/td&gt;&lt;td&gt;4B limité en raisonnement&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Paramètres&lt;/b&gt;&lt;/td&gt;&lt;td&gt;4B Q4_K_M, Flash Attn, num_batch 512&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" vertex="1" parent="1"><mxGeometry x="60" y="485" width="240" height="150" as="geometry" /></mxCell>
+        <mxCell id="model-n1-latest" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a9dfbf;strokeColor=#1e8449;strokeWidth=1;fontSize=9;fontColor=#1a1a2e;align=center;verticalAlign=middle;" value="&lt;b&gt;:latest&lt;/b&gt; ctx 4096&lt;br&gt;VRAM 3.8Go — 80 t/s&lt;br&gt;→ SIMPLE, classification&lt;br&gt;⚡ le plus rapide" vertex="1">
+          <mxGeometry height="50" width="116" x="62" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="model-n15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" value="&lt;b&gt;🏆 N1.5 — qwen2.5-coder:14b&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;GPU RTX 3060 12Go&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;11434&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Qualité&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐⭐⭐⭐ excellent code&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Défauts&lt;/b&gt;&lt;/td&gt;&lt;td&gt;ctx 32768 max, pas 64K natif&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Mesuré&lt;/b&gt;&lt;/td&gt;&lt;td&gt;8.7 t/s, 14.8B, intel 8.5/10&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="150" width="240" x="315" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="model-n15-specs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#aeb6bf;strokeColor=#5d6d7e;strokeWidth=1;fontSize=9;fontColor=#1a1a2e;align=center;verticalAlign=middle;" value="&lt;b&gt;qwen2.5-coder:14b&lt;/b&gt;&lt;br&gt;ctx 32768 — 8.7 t/s&lt;br&gt;VRAM ~9Go — 14.8B Q4_K_M&lt;br&gt;→ CODE, algorithmes, refacto&lt;br&gt;🥇 Meilleur modèle GPU selon benchmark" vertex="1">
+          <mxGeometry height="50" width="116" x="317" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="model-n2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6eaf8;strokeColor=#2980b9;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" value="&lt;b&gt;⏳ N2 — qwen2.5:14b / qwen3:4b&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;iGPU Radeon 780M&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;11436&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Qualité&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐⭐⭐⭐ bon raisonnement&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Défauts&lt;/b&gt;&lt;/td&gt;&lt;td&gt;~30-100s réponse, lent&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Paramètres&lt;/b&gt;&lt;/td&gt;&lt;td&gt;4-14B, Radeon 780M 8Go partagé&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="150" width="180" x="575" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="model-n3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fadbd8;strokeColor=#e74c3c;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" value="&lt;b&gt;🐌 N3 — qwen3:30b-a3b&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;CPU (AMD)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;11435&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Qualité&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐⭐⭐⭐⭐ excellent&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Défauts&lt;/b&gt;&lt;/td&gt;&lt;td&gt;~5 min, très lent&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Paramètres&lt;/b&gt;&lt;/td&gt;&lt;td&gt;30B MoE (3B actifs), CPU-only&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="150" width="160" x="770" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-simple-n1" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#27ae60;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-code-n15" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#2980b9;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-cascade" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f1c40f;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="210" width="270" x="780" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-cascade-label" parent="1" style="text;html=1;strokeColor=none;fillColor=#fef9e7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;fontColor=#f1c40f;" value="📊 CASCADE PROGRESSIVE" vertex="1">
+          <mxGeometry height="18" width="160" x="780" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="cascade-flow" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#f39c12;strokeWidth=1;fontSize=11;fontColor=#333;align=center;verticalAlign=middle;" value="&lt;b&gt;Escalade automatique&lt;/b&gt;&lt;br&gt;N1 (4B GPU) → si insuffisant →&lt;br&gt;&lt;b&gt;N1.5 (14B coder GPU)&lt;/b&gt; → si insuffisant →&lt;br&gt;N2 (14B iGPU) → si insuffisant →&lt;br&gt;N3 (30B CPU) → si insuffisant →&lt;br&gt;N4 (cloud DeepSeek)" vertex="1">
+          <mxGeometry height="120" width="230" x="800" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="cascade-arrow" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#f39c12;strokeWidth=2;strokeDashPattern=6 3;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cascade-confiance" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#856404;strokeWidth=1;fontSize=10;fontColor=#856404;align=center;verticalAlign=middle;" value="&lt;b&gt;Seuil de confiance :&lt;/b&gt;&lt;br&gt;score ≥ 4/5 → stop&lt;br&gt;score &amp;lt; 4 → escalade" vertex="1">
+          <mxGeometry height="40" width="190" x="820" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="model-n4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdebd0;strokeColor=#e67e22;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" value="&lt;b&gt;☁️ N4 — deepseek-v4-flash&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Cloud (OpenRouter)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Port&lt;/b&gt;&lt;/td&gt;&lt;td&gt;— API HTTP&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Qualité&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐⭐⭐⭐⭐ expert&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Défauts&lt;/b&gt;&lt;/td&gt;&lt;td&gt;payant, dépend réseau&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Paramètres&lt;/b&gt;&lt;/td&gt;&lt;td&gt;671B MoE, ~5s réponse, ctx 128K+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="150" width="180" x="780" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-judge" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4ecf7;strokeColor=#8e44ad;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="150" width="670" x="40" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="zone-judge-label" parent="1" style="text;html=1;strokeColor=none;fillColor=#f4ecf7;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=13;fontStyle=1;fontColor=#8e44ad;" value="⚖️ JUGE — Évaluation Qualité" vertex="1">
+          <mxGeometry height="18" width="200" x="40" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="judge-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebdef0;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;fontColor=#1a1a2e;align=left;verticalAlign=top;overflow=hidden;" value="&lt;b&gt;⚖️ Juge : Qwen2.5:1.5B&lt;/b&gt;&lt;br&gt;&lt;hr&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Pertinence&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐ 1-5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Exactitude&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⭐ 1-5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Hallucinations&lt;/b&gt;&lt;/td&gt;&lt;td&gt;⚠️ 1-5 (1 = pas d'hallu)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Matériel&lt;/b&gt;&lt;/td&gt;&lt;td&gt;GPU ou CPU, 1.5B, très rapide&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;Usage&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Après chaque réponse de la cascade&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="120" width="280" x="80" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="judge-result" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5f5e3;strokeColor=#27ae60;strokeWidth=2;fontSize=11;fontColor=#1a1a2e;align=center;verticalAlign=middle;" value="&lt;b&gt;📊 Résultat au Toi&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:10px'&gt;Score: 4.2/5 👍&lt;br&gt;Pertinence: 4/5 | Exactitude: 5/5 | Hallu: 1/5&lt;br&gt;Niveau cascade atteint: N1.5&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="250" x="420" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-models-judge" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#8e44ad;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-judge-result" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#27ae60;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-result-user" edge="1" parent="1" style="endArrow=classic;html=1;edgeStyle=orthogonalEdgeStyle;curved=1;rounded=1;strokeColor=#27ae60;strokeWidth=2;fontSize=11;fontColor=#27ae60;fontStyle=1;" value="réponse + score">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legende" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#bdc3c7;strokeWidth=1;fontSize=10;fontColor=#555;align=left;verticalAlign=top;" value="&lt;b&gt;Légende&lt;/b&gt;&lt;br&gt;&lt;hr&gt;🟢 SIMPLE → N1 qwen3.5-4b:latest (ctx 4096, 80 t/s)&lt;br&gt;🔵 CODE → &lt;b&gt;N1.5 qwen2.5-coder:14b&lt;/b&gt; (ctx 32768, 8.7 t/s)&lt;br&gt;🔴 COMPLEXE → N4 Cloud DeepSeek&lt;br&gt;🟡 Cascade → escalade N1→N1.5→N2→N3→N4&lt;br&gt;🟣 Juge → évaluation qualité par Qwen2.5:1.5B&lt;hr&gt;&lt;font style='font-size:9px'&gt;hermes-opt routeur|cascade|pipeline|juge&lt;br&gt;📈 Benchmarked 15/06/2026 — qwen2.5-coder:14b 🥇&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="380" x="780" y="820" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

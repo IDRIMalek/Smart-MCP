@@ -1,1 +1,0 @@
-"""Smart MCP — Core source modules."""
