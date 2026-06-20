@@ -11,10 +11,11 @@ venv/
 *.db
 *.sqlite
 results.json
+ci_results.json
 
 # ChromaDB
-brain/
 chroma_db/
+.smart-mcp/
 
 # Environment
 .env
