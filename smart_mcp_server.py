@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT))
 
 from brain.rag import get_brain, DiagramPattern
 from brain.seed_patterns import seed as seed_brain_data
+from brain.mindmap_agent import get_agent
 from models.llm_client import get_llm, LLMClient
 from mcp_client.drawio import get_drawio, DrawioMCPClient
 
@@ -519,6 +520,40 @@ def get_brain_stats() -> dict:
         return {"status": "error", "error": str(e)[:200]}
 
 
+@mcp.tool(name="mindmap_agent")
+def mindmap_agent(action: str, prompt: str, debug: bool = False) -> dict:
+    """
+    Agent interactif spécialisé dans les mindmaps — utilise draw.io MCP outil par outil.
+    
+    Deux modes :
+    
+    1. action="create" — Crée une nouvelle mindmap depuis un prompt.
+       Exemple: action="create", prompt="mindmap about remote work with branches productivity, challenges, tools"
+       → Planifie la structure via LLM, puis ajoute chaque nœud un par un sur le canvas.
+    
+    2. action="edit" — Édite la mindmap courante (ajouter, colorer, supprimer).
+       Exemple: action="edit", prompt="add a 'communication' branch under challenges in red"
+       → Lit l'état du canvas, classifie l'intention, exécute l'opération.
+    
+    Retourne : {status, operations?, error?, canvas?}
+    """
+    try:
+        agent = get_agent(debug=debug)
+        
+        if action == "create":
+            return agent.create_mindmap(prompt)
+        elif action == "edit":
+            return agent.edit_mindmap(prompt)
+        elif action == "state":
+            return {"status": "success", "canvas": agent.get_canvas_text(), "node_count": len(agent.agent.nodes)}
+        else:
+            return {"status": "error", "error": f"Action inconnue: {action}. Utilise create, edit ou state."}
+    
+    except Exception as e:
+        import traceback
+        return {"status": "error", "error": f"{type(e).__name__}: {str(e)[:300]}", "traceback": traceback.format_exc()[-300:]}
+
+
 # ── Point d'entrée ─────────────────────────────────────
 
 if __name__ == "__main__":
@@ -527,7 +562,7 @@ if __name__ == "__main__":
     print(f"   Préférence locale: {PREFER_LOCAL}")
     print(f"   Draw.io MCP: {DRAWIO_MCP_PATH}")
     print()
-    print("   Tools exposées : smart_diagram, health, seed_brain, track_budget, get_brain_stats")
+    print("   Tools exposées : smart_diagram, health, seed_brain, track_budget, get_brain_stats, mindmap_agent")
     print()
 
     # Lancer le serveur MCP sur stdio (Hermes le connecte)
