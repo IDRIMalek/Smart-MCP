@@ -39,8 +39,8 @@ pip install -r requirements.txt
 # 2. Lancer le dashboard
 cd dashboard && python app.py
 
-# 3. Lancer des tests
-python -c "from test_runner import run_batch; run_batch()"
+# 3. Lancer la suite de tests (214 tests)
+cd .. && python ci_tests.py
 ```
 
 ## 🔬 CI/CD (GitHub Actions)
@@ -50,8 +50,14 @@ python -c "from test_runner import run_batch; run_batch()"
 
 ## 📁 Structure
 ```
-src/          → Code source (classification, génération, RAG)
+brain/        → RAG, seed patterns, templates XML (code source)
 dashboard/    → Tableau de bord Dash / test runner
-brain/        → ChromaDB (patterns XML, ignoré par git)
-tests/        → Prompts et jeux de test
+models/       → LLM client
+mcp_client/   → MCP draw.io client
+diagrams/     → Diagrammes .drawio
+skills/       → Skills Hermes
+tests/        → Tests unitaires
+smart_mcp.py          → Pipeline principal
+smart_mcp_server.py   → Serveur MCP
+ci_tests.py           → Suite de 214 tests
 ```

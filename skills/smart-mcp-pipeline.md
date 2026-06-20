@@ -13,16 +13,16 @@ Générer des diagrammes draw.io via un petit modèle local (9B) avec RAG + clas
 ## Commandes
 ```bash
 # Démarrer le MCP server
-python src/smart_mcp_server.py
+python smart_mcp_server.py
 
 # Lancer le dashboard
 python dashboard/app.py
 
 # Lancer tous les tests
-python -c "from dashboard.test_runner import run_batch; run_batch()"
+python ci_tests.py
 
 # Seeder ChromaDB
-python -c "from src.seed_patterns import seed; seed()"
+python -c "from brain.seed_patterns import seed; seed()"
 
 # Obtenir les stats
 python -c "from dashboard.test_runner import get_stats; import json; print(json.dumps(get_stats(), indent=2))"

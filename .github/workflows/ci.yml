@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - name: Vérification structure
+      - name: "Verification structure"
         run: |
           test -f SOUL.md && echo "SOUL.md OK" || echo "SOUL.md MISSING"
           test -f smart_mcp.py && echo "smart_mcp.py OK" || echo "smart_mcp.py MISSING"
@@ -27,40 +27,24 @@ jobs:
           ls diagrams/*.drawio 2>/dev/null && echo "Diagrams OK" || echo "Diagrams MISSING"
 
   test:
-    name: Tests (214 tests)
+    name: "Tests (214 tests)"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Installation dépendances
+      - name: "Installation dependances"
         run: pip install -r requirements.txt
-      - name: Seed ChromaDB de test
-        run: |
-          python << 'PYEOF'
-import os, tempfile
-os.environ['CI_CHROMA_PATH'] = tempfile.mkdtemp()
-from brain.seed_patterns import seed as seed_brain
-seed_brain(persist_dir=os.environ['CI_CHROMA_PATH'])
-print(f'ChromaDB seedee dans {os.environ["CI_CHROMA_PATH"]}')
-PYEOF
-      - name: Vérification imports
-        run: |
-          python << 'PYEOF'
-import sys
-sys.path.insert(0, '.')
-from brain.rag import RAGBrain
-from brain.seed_patterns import seed
-from brain.shape_templates import SHAPE_TEMPLATES, STYLES
-from mcp_client.drawio import DrawioMCPClient
-print('Tous les imports OK')
-PYEOF
-      - name: Lancement tests
+      - name: "Seed ChromaDB de test"
+        run: python -c "import os,tempfile; p=tempfile.mkdtemp(); os.environ['CI_CHROMA_PATH']=p; from brain.seed_patterns import seed as s; from brain.shape_templates import seed_shapes; s(persist_dir=p); seed_shapes(persist_dir=p); print('ChromaDB seedee dans',p)"
+      - name: "Verification imports"
+        run: python -c "import sys; sys.path.insert(0,'.'); from brain.rag import RAGBrain; from brain.seed_patterns import seed; from brain.shape_templates import SHAPE_TEMPLATES, STYLES; from mcp_client.drawio import DrawioMCPClient; print('Tous les imports OK')"
+      - name: "Lancement tests"
         env:
           CI: "true"
         run: python ci_tests.py
-      - name: Upload résultats
+      - name: "Upload resultats"
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -69,7 +53,7 @@ PYEOF
           retention-days: 7
 
   quality:
-    name: Qualité code
+    name: "Qualite code"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -77,15 +61,15 @@ PYEOF
         with:
           python-version: "3.12"
       - run: pip install pyflakes
-      - name: Pyflakes brain/
+      - name: "Pyflakes brain/"
         run: pyflakes brain/ 2>&1 | head -30 || true
-      - name: Pyflakes dashboard/
+      - name: "Pyflakes dashboard/"
         run: pyflakes dashboard/ 2>&1 | head -30 || true
-      - name: Pyflakes mcp_client/
+      - name: "Pyflakes mcp_client/"
         run: pyflakes mcp_client/ 2>&1 | head -30 || true
-      - name: Pyflakes models/
+      - name: "Pyflakes models/"
         run: pyflakes models/ 2>&1 | head -30 || true
-      - name: Pyflakes racine
+      - name: "Pyflakes racine"
         run: |
           for f in smart_mcp.py smart_mcp_server.py ci_tests.py; do
             pyflakes "$f" 2>&1 | head -10 || true

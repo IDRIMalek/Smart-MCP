@@ -4,9 +4,12 @@ Templates de formes individuelles pour le routing macro → RAG
 """
 
 import sys
-sys.path.insert(0, "/home/malek/workspace/smart-mcp")
+from pathlib import Path
+_root = Path(__file__).parent.parent
+if str(_root) not in sys.path:
+    sys.path.insert(0, str(_root))
 
-from brain.rag import get_brain
+from brain.rag import RAGBrain, get_brain
 
 # ── PATTERNS DE FORMES INDIVIDUELLES ──────────────────────────────
 
@@ -127,9 +130,12 @@ SHAPE_PATTERNS = [
 ]
 
 
-def seed_shapes():
+def seed_shapes(persist_dir: str = None):
     """Seede les templates de formes dans ChromaDB"""
-    b = get_brain()
+    if persist_dir:
+        b = RAGBrain(persist_dir)
+    else:
+        b = get_brain()
     before = b.get_stats()["patterns_count"]
     print(f"🎨 Patterns existants: {before}")
     

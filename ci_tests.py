@@ -80,7 +80,12 @@ except ImportError as e:
     test("B1.1-3: Imports RAGBrain", False, str(e))
 
 # B2. Connexion ChromaDB (4 tests)
-CHROMA_PATH = "/home/malek/.hermes/profiles/default2/home/.smart-mcp/brain"
+CI_MODE = os.environ.get("CI", "").lower() in ("true", "1")
+CI_CHROMA_PATH = os.environ.get("CI_CHROMA_PATH", "")
+if CI_MODE and CI_CHROMA_PATH:
+    CHROMA_PATH = CI_CHROMA_PATH
+else:
+    CHROMA_PATH = "/home/malek/.hermes/profiles/default2/home/.smart-mcp/brain"
 try:
     brain = RAGBrain(persist_dir=str(CHROMA_PATH))
     from brain.seed_patterns import seed as seed_brain

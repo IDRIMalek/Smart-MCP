@@ -4,9 +4,13 @@ Charge des patterns de diagrammes drawio réutilisables
 """
 
 import sys
-sys.path.insert(0, "/home/malek/workspace/smart-mcp")
+from pathlib import Path
+# S'assurer que le répertoire racine est dans sys.path pour les imports locaux
+_root = Path(__file__).parent.parent
+if str(_root) not in sys.path:
+    sys.path.insert(0, str(_root))
 
-from brain.rag import get_brain
+from brain.rag import RAGBrain, get_brain
 
 # ── PATTERNS INITIAUX ──────────────────────────────────────────
 
@@ -90,8 +94,11 @@ PATTERNS = [
 ]
 
 
-def seed():
-    b = get_brain()
+def seed(persist_dir: str = None):
+    if persist_dir:
+        b = RAGBrain(persist_dir)
+    else:
+        b = get_brain()
     print(f"🧠 Patterns existants: {b.get_stats()['patterns_count']}")
     
     for p in PATTERNS:
