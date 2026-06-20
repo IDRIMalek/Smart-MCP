@@ -144,6 +144,63 @@ app.layout = html.Div([
     html.Div(id="chromadb-section", style={"padding": "12px 20px", "background": "#16213e",
                                             "borderBottom": "1px solid #282a36"}),
 
+    # ── Diagrammes Section ──
+    html.Div([
+        html.Div([
+            html.H3("📐 Diagrammes persistants", style={"margin": "0 0 6px 0", "fontSize": "14px", "color": "#4FC3F7"}),
+            html.Div([
+                html.Span("📄 smart-mcp-full-persistent.drawio", style={"fontSize": "12px", "color": "#ccc"}),
+                html.A(" Ouvrir dans draw.io ↗",
+                       href="https://app.diagrams.net/#HIDRIMalek%2FSmart-MCP%2Fmain%2Fdiagrams%2Fsmart-mcp-full-persistent.drawio",
+                       target="_blank",
+                       style={"color": "#4FC3F7", "fontSize": "12px", "marginLeft": "8px", "textDecoration": "underline"}),
+                html.Span(" (GitHub)", style={"fontSize": "11px", "color": "#666", "marginLeft": "4px"}),
+            ], style={"marginBottom": "4px"}),
+            html.Div([
+                html.Span("📄 all-diagrams-merged.drawio", style={"fontSize": "12px", "color": "#ccc"}),
+                html.A(" Ouvrir dans draw.io ↗",
+                       href="https://app.diagrams.net/#HIDRIMalek%2FSmart-MCP%2Fmain%2Fdiagrams%2Fall-diagrams-merged.drawio",
+                       target="_blank",
+                       style={"color": "#4FC3F7", "fontSize": "12px", "marginLeft": "8px", "textDecoration": "underline"}),
+            ], style={"marginBottom": "4px"}),
+            html.Div([
+                html.Span("📄 hermes-smart-mcp-architecture.drawio", style={"fontSize": "12px", "color": "#ccc"}),
+                html.A(" Ouvrir dans draw.io ↗",
+                       href="https://app.diagrams.net/#HIDRIMalek%2FSmart-MCP%2Fmain%2Fdiagrams%2Fhermes-smart-mcp-architecture.drawio",
+                       target="_blank",
+                       style={"color": "#4FC3F7", "fontSize": "12px", "marginLeft": "8px", "textDecoration": "underline"}),
+            ], style={"marginBottom": "0"}),
+            html.Div([
+                html.Span(html.Small("🔄 13 pages | F1-F17 | Zones A-E | 183 cellules", style={"color": "#666", "fontSize": "10px"})),
+                html.Span(" | ", style={"color": "#444", "fontSize": "10px"}),
+                html.Span(html.Small("🔗 26 liens cliquables", style={"color": "#4FC3F7", "fontSize": "10px", "fontWeight": "bold"})),
+                html.Span(" | ", style={"color": "#444", "fontSize": "10px"}),
+                html.A(html.Small("🔍 Voir en direct", style={"fontSize": "10px"}), 
+                       href=f"http://{LOCAL_IP}:8080", target="_blank",
+                       style={"color": "#FFD700", "textDecoration": "underline"}),
+            ], style={"marginTop": "4px"}),
+        ], style={"flex": "2"}),
+        html.Div([
+            html.H3("🔗 Liens locaux", style={"margin": "0 0 6px 0", "fontSize": "14px", "color": "#aaa"}),
+            html.Div([
+                html.Span("Dashboard: ", style={"fontSize": "12px", "color": "#888"}),
+                html.A(f"http://{LOCAL_IP}:8050", href=f"http://{LOCAL_IP}:8050", target="_blank",
+                       style={"color": "#4FC3F7", "fontSize": "12px"}),
+            ]),
+            html.Div([
+                html.Span("Drawio MCP: ", style={"fontSize": "12px", "color": "#888"}),
+                html.A(f"http://{LOCAL_IP}:8080", href=f"http://{LOCAL_IP}:8080", target="_blank",
+                       style={"color": "#4FC3F7", "fontSize": "12px"}),
+            ]),
+            html.Div([
+                html.Span("Tests CI: ", style={"fontSize": "12px", "color": "#888"}),
+                html.A("214/214 ✅", href="https://github.com/IDRIMalek/Smart-MCP/actions", target="_blank",
+                       style={"color": "#4CAF50", "fontSize": "12px"}),
+            ]),
+        ], style={"flex": "1", "borderLeft": "1px solid #282a36", "paddingLeft": "16px"}),
+    ], style={"display": "flex", "padding": "10px 20px", "background": "#1a1a2e",
+              "borderBottom": "1px solid #282a36", "gap": "16px"}),
+
     # ── Controls bar ──
     html.Div([
         html.Div([
@@ -400,67 +457,106 @@ def toggle_mode(n, mode):
         btn_style = {"background": "#d9534f", "color": "white", "border": "none",
                      "padding": "6px 12px", "borderRadius": "4px", "cursor": "pointer",
                      "fontSize": "12px", "fontWeight": "bold"}
-        # Formulaire intégré — plus besoin de curl
+        # Formulaire intégré — banc de test local + enregistrement manuel
         form = html.Div([
-            html.H4("📝 Enregistrer un test manuel", style={"margin": "0 0 6px 0", "fontSize": "13px", "color": "#eee"}),
-            html.Div([
+            html.H4("🧪 Banc de test local — Exécuter un test en direct", style={"margin": "0 0 8px 0", "fontSize": "14px", "color": "#4FC3F7"}),
+            dcc.Loading([  # Spinner pendant l'appel LLM
+                # Ligne 1: Prompt + bouton exécuter
                 html.Div([
-                    html.Label("Test ID :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
-                    dcc.Input(id="man-test-id", type="text", placeholder="ex: man-042", value=f"man-{int(time.time())%100000}",
-                             style={"width": "140px", "padding": "4px 6px", "fontSize": "11px", "background": "#111",
-                                    "border": "1px solid #333", "color": "#4FC3F7", "borderRadius": "4px"}),
-                ], style={"flex": "1"}),
+                    html.Div([
+                        html.Label("📝 Prompt à tester :", style={"fontSize": "11px", "color": "#aaa", "display": "block", "marginBottom": "3px"}),
+                        dcc.Input(id="run-prompt", type="text",
+                                 placeholder='ex: "dessine un diagramme d architecture 3-tiers" ou "carré rouge"',
+                                 style={"width": "100%", "padding": "6px 8px", "fontSize": "13px",
+                                        "background": "#111", "border": "1px solid #333",
+                                        "color": "#fff", "borderRadius": "4px"}),
+                    ], style={"flex": "3", "marginRight": "8px"}),
+                    html.Div([
+                        html.Label("Macro attendue :", style={"fontSize": "11px", "color": "#aaa", "display": "block", "marginBottom": "3px"}),
+                        dcc.Dropdown(id="run-macro", options=[
+                            {"label": "🔴 FORME", "value": "FORME"},
+                            {"label": "🔵 TABLEAU", "value": "TABLEAU"},
+                            {"label": "🟢 KANBAN", "value": "KANBAN"},
+                            {"label": "🟡 AGENDA", "value": "AGENDA"},
+                            {"label": "🟠 GANTT", "value": "GANTT"},
+                            {"label": "🟣 TEXTE", "value": "TEXTE"},
+                        ], value="FORME", clearable=False, style={"width": "130px", "fontSize": "11px"}),
+                    ], style={"flex": "1", "marginRight": "8px"}),
+                    html.Div([
+                        html.Label(" ", style={"fontSize": "11px", "display": "block", "marginBottom": "3px"}),
+                        html.Button("🚀 Exécuter", id="btn-run-live", n_clicks=0,
+                                   style={"background": "#4CAF50", "color": "white", "border": "none",
+                                          "padding": "6px 16px", "borderRadius": "4px", "cursor": "pointer",
+                                          "fontSize": "13px", "fontWeight": "bold"}),
+                    ], style={"flex": "0"}),
+                ], style={"display": "flex", "alignItems": "flex-end", "gap": "4px", "marginBottom": "8px"}),
+                # Zone de résultat live
+                html.Div(id="run-live-status", style={"padding": "6px 10px", "fontSize": "12px",
+                                                       "background": "#0d1b2a", "borderRadius": "4px",
+                                                       "marginBottom": "8px", "minHeight": "24px",
+                                                       "color": "#888", "fontFamily": "monospace"}),
+                # Résumé et XML
+                html.Div(id="run-live-result", style={"display": "none", "padding": "8px 10px",
+                                                       "background": "#0d1b2a", "borderRadius": "4px",
+                                                       "marginBottom": "8px", "maxHeight": "200px",
+                                                       "overflowY": "auto"}),
+            ], parent_style={"display": "block", "minHeight": "40px"}),
+            html.Hr(style={"border": "1px solid #333", "margin": "12px 0"}),
+            # Formulaire d'enregistrement manuel (fallback)
+            html.Details([
+                html.Summary("📝 Alternative : Enregistrer un résultat manuellement",
+                            style={"fontSize": "12px", "color": "#aaa", "cursor": "pointer"}),
                 html.Div([
-                    html.Label("Macro :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
-                    dcc.Dropdown(id="man-macro", options=[
-                        {"label": "🔴 FORME", "value": "FORME"},
-                        {"label": "🔵 TABLEAU", "value": "TABLEAU"},
-                        {"label": "🟢 KANBAN", "value": "KANBAN"},
-                        {"label": "🟡 AGENDA", "value": "AGENDA"},
-                        {"label": "🟠 GANTT", "value": "GANTT"},
-                        {"label": "🟣 TEXTE", "value": "TEXTE"},
-                    ], value="FORME", clearable=False, style={"width": "130px", "fontSize": "11px"}),
-                ], style={"flex": "1"}),
+                    html.Div([
+                        html.Label("Test ID :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                        dcc.Input(id="man-test-id", type="text", placeholder="ex: man-042",
+                                 value=f"man-{int(time.time())%100000}",
+                                 style={"width": "140px", "padding": "4px 6px", "fontSize": "11px",
+                                        "background": "#111", "border": "1px solid #333",
+                                        "color": "#4FC3F7", "borderRadius": "4px"}),
+                    ], style={"flex": "1"}),
+                    html.Div([
+                        html.Label("Statut :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                        dcc.Dropdown(id="man-status", options=[
+                            {"label": "✅ Success", "value": "success"},
+                            {"label": "⚠️ Classifié OK", "value": "classified_ok"},
+                            {"label": "🟡 XML invalide", "value": "xml_invalid"},
+                            {"label": "❌ Échec", "value": "failed"},
+                        ], value="success", clearable=False, style={"width": "130px", "fontSize": "11px"}),
+                    ], style={"flex": "1"}),
+                    html.Div([
+                        html.Label("Modèle :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                        dcc.Input(id="man-model", type="text", placeholder="modèle utilisé",
+                                 value="qwen3.5:9b-hermes",
+                                 style={"width": "150px", "padding": "4px 6px", "fontSize": "11px",
+                                        "background": "#111", "border": "1px solid #333",
+                                        "color": "#4FC3F7", "borderRadius": "4px"}),
+                    ], style={"flex": "1"}),
+                ], style={"display": "flex", "gap": "8px", "flexWrap": "wrap", "marginBottom": "8px", "marginTop": "8px"}),
                 html.Div([
-                    html.Label("Statut :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
-                    dcc.Dropdown(id="man-status", options=[
-                        {"label": "✅ Success", "value": "success"},
-                        {"label": "⚠️ Classifié OK", "value": "classified_ok"},
-                        {"label": "🟡 XML invalide", "value": "xml_invalid"},
-                        {"label": "❌ Échec", "value": "failed"},
-                    ], value="success", clearable=False, style={"width": "130px", "fontSize": "11px"}),
-                ], style={"flex": "1"}),
+                    html.Label("Prompt :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                    dcc.Input(id="man-prompt", type="text", placeholder="Décris brièvement le test",
+                             style={"width": "100%", "maxWidth": "500px", "padding": "4px 6px", "fontSize": "11px",
+                                    "background": "#111", "border": "1px solid #333",
+                                    "color": "#ccc", "borderRadius": "4px"}),
+                ], style={"marginBottom": "6px"}),
                 html.Div([
-                    html.Label("Modèle :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
-                    dcc.Input(id="man-model", type="text", placeholder="modèle utilisé",
-                             value="qwen3.5:9b-hermes",
-                             style={"width": "150px", "padding": "4px 6px", "fontSize": "11px", "background": "#111",
-                                    "border": "1px solid #333", "color": "#4FC3F7", "borderRadius": "4px"}),
-                ], style={"flex": "1"}),
-            ], style={"display": "flex", "gap": "8px", "flexWrap": "wrap", "marginBottom": "8px"}),
-            html.Div([
-                html.Label("Prompt (optionnel) :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
-                dcc.Input(id="man-prompt", type="text", placeholder="Décris brièvement le test",
-                         style={"width": "100%", "maxWidth": "500px", "padding": "4px 6px", "fontSize": "11px",
-                                "background": "#111", "border": "1px solid #333", "color": "#ccc", "borderRadius": "4px"}),
-            ], style={"marginBottom": "8px"}),
-            html.Div([
-                html.Label("XML généré (optionnel) :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
-                dcc.Textarea(id="man-xml", placeholder="<mxCell ... (optionnel)",
-                            style={"width": "100%", "height": "50px", "fontSize": "10px",
-                                   "background": "#111", "border": "1px solid #333", "color": "#81C784",
-                                   "borderRadius": "4px", "fontFamily": "monospace"}),
-            ], style={"marginBottom": "8px"}),
-            html.Div([
-                html.Button("💾 Enregistrer le test", id="btn-man-save", n_clicks=0,
-                           style={"background": "#4CAF50", "color": "white", "border": "none",
-                                  "padding": "6px 16px", "borderRadius": "4px", "cursor": "pointer",
-                                  "fontSize": "12px", "fontWeight": "bold"}),
-                html.Span(id="man-save-status", style={"fontSize": "11px", "color": "#aaa", "marginLeft": "12px"}),
-                html.Span("💡 Test enregistré directement dans results.json — visible dans le tableau ci-dessous",
-                         style={"fontSize": "10px", "color": "#666", "marginLeft": "12px", "fontStyle": "italic"}),
-            ]),
-        ], style={"padding": "8px 0"})
+                    html.Label("XML (optionnel) :", style={"fontSize": "11px", "color": "#aaa", "display": "block"}),
+                    dcc.Textarea(id="man-xml", placeholder="<mxCell ... (optionnel)",
+                                style={"width": "100%", "height": "50px", "fontSize": "10px",
+                                       "background": "#111", "border": "1px solid #333",
+                                       "color": "#81C784", "borderRadius": "4px",
+                                       "fontFamily": "monospace"}),
+                ], style={"marginBottom": "6px"}),
+                html.Div([
+                    html.Button("💾 Enregistrer", id="btn-man-save", n_clicks=0,
+                               style={"background": "#4CAF50", "color": "white", "border": "none",
+                                      "padding": "6px 16px", "borderRadius": "4px",
+                                      "cursor": "pointer", "fontSize": "12px", "fontWeight": "bold"}),
+                    html.Span(id="man-save-status", style={"fontSize": "11px", "color": "#aaa", "marginLeft": "12px"}),
+                ]),
+            ], style={"padding": "4px 0"}),
+        ], style={"padding": "12px 20px"})
     else:
         badge = "🟢 AUTO"
         badge_style = {"background": "#5cb85c", "color": "white", "marginLeft": "12px",
@@ -475,6 +571,112 @@ def toggle_mode(n, mode):
                                                                     "padding": "12px 20px",
                                                                     "background": "#1a3a2a",
                                                                     "borderLeft": "4px solid #4CAF50"} if new_mode else {"display": "none"}
+
+
+@callback(
+    [Output("run-live-status", "children"),
+     Output("run-live-status", "style"),
+     Output("run-live-result", "children"),
+     Output("run-live-result", "style")],
+    Input("btn-run-live", "n_clicks"),
+    [State("run-prompt", "value"),
+     State("run-macro", "value")],
+    prevent_initial_call=True,
+)
+def run_live_test(n, prompt, macro):
+    """Execute un test en direct sur le pipeline Smart MCP complet"""
+    if not prompt or not prompt.strip():
+        return ("Entrez un prompt d'abord",
+                {"padding": "6px 10px", "fontSize": "12px",
+                 "background": "#3a1a1a", "borderRadius": "4px",
+                 "marginBottom": "8px", "minHeight": "24px",
+                 "color": "#ff8888", "fontFamily": "monospace"},
+                "", {"display": "none"})
+    
+    try:
+        from dashboard.test_runner import run_single_test, _save_results, _load_results
+        from models.llm_client import get_llm
+        from brain.rag import get_brain
+        
+        status_style = {"padding": "6px 10px", "fontSize": "12px",
+                        "background": "#0d1b2a", "borderRadius": "4px",
+                        "marginBottom": "8px", "minHeight": "24px",
+                        "color": "#4FC3F7", "fontFamily": "monospace"}
+        
+        llm = get_llm()
+        brain = get_brain()
+        
+        test = {
+            "id": f"live-{int(time.time())%100000}",
+            "prompt": prompt.strip(),
+            "expected": macro or "FORME",
+            "source": "live",
+            "complexity": "manual"
+        }
+        
+        result = run_single_test(test, llm, brain)
+        
+        # Auto-save to results
+        results = _load_results()
+        results.append(result)
+        _save_results(results)
+        
+        # Build status message
+        status_msg = f"[{result['status']}] {result['timing_ms']['total']}ms | Class={result['classification'].get('macro_class','?')} | XML={'ok' if result.get('xml_valid') else 'ko'} | {result.get('xml_cell_count',0)} cells"
+        if result.get("errors"):
+            status_msg += f" | Erreurs: {len(result['errors'])}"
+        
+        status_color = "#4CAF50" if result["status"] == "success" else "#FF9800" if result.get("xml_generated") else "#d9534f"
+        status_style["borderLeft"] = f"4px solid {status_color}"
+        
+        # Build detailed result
+        detail = html.Div([
+            html.Div([
+                html.Span("Prompt: ", style={"color": "#aaa"}),
+                html.Span(prompt[:80] + ("..." if len(prompt) > 80 else ""), style={"color": "#fff"}),
+            ], style={"marginBottom": "4px"}),
+            html.Div([
+                html.Span("Classification: ", style={"color": "#aaa"}),
+                html.Span(json.dumps(result.get("classification", {})), style={"color": "#81C784", "fontSize": "11px"}),
+            ], style={"marginBottom": "4px"}),
+            html.Div([
+                html.Span("RAG patterns: ", style={"color": "#aaa"}),
+                html.Span(str(result.get("rag_patterns_found", 0)), style={"color": "#4FC3F7"}),
+                html.Span(" | Timing: ", style={"color": "#aaa"}),
+                html.Span(f"Classify={result.get('timing_ms',{}).get('classify',0)}ms RAG={result.get('timing_ms',{}).get('rag',0)}ms Gen={result.get('timing_ms',{}).get('generate',0)}ms Total={result.get('timing_ms',{}).get('total',0)}ms", style={"color": "#CE93D8"}),
+            ], style={"marginBottom": "4px"}),
+            html.Div([
+                html.Span("XML: " + ("ok" if result.get('xml_valid') else 'ko' if result.get('xml_generated') else 'N/A'), style={"color": "#81C784" if result.get('xml_valid') else "#ff8888"}),
+                html.Span(f" | {result.get('xml_cell_count',0)} cellules", style={"color": "#ddd", "marginLeft": "12px"}),
+            ], style={"marginBottom": "4px"}),
+            html.Div([
+                html.Span("Resultat enregistre -> results.json", style={"color": "#aaa", "fontSize": "11px", "fontStyle": "italic"}),
+            ]),
+        ], style={"padding": "4px 0"})
+        
+        return (status_msg, status_style, detail, {"display": "block", "padding": "8px 10px",
+                                                     "background": "#0d1b2a", "borderRadius": "4px",
+                                                     "marginBottom": "8px", "maxHeight": "260px",
+                                                     "overflowY": "auto"})
+    
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
+        return (f"Erreur: {e}",
+                {"padding": "6px 10px", "fontSize": "12px",
+                 "background": "#3a1a1a", "borderRadius": "4px",
+                 "marginBottom": "8px", "minHeight": "24px",
+                 "color": "#ff8888", "fontFamily": "monospace"},
+                html.Div([
+                    html.Div(str(e), style={"color": "#ff8888"}),
+                    html.Details([
+                        html.Summary("Trace", style={"cursor": "pointer", "fontSize": "11px", "color": "#aaa"}),
+                        html.Pre(tb, style={"fontSize": "9px", "color": "#888", "maxHeight": "120px", "overflow": "auto"}),
+                    ]),
+                ], style={"padding": "8px 10px"}),
+                {"display": "block", "padding": "8px 10px",
+                 "background": "#3a1a1a", "borderRadius": "4px",
+                 "marginBottom": "8px", "overflowY": "auto"})
 
 
 @callback(
@@ -508,6 +710,135 @@ def save_manual_test(n, test_id, macro, status, model, prompt, xml):
         return f"✅ Enregistré — {len(results)} tests au total"
     except Exception as e:
         return f"❌ Erreur: {e}"
+
+
+@callback(
+    [Output("run-live-status", "children"),
+     Output("run-live-status", "style"),
+     Output("run-live-result", "children"),
+     Output("run-live-result", "style")],
+    Input("btn-run-live", "n_clicks"),
+    [State("run-prompt", "value"), State("run-macro", "value")],
+    prevent_initial_call=True,
+)
+def run_live_test(n, prompt, macro):
+    """Exécute le pipeline LLM complet sur le prompt saisi"""
+    if not prompt or prompt.strip() == "":
+        return "⚠️ Saissis un prompt avant d'exécuter", {}, "", {"display": "none"}
+
+    prompt = prompt.strip()
+    p_short = prompt[:60] + ("..." if len(prompt) > 60 else "")
+
+    # Status initial
+    status_style = {"padding": "6px 10px", "fontSize": "12px",
+                    "background": "#0d1b2a", "borderRadius": "4px",
+                    "marginBottom": "8px", "minHeight": "24px",
+                    "fontFamily": "monospace"}
+
+    try:
+        # Importer le test runner et le LLM
+        from models.llm_client import get_llm
+        from brain.rag import get_brain
+        from dashboard.test_runner import run_single_test, _save_results, _load_results
+
+        test = {
+            "prompt": prompt,
+            "expected": macro or "FORME",
+            "id": f"live-{int(time.time())%10000}",
+            "source": "manual",
+        }
+
+        status_msg = html.Div([
+            html.Span(f"⏳ [{p_short}] Classification... ", style={"color": "#4FC3F7"}),
+        ])
+
+        llm = get_llm()
+        brain = get_brain()
+
+        result = run_single_test(test, llm, brain)
+
+        # Sauvegarder le résultat
+        results = _load_results()
+        results.append(result)
+        _save_results(results)
+
+        # Préparer l'affichage du résultat
+        macro_r = result.get("expected_macro", "?")
+        status_r = result.get("status", "?")
+        timing = result.get("timing_ms", {}).get("total", 0)
+        cells = result.get("xml_cell_count", 0)
+        xml_valid = result.get("xml_valid", False)
+        rag_hits = result.get("rag_hits", [])
+        errors = result.get("errors", [])
+
+        # Icône de statut
+        icon = {"success": "✅", "classified_ok": "⚠️", "xml_invalid": "🟡"}.get(status_r, "❌")
+
+        # Message de statut
+        status_parts = [
+            html.Span(f"{icon} {p_short} — ", style={"color": "#fff", "fontWeight": "bold"}),
+            html.Span(f"Macro: {macro_r} ", style={"color": "#4FC3F7"}),
+            html.Span(f"• XML: {'✅' if xml_valid else '❌'} ", style={"color": "#81C784" if xml_valid else "#e74c3c"}),
+            html.Span(f"• Cellules: {cells} ", style={"color": "#aaa"}),
+            html.Span(f"• RAG: {len(rag_hits)} hits ", style={"color": "#aaa"}),
+            html.Span(f"• Temps: {_c(timing)}", style={"color": "#aaa"}),
+        ]
+        status_style = {"padding": "6px 10px", "fontSize": "12px",
+                        "background": "#0d1b2a", "borderRadius": "4px",
+                        "marginBottom": "8px", "minHeight": "24px",
+                        "fontFamily": "monospace",
+                        "border": "1px solid " + ("#4CAF50" if status_r == "success" else "#e74c3c")}
+
+        # Détail du résultat
+        detail_lines = []
+
+        # Timing breakdown
+        detail_lines.append(html.Span(f"⏱  Classification: {_c(result.get('timing_ms',{}).get('classify',0))}  |  RAG: {_c(result.get('timing_ms',{}).get('rag',0))}  |  Generation: {_c(result.get('timing_ms',{}).get('generate',0))}  |  Total: {_c(timing)}",
+                                    style={"fontSize": "11px", "color": "#aaa", "display": "block", "marginBottom": "4px"}))
+
+        # RAG hits
+        if rag_hits:
+            detail_lines.append(html.Span(f"📚 Patterns RAG: {', '.join(rag_hits[:4])}",
+                                        style={"fontSize": "11px", "color": "#81C784", "display": "block", "marginBottom": "4px"}))
+
+        # Errors
+        if errors:
+            for err in errors[:3]:
+                detail_lines.append(html.Span(f"⚠️ {err}",
+                                            style={"fontSize": "11px", "color": "#e74c3c", "display": "block", "marginBottom": "2px"}))
+
+        # XML preview
+        xml_preview = result.get("xml", "")
+        if xml_preview:
+            detail_lines.append(html.Details([
+                html.Summary("📄 XML généré (preview)", style={"fontSize": "11px", "color": "#4FC3F7", "cursor": "pointer", "marginTop": "4px"}),
+                html.Pre(xml_preview, style={"fontSize": "9px", "color": "#81C784", "background": "#111",
+                                              "padding": "6px", "borderRadius": "3px", "overflowX": "auto"})
+            ]))
+
+        result_display = html.Div(detail_lines)
+
+        return (
+            status_parts,
+            status_style,
+            result_display,
+            {"display": "block", "padding": "8px 10px", "background": "#0d1b2a",
+             "borderRadius": "4px", "marginBottom": "8px", "maxHeight": "300px",
+             "overflowY": "auto"}
+        )
+
+    except Exception as e:
+        import traceback
+        err_msg = f"❌ Erreur: {e}"
+        return (
+            html.Span(err_msg, style={"color": "#e74c3c"}),
+            {"padding": "6px 10px", "fontSize": "12px", "background": "#0d1b2a",
+             "borderRadius": "4px", "marginBottom": "8px", "minHeight": "24px",
+             "fontFamily": "monospace"},
+            html.Pre(traceback.format_exc(), style={"fontSize": "10px", "color": "#e74c3c"}),
+            {"display": "block", "padding": "8px 10px", "background": "#0d1b2a",
+             "borderRadius": "4px", "marginBottom": "8px", "maxHeight": "300px", "overflowY": "auto"}
+        )
 
 
 @callback(

@@ -13,8 +13,8 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from typing import Optional
 
-# Ajouter Smart MCP au path
-ROOT = Path("/home/malek/workspace/smart-mcp")
+# Ajouter Smart MCP au path — auto-détection relative
+ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from brain.rag import get_brain

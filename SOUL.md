@@ -68,7 +68,10 @@ python ci_tests.py
 - [x] Dashboard temps réel avec visualisation ChromaDB
 - [x] API REST pour tests manuels
 - [x] CI/CD GitHub Actions
-- [x] >200 tests validés (214 ✅)
+- [x] >200 tests validés (214 ✅ local, 208 ✅ CI)
+- [x] Mode MANUEL avec exécution live du pipeline (plus de curl)
+- [x] Dashboard avec lien direct draw.io vers GitHub (persistant)
+- [x] Toggle AUTO/MANUEL amélioré — banc de test intégré
 - [ ] Visualisation ChromaDB (Neo4J / graphe relationnel)
 - [ ] Mode auto-apprentissage
 - [ ] Push GitHub automatique après tests verts
