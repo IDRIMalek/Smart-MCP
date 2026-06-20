@@ -90,7 +90,150 @@ PATTERNS = [
 <mxCell id="l4" value="4. GET /resource" style="text;html=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="50" y="240" width="340" height="20" as="geometry"/></mxCell>
 <mxCell id="l5" value="5. SELECT query" style="text;html=1;fontSize=13;" vertex="1" parent="1"><mxGeometry x="410" y="280" width="300" height="20" as="geometry"/></mxCell>
 </root></mxGraphModel>"""
-    }
+    },
+
+    {
+        "title": "Kanban board complet (2 sections, 6 colonnes)",
+        "description": "Tableau Kanban complet 2 sections (Hermes + Benchmarks GPU), 3 colonnes (A faire / En cours / Termine). Layout 1250x1100px, cartes ombragees, colonnes colorees.",
+        "tags": ["kanban", "board", "tableau", "taches", "sprint", "agile", "todo", "gestion"],
+        "xml": """<diagram id="kanban" name="📋 Kanban">
+    <mxGraphModel grid="0" page="0" pageWidth="1800" pageHeight="1400" dx="0" dy="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ========== SECTION 1: Hermès ========== -->
+
+        <!-- Section title -->
+        <mxCell id="2" value="🏠 Hermès — Config maison" style="text;html=1;fontSize=20;fontStyle=1;fillColor=none;strokeColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="350" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Col 1: À faire (background) -->
+        <mxCell id="3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#BBDEFB;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="350" height="500" as="geometry"/>
+        </mxCell>
+        <!-- Col 1 header -->
+        <mxCell id="4" value="📋 À faire" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#2196F3;strokeColor=#2196F3;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="75" y="110" width="330" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Col 1 cards -->
+        <mxCell id="5" value="Configurer les providers LLM" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="175" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="Automatiser les workflows cron" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="240" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="Créer des skills réutilisables" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="305" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="Documenter le setup" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="370" width="280" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Col 2: En cours (background) -->
+        <mxCell id="9" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FFE0B2;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="100" width="350" height="500" as="geometry"/>
+        </mxCell>
+        <!-- Col 2 header -->
+        <mxCell id="10" value="🔄 En cours" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#FF9800;strokeColor=#FF9800;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="485" y="110" width="330" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Col 2 cards -->
+        <mxCell id="11" value="Intégrer les MCP servers" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="505" y="175" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Tester les subagents locaux" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="505" y="240" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Dashboard Hermès WebUI" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="505" y="305" width="280" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Col 3: Terminé (background) -->
+        <mxCell id="14" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#C8E6C9;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="880" y="100" width="350" height="500" as="geometry"/>
+        </mxCell>
+        <!-- Col 3 header -->
+        <mxCell id="15" value="✅ Terminé" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#4CAF50;strokeColor=#4CAF50;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="895" y="110" width="330" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Col 3 cards -->
+        <mxCell id="16" value="Setup Hermès de base" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="915" y="175" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="Connexion MCP drawio" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="915" y="240" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="Config Ollama GPU" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="915" y="305" width="280" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ========== SECTION 2: Benchmarks GPU ========== -->
+
+        <!-- Section title -->
+        <mxCell id="19" value="📊 Benchmarks GPU" style="text;html=1;fontSize=20;fontStyle=1;fillColor=none;strokeColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="660" width="350" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Col 1: À faire (background) -->
+        <mxCell id="20" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#BBDEFB;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="720" width="350" height="400" as="geometry"/>
+        </mxCell>
+        <!-- Col 1 header -->
+        <mxCell id="21" value="📋 À faire" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#2196F3;strokeColor=#2196F3;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="75" y="730" width="330" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Col 1 cards -->
+        <mxCell id="22" value="Benchmark qwen3.5-4b-agent-opt" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="795" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="Dashboard Plotly interactif" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="860" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="Comparer CPU vs GPU vs iGPU" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="925" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="25" value="Benchmark contexte 128K" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="95" y="990" width="280" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Col 2: En cours (background) -->
+        <mxCell id="26" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FFE0B2;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="720" width="350" height="400" as="geometry"/>
+        </mxCell>
+        <!-- Col 2 header -->
+        <mxCell id="27" value="🔄 En cours" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#FF9800;strokeColor=#FF9800;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="485" y="730" width="330" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Col 2 cards -->
+        <mxCell id="28" value="Benchmark qwen2.5-coder:14b" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="505" y="795" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="29" value="Heatmap des perf par modèle" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="505" y="860" width="280" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Col 3: Terminé (background) -->
+        <mxCell id="30" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#C8E6C9;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="880" y="720" width="350" height="400" as="geometry"/>
+        </mxCell>
+        <!-- Col 3 header -->
+        <mxCell id="31" value="✅ Terminé" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#4CAF50;strokeColor=#4CAF50;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="895" y="730" width="330" height="50" as="geometry"/>
+        </mxCell>
+        <!-- Col 3 cards -->
+        <mxCell id="32" value="Benchmark initial Ollama" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="915" y="795" width="280" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="Routeur/cascade/pipeline optim" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=20;fillColor=#FFFFFF;strokeColor=#BDBDBD;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="915" y="860" width="280" height="45" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>"""
+    },
 ]
 
 

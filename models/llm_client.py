@@ -1,6 +1,9 @@
 """
 🤖 Smart MCP - Couche LLM
-Interface unifiée pour les modèles (local Qwen / cloud DeepSeek)
+Interface unifiée avec SPLIT DES RÔLES :
+- Planner (Qwen3.5 9B) → classification, analyse, décision
+- Generator (Gemma-4 E4B) → génération XML draw.io
+- Cloud (DeepSeek V4 Flash) → amélioration si échec
 """
 
 import os
@@ -93,20 +96,36 @@ class LLMConfig:
 
 
 class LLMClient:
-    """Client LLM unifié avec fallback automatique"""
+    """
+    Client LLM unifié avec SPLIT DES RÔLES :
+    
+    - planner   → classification, analyse, décision (Qwen3.5 9B)
+    - generator → génération XML draw.io (Gemma-4 E4B)
+    - cloud     → amélioration si échec (DeepSeek V4 Flash)
+    """
 
     def __init__(self):
-        # Provider local (Qwen via Ollama GPU)
-        self.local = LLMConfig(
+        # ── Planner : raisonnement, classification ──
+        self.planner = LLMConfig(
             base_url=os.getenv("OLLAMA_GPU_URL", "http://localhost:11434/v1"),
             api_key=os.getenv("OLLAMA_API_KEY", "ollama"),
-            model=os.getenv("SMART_MCP_LOCAL_MODEL", "qwen3.5:9b-hermes"),
-            max_tokens=int(os.getenv("SMART_MCP_LOCAL_MAX_TOKENS", "16384")),
-            temperature=0.3,
-            timeout=int(os.getenv("SMART_MCP_LOCAL_TIMEOUT", "300"))
+            model=os.getenv("SMART_MCP_PLANNER_MODEL", "qwen3.5:9b-hermes"),
+            max_tokens=int(os.getenv("SMART_MCP_PLANNER_MAX_TOKENS", "4096")),
+            temperature=0.2,
+            timeout=int(os.getenv("SMART_MCP_PLANNER_TIMEOUT", "120"))
         )
         
-        # Provider cloud (DeepSeek via OpenRouter)
+        # ── Generator : génération XML rapide et précise ──
+        self.generator = LLMConfig(
+            base_url=os.getenv("OLLAMA_GPU_URL", "http://localhost:11434/v1"),
+            api_key=os.getenv("OLLAMA_API_KEY", "ollama"),
+            model=os.getenv("SMART_MCP_GENERATOR_MODEL", "gemma4:e4b-hermes"),
+            max_tokens=int(os.getenv("SMART_MCP_GENERATOR_MAX_TOKENS", "16384")),
+            temperature=0.1,  # Plus déterministe pour la génération
+            timeout=int(os.getenv("SMART_MCP_GENERATOR_TIMEOUT", "120"))
+        )
+        
+        # ── Cloud : secours pour XML invalide ──
         self.cloud = LLMConfig(
             base_url=os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"),
             api_key=os.getenv("OPENROUTER_API_KEY", ""),
@@ -115,9 +134,6 @@ class LLMClient:
             temperature=0.3,
             timeout=60
         )
-        
-        # Préférence : local > cloud
-        self.prefer_local = os.getenv("SMART_MCP_PREFER_LOCAL", "true").lower() == "true"
 
     def _call(self, config: LLMConfig, system_prompt: str, user_prompt: str) -> Optional[str]:
         """Appelle un LLM et retourne la réponse"""
@@ -143,37 +159,38 @@ class LLMClient:
             return None
 
     def generate(self, prompt: str, context: str = "") -> Optional[str]:
-        """Génère du XML drawio - essaie local puis cloud"""
-        
+        """
+        Génère du XML draw.io — utilise le GENERATOR (Gemma-4 E4B).
+        Fallback cloud si le generator échoue.
+        """
         system_prompt = "Tu es un assistant spécialisé dans la création de diagrammes draw.io."
         user_prompt = PROMPT_GENERATE_XML.format(query=prompt, context=context)
         
-        # Essayer local d'abord
-        if self.prefer_local:
-            result = self._call(self.local, system_prompt, user_prompt)
-            if result:
-                return result
+        # Étape 1 : Generator (Gemma-4 E4B) — rapide, précis
+        result = self._call(self.generator, system_prompt, user_prompt)
+        if result:
+            return result
         
-        # Fallback cloud
+        # Étape 2 : Fallback cloud (DeepSeek V4 Flash) si generator a échoué
         if self.cloud.api_key:
             result = self._call(self.cloud, system_prompt, user_prompt)
             if result:
                 return result
         
-        # Dernier recours : local si on avait préféré cloud
-        if not self.prefer_local:
-            result = self._call(self.local, system_prompt, user_prompt)
-            if result:
-                return result
+        # Étape 3 : Dernier recours — planner (Qwen 9B) en mode génération
+        result = self._call(self.planner, system_prompt, user_prompt)
+        if result:
+            return result
         
         return None
 
     def classify_intent(self, query: str) -> dict:
-        """Analyse l'intention de l'utilisateur"""
+        """
+        Analyse l'intention de l'utilisateur — utilise le PLANNER (Qwen3.5 9B).
+        """
         prompt = PROMPT_CLASSIFY_INTENT.format(query=query)
         
-        # Toujours essayer le local pour la classification (rapide)
-        result = self._call(self.local, 
+        result = self._call(self.planner, 
                            "Tu analyses des requêtes et réponds en JSON strict.",
                            prompt)
         
@@ -197,7 +214,9 @@ class LLMClient:
         }
 
     def improve_xml(self, xml: str, query: str, issues: str = "") -> Optional[str]:
-        """Améliore un XML existant — essaie cloud d'abord, fallback local si pas de clé"""
+        """
+        Améliore un XML existant — essaie cloud d'abord, fallback local si pas de clé.
+        """
         user_prompt = PROMPT_IMPROVE_XML.format(xml=xml, issues=issues, query=query)
 
         # Essayer cloud d'abord (si configuré)
@@ -206,11 +225,15 @@ class LLMClient:
             if result:
                 return result
 
-        # Fallback local si cloud indisponible ou a échoué
-        if self.prefer_local or not self.cloud.api_key:
-            result = self._call(self.local, "Tu es un expert draw.io.", user_prompt)
-            if result:
-                return result
+        # Fallback generator (Gemma-4 E4B) si cloud indisponible
+        result = self._call(self.generator, "Tu es un expert draw.io.", user_prompt)
+        if result:
+            return result
+
+        # Dernier recours : planner
+        result = self._call(self.planner, "Tu es un expert draw.io.", user_prompt)
+        if result:
+            return result
 
         return None
 
