@@ -159,7 +159,8 @@ def _validate_xml(xml_text: str) -> tuple[bool, list[str]]:
 
 
 def _fix_xml_common(xml_text: str) -> str:
-    """Corrige les erreurs XML courantes automatiquement."""
+    if xml_text is None:
+        return None
     fixes = [
         # mxFile → mxfile (normalisation de casse)
         (r"<mxFile\b", "<mxfile"),
