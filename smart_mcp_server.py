@@ -521,19 +521,25 @@ def get_brain_stats() -> dict:
 
 
 @mcp.tool(name="mindmap_agent")
-def mindmap_agent(action: str, prompt: str, debug: bool = False) -> dict:
+def mindmap_agent(action: str, prompt: str = "", debug: bool = False) -> dict:
     """
     Agent interactif spécialisé dans les mindmaps — utilise draw.io MCP outil par outil.
     
-    Deux modes :
+    Quatre actions :
     
     1. action="create" — Crée une nouvelle mindmap depuis un prompt.
        Exemple: action="create", prompt="mindmap about remote work with branches productivity, challenges, tools"
-       → Planifie la structure via LLM, puis ajoute chaque nœud un par un sur le canvas.
+       → Planifie la structure via LLM, puis ajoute chaque noeud un par un sur le canvas.
     
     2. action="edit" — Édite la mindmap courante (ajouter, colorer, supprimer).
        Exemple: action="edit", prompt="add a 'communication' branch under challenges in red"
        → Lit l'état du canvas, classifie l'intention, exécute l'opération.
+    
+    3. action="state" — Lit l'état actuel (sans modifier).
+       Exemple: action="state"
+    
+    4. action="reset" — Efface la mindmap et le draw.io, recommence à zéro.
+       Exemple: action="reset"
     
     Retourne : {status, operations?, error?, canvas?}
     """
@@ -546,8 +552,11 @@ def mindmap_agent(action: str, prompt: str, debug: bool = False) -> dict:
             return agent.edit_mindmap(prompt)
         elif action == "state":
             return {"status": "success", "canvas": agent.get_canvas_text(), "node_count": len(agent.agent.nodes)}
+        elif action == "reset":
+            agent.agent.clear_saved_state()
+            return {"status": "success", "message": "Mindmap effacée, prêt pour une nouvelle création."}
         else:
-            return {"status": "error", "error": f"Action inconnue: {action}. Utilise create, edit ou state."}
+            return {"status": "error", "error": f"Action inconnue: {action}. Utilise create, edit, state ou reset."}
     
     except Exception as e:
         import traceback

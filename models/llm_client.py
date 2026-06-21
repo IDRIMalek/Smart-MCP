@@ -126,6 +126,7 @@ class LLMClient:
             self.planner = cfg
             self.generator = cfg
             self.cloud = None  # Pas de cloud en mono-modèle
+            self.local = cfg  # Alias pour les health checks
             return
 
         # ── Planner : raisonnement, classification ──
@@ -147,6 +148,9 @@ class LLMClient:
             temperature=0.1,  # Plus déterministe pour la génération
             timeout=int(os.getenv("SMART_MCP_GENERATOR_TIMEOUT", "120"))
         )
+        
+        # ── Alias local pour health checks (pointe vers le générateur local) ──
+        self.local = self.generator
         
         # ── Cloud : secours pour XML invalide ──
         self.cloud = LLMConfig(

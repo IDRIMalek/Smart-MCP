@@ -1,6 +1,7 @@
 """
-🔌 Smart MCP - Wrapper MCP Drawio (persistent stdio transport)
-Maintient un processus Node.js persistant pour garder la session drawio active
+🔌 Smart MCP - Wrapper MCP Drawio
+Gère un processus Node.js persistant pour l'édition de diagrammes draw.io.
+Détection auto de port : si 8080 est pris, utilise 8081+.
 """
 
 import json
@@ -22,20 +23,26 @@ class DrawioMCPError(Exception):
 
 
 class DrawioMCPClient:
-    """Client MCP Drawio avec processus Node.js persistant (stdio transport)"""
+    """Client MCP Drawio avec processus Node.js persistant (stdio transport).
+    
+    Si le port 8080 est déjà utilisé (session existante d'un autre profil),
+    le serveur draw.io monte automatiquement sur le port disponible suivant.
+    """
 
     def __init__(self, server_path: str = MCP_SERVER_PATH):
         self.server_path = server_path
         self._process: Optional[subprocess.Popen] = None
         self._initialized = False
         self._req_id = 1
+        self._session_started = False
 
     # ─── Gestion du processus persistant ───────────────────────────
 
     def _ensure_process(self):
-        """Démarre le processus Node si pas déjà lancé"""
+        """Démarre le processus Node si pas déjà lancé.
+        Le serveur draw.io essaie 8080, puis 8081, etc. automatiquement."""
         if self._process is not None and self._process.poll() is None:
-            return  # process already running
+            return
 
         self._process = subprocess.Popen(
             ["node", self.server_path],
@@ -43,7 +50,7 @@ class DrawioMCPClient:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            bufsize=1,  # line-buffered
+            bufsize=1,
         )
         self._initialized = False
 
@@ -61,16 +68,13 @@ class DrawioMCPClient:
             "params": params or {},
         }
 
-        # Écrire la requête sur stdin
         line = json.dumps(payload) + "\n"
         self._process.stdin.write(line)
         self._process.stdin.flush()
 
-        # Lire les réponses jusqu'à trouver celle qui correspond à notre id
         while True:
             response_line = self._process.stdout.readline()
             if not response_line:
-                # Process may have died
                 stderr_output = self._process.stderr.read()
                 raise DrawioMCPError(
                     f"MCP process died. stderr: {stderr_output[:300]}"
@@ -79,9 +83,8 @@ class DrawioMCPClient:
             try:
                 response = json.loads(response_line.strip())
             except json.JSONDecodeError:
-                continue  # might be a log line, skip
+                continue
 
-            # Check for our response
             if response.get("id") == req_id:
                 if "error" in response:
                     raise DrawioMCPError(
@@ -89,7 +92,6 @@ class DrawioMCPClient:
                     )
                 return response.get("result", {})
             elif response.get("id") is None and "method" in response:
-                # This is a notification (like "initialized"), skip it
                 continue
 
     def _rpc_call_tool(self, tool_name: str, arguments: dict = None) -> dict:
@@ -98,7 +100,6 @@ class DrawioMCPClient:
             "name": tool_name,
             "arguments": arguments or {},
         })
-        # Vérifier si le tool a retourné une erreur
         if result.get("isError"):
             error_msg = "Unknown error"
             content = result.get("content", [])
@@ -114,8 +115,7 @@ class DrawioMCPClient:
 
         self._ensure_process()
 
-        # Step 1: initialize
-        init_result = self._send_rpc("initialize", {
+        self._send_rpc("initialize", {
             "protocolVersion": "2024-11-05",
             "capabilities": {},
             "clientInfo": {
@@ -124,7 +124,6 @@ class DrawioMCPClient:
             },
         })
 
-        # Step 2: send initialized notification (no response expected)
         notif = json.dumps({
             "jsonrpc": "2.0",
             "method": "notifications/initialized",
@@ -133,7 +132,7 @@ class DrawioMCPClient:
         self._process.stdin.flush()
 
         self._initialized = True
-        time.sleep(0.5)  # Let the server settle
+        time.sleep(0.5)
 
     # ─── API publique ──────────────────────────────────────────────
 
@@ -142,6 +141,7 @@ class DrawioMCPClient:
         self._initialize()
         try:
             self._rpc_call_tool("start_session")
+            self._session_started = True
             return True
         except DrawioMCPError as e:
             print(f"⚠️ start_session: {e}")
@@ -165,12 +165,11 @@ class DrawioMCPClient:
             content = result.get("content", [{}])
             if content and len(content) > 0:
                 text = content[0].get("text", "[]")
-                # Parse format: "Pages (N):\n  [0] id=\"...\" name=\"...\" cells=N"
+                import re
                 pages = []
                 for line in text.split("\n"):
                     line = line.strip()
                     if line.startswith("[") and "id=" in line:
-                        import re
                         m = re.match(
                             r'\[(\d+)\]\s+id="([^"]*)"\s+name="([^"]*)"\s+cells=(\d+)',
                             line

@@ -10,11 +10,16 @@ Pas de génération XML en une shot — chaque nœud est ajouté individuellemen
 
 import json
 import math
+import os
 import re
 import time
 from typing import Optional, Any
 
 from mcp_client.drawio import get_drawio, DrawioMCPClient
+
+# ─── Persistance ────────────────────────────────────────────────────
+SAVE_DIR = "/home/malek/.smart-mcp"
+SAVE_PATH = "/home/malek/.smart-mcp/mindmap_state.json"
 
 
 # ─── Constantes de layout ─────────────────────────────────────────────
@@ -143,6 +148,7 @@ class MindmapAgent:
             "parent": None,
             "level": 0,
         }
+        self.save_state()  # ⟵ persistant
         return root_id
 
     def add_node(self, parent_id: str, label: str,
@@ -233,6 +239,7 @@ class MindmapAgent:
             "parent": parent_id,
             "level": level,
         }
+        self.save_state()  # ⟵ persistant
         return node_id
 
     def _connect(self, edge_id: str, source_id: str, target_id: str):
@@ -287,6 +294,8 @@ class MindmapAgent:
         ok = self.drawio.edit_diagram(self.page_name, [
             {"operation": "update", "cell_id": node_id, "new_xml": xml}
         ])
+        if ok:
+            self.save_state()  # ⟵ persistant
         return ok
 
     def delete_node(self, node_id: str) -> bool:
@@ -307,6 +316,7 @@ class MindmapAgent:
         ])
         if ok:
             del self.nodes[node_id]
+            self.save_state()  # ⟵ persistant
         return ok
 
     def get_canvas_state(self) -> str:
@@ -391,6 +401,47 @@ class MindmapAgent:
         """Récupère le XML du draw.io (pour déboguer ou sauvegarder)"""
         return self.drawio.get_diagram()
 
+    # ─── Persistance ─────────────────────────────────────────────
+
+    def save_state(self):
+        """Sauvegarde l'état du mindmap sur disque (persistant entre sessions)"""
+        os.makedirs(SAVE_DIR, exist_ok=True)
+        state = {
+            "nodes": self.nodes,
+            "root_id": self.root_id,
+            "page_name": self.page_name,
+            "_next_id": self._next_id,
+        }
+        try:
+            with open(SAVE_PATH, "w") as f:
+                json.dump(state, f, indent=2)
+        except Exception as e:
+            print(f"[MindmapAgent] ⚠️ Échec save_state: {e}")
+
+    def load_state(self) -> bool:
+        """Restaure l'état depuis le disque. Retourne True si réussi."""
+        if not os.path.exists(SAVE_PATH):
+            return False
+        try:
+            with open(SAVE_PATH) as f:
+                state = json.load(f)
+            self.nodes = state.get("nodes", {})
+            self.root_id = state.get("root_id")
+            self.page_name = state.get("page_name", "Page-1")
+            self._next_id = state.get("_next_id", 2)
+            print(f"[MindmapAgent] ✅ État restauré: {len(self.nodes)} nœuds")
+            return True
+        except Exception as e:
+            print(f"[MindmapAgent] ⚠️ Échec load_state: {e}")
+            return False
+
+    def clear_saved_state(self):
+        """Supprime l'état sauvegardé (recommencer à zéro)"""
+        if os.path.exists(SAVE_PATH):
+            os.remove(SAVE_PATH)
+        self.reset_state()
+        print("[MindmapAgent] 🧹 État effacé")
+
 
 # ─── Agent Loop: plan → exécute ─────────────────────────────────────
 
@@ -405,6 +456,10 @@ class MindmapAgentLoop:
         self.llm = None  # lazy init
         self.debug = debug
         self.history: list[dict] = []  # historique des opérations
+        # Auto-restore de l'état persistant
+        restored = self.agent.load_state()
+        if restored:
+            print(f"[MindmapAgentLoop] ✅ State restauré: {len(self.agent.nodes)} nœuds")
 
     def _get_llm(self):
         """Lazy init du LLM (évite l'import circulaire)"""
