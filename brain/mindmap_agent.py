@@ -611,31 +611,46 @@ Répond UNIQUEMENT au format JSON (pas de texte avant/après) :
 
     def _classify_edit(self, prompt: str, canvas_state: str) -> dict:
         """
-        Utilise le LLM pour classifier l'intention d'édition.
+        Utilise le GENERATOR (Gemma 4B — rapide) pour classifier l'intention d'édition.
         Retourne : {action, label, color, parent_id, ...}
         """
         llm = self._get_llm()
 
-        edit_prompt = """Tu es un assistant d'édition de mindmaps. Analyse la demande et décide quoi faire.
+        # Compacter l'état : juste les labels + relations (pas les positions)
+        compact = "Nœuds actuels :\n"
+        for line in canvas_state.split("\n"):
+            if "[" in line and "]" in line:
+                # Extraire: [N] label (#color) → parent: parent_label
+                parts = line.split("→")
+                node_part = parts[0].strip() if parts else line
+                parent_part = parts[1].strip() if len(parts) > 1 else ""
+                # Extract label
+                if "]" in node_part:
+                    after_bracket = node_part.split("]", 1)[1].strip()
+                    label = after_bracket.split("(")[0].strip() if "(" in after_bracket else after_bracket
+                    compact += f"  • {label}"
+                    if parent_part and "ROOT" not in parent_part:
+                        compact += f" (fils de {parent_part.replace('parent:','').strip()})"
+                    compact += "\n"
 
-ÉTAT ACTUEL DU CANVAS :
-{canvas}
+        edit_prompt = f"""Décide l'opération sur la mindmap.
 
-DEMANDE : {query}
+Nœuds :\n{compact}
+Demande : {prompt}
 
-Actions possibles :
-1. "add" → ajouter un nœud. Champs : {{"action": "add", "label": "...", "parent": "nom du parent", "color": "#hex optionnel"}}
-2. "update_color" → changer la couleur. Champs : {{"action": "update_color", "label": "nom du nœud", "color": "#hex"}}
-3. "delete" → supprimer un nœud et ses enfants. Champs : {{"action": "delete", "label": "nom du nœud"}}
-4. "update_label" → renommer. Champs : {{"action": "update_label", "label": "nom actuel", "new_label": "nouveau nom"}}
+Actions :
+- add -> {{"action":"add","label":"...","parent":"nom parent","color":"#hex"}}
+- update_color -> {{"action":"update_color","label":"nom","color":"#hex"}}
+- delete -> {{"action":"delete","label":"nom"}}
+- update_label -> {{"action":"update_label","label":"ancien","new_label":"nouveau"}}
 
-Couleurs : rouge=#F44336, vert=#4CAF50, bleu=#2196F3, orange=#FF9800, violet=#9C27B0, jaune=#FFC107, cyan=#00BCD4, rose=#E91E63, gris=#607D8B
+Couleurs: rouge #F44336, vert #4CAF50, bleu #2196F3, orange #FF9800, violet #9C27B0, jaune #FFC107, cyan #00BCD4
 
-Répond UNIQUEMENT au format JSON (pas de texte avant/après)."""
+JSON seulement."""
 
-        response = llm._call(llm.planner,
-            "Tu analyses des mindmaps et réponds UNIQUEMENT en JSON valide.",
-            edit_prompt.format(canvas=canvas_state, query=prompt))
+        response = llm._call(llm.generator,
+            "Tu es un assistant mindmap. JSON uniquement.",
+            edit_prompt)
 
         if not response:
             return {"error": "Pas de réponse du LLM"}
@@ -644,9 +659,9 @@ Répond UNIQUEMENT au format JSON (pas de texte avant/après)."""
             json_match = re.search(r'\{\s*.*\}', response, re.DOTALL)
             if json_match:
                 return json.loads(json_match.group())
-            return {"error": "Pas de JSON dans la réponse"}
+            return {"error": f"Pas de JSON: {response[:80]}"}
         except json.JSONDecodeError:
-            return {"error": f"Réponse non-JSON: {response[:100]}"}
+            return {"error": f"JSON invalide: {response[:80]}"}
 
     def get_canvas_text(self) -> str:
         """Retourne l'état lisible du canvas"""
