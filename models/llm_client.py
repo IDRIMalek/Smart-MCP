@@ -97,14 +97,37 @@ class LLMConfig:
 
 class LLMClient:
     """
-    Client LLM unifié avec SPLIT DES RÔLES :
-    
-    - planner   → classification, analyse, décision (Qwen3.5 9B)
-    - generator → génération XML draw.io (Gemma-4 E4B)
-    - cloud     → amélioration si échec (DeepSeek V4 Flash)
+    Client LLM unifié — SPLIT DES RÔLES ou MONO-MODÈLE.
+
+    Mode split (par défaut, via env vars séparées) :
+      - planner   → classification, analyse, décision (Qwen3.5 9B)
+      - generator → génération XML draw.io (Gemma-4 E4B)
+      - cloud     → amélioration si échec (DeepSeek V4 Flash)
+
+    Mode mono-modèle (SMART_MCP_SINGLE_MODEL=true) :
+      - planner = generator = un seul modèle local (défaut: gemma4:e4b-hermes)
+      - cloud désactivé
     """
 
     def __init__(self):
+        single = os.getenv("SMART_MCP_SINGLE_MODEL", "").lower() in ("true", "1", "yes")
+
+        if single:
+            # ── Mode mono-modèle : tout via Gemma 4B ──
+            model = os.getenv("SMART_MCP_MODEL", "gemma4:e4b-hermes")
+            cfg = LLMConfig(
+                base_url=os.getenv("OLLAMA_GPU_URL", "http://localhost:11434/v1"),
+                api_key=os.getenv("OLLAMA_API_KEY", "ollama"),
+                model=model,
+                max_tokens=int(os.getenv("SMART_MCP_MAX_TOKENS", "16384")),
+                temperature=0.15,
+                timeout=int(os.getenv("SMART_MCP_TIMEOUT", "120"))
+            )
+            self.planner = cfg
+            self.generator = cfg
+            self.cloud = None  # Pas de cloud en mono-modèle
+            return
+
         # ── Planner : raisonnement, classification ──
         self.planner = LLMConfig(
             base_url=os.getenv("OLLAMA_GPU_URL", "http://localhost:11434/v1"),
@@ -179,7 +202,7 @@ class LLMClient:
             result = self._call(self.generator, system_prompt, user_prompt)
             return result or ""
         
-        elif complexity == "complex" and self.cloud.api_key and len(self.cloud.api_key) > 10:
+        elif complexity == "complex" and self.cloud is not None and self.cloud.api_key and len(self.cloud.api_key) > 10:
             # ── Complexe + cloud dispo : planning local, génération cloud ──
             t0 = time.time()
             
@@ -229,7 +252,7 @@ class LLMClient:
                 return result
             
             # Si generator échoue : essayer cloud (si dispo) puis planner (recours)
-            if self.cloud.api_key and len(self.cloud.api_key) > 10:
+            if self.cloud is not None and self.cloud.api_key and len(self.cloud.api_key) > 10:
                 result = self._call(self.cloud, system_prompt, user_prompt)
                 if result:
                     return result
@@ -274,7 +297,7 @@ class LLMClient:
         user_prompt = PROMPT_IMPROVE_XML.format(xml=xml, issues=issues, query=query)
 
         # Essayer cloud d'abord (si configuré)
-        if self.cloud.api_key and len(self.cloud.api_key) > 10:
+        if self.cloud is not None and self.cloud.api_key and len(self.cloud.api_key) > 10:
             result = self._call(self.cloud, "Tu es un expert draw.io.", user_prompt)
             if result:
                 return result
