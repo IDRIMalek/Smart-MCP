@@ -156,13 +156,7 @@ app.layout = html.Div([
                        style={"color": "#4FC3F7", "fontSize": "12px", "marginLeft": "8px", "textDecoration": "underline"}),
                 html.Span(" (GitHub)", style={"fontSize": "11px", "color": "#666", "marginLeft": "4px"}),
             ], style={"marginBottom": "4px"}),
-            html.Div([
-                html.Span("📄 all-diagrams-merged.drawio", style={"fontSize": "12px", "color": "#ccc"}),
-                html.A(" Ouvrir dans draw.io ↗",
-                       href="https://app.diagrams.net/#HIDRIMalek%2FSmart-MCP%2Fmain%2Fdiagrams%2Fall-diagrams-merged.drawio",
-                       target="_blank",
-                       style={"color": "#4FC3F7", "fontSize": "12px", "marginLeft": "8px", "textDecoration": "underline"}),
-            ], style={"marginBottom": "4px"}),
+            # all-diagrams-merged.drawio supprimé du repo
             html.Div([
                 html.Span("📄 hermes-smart-mcp-architecture.drawio", style={"fontSize": "12px", "color": "#ccc"}),
                 html.A(" Ouvrir dans draw.io ↗",

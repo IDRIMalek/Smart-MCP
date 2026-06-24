@@ -25,12 +25,11 @@ Tous les diagrammes sont dans `Smart-MCP/diagrams/` (trackés Git).
 | Fichier | Pages | Description |
 |---------|-------|-------------|
 | `smart-mcp-full-persistent.drawio` | 13 | F1-F17 + Zones A-E (mega diagramme complet) |
-| `all-diagrams-merged.drawio` | 10 | Tous les diagrammes fusionnés |
+
 | `hermes-smart-mcp-architecture.drawio` | 2 | Architecture Smart MCP + Pipeline |
 
 ### Liens permanents GitHub (disponibles après push)
 - https://app.diagrams.net/#HIDRIMalek/Smart-MCP/main/diagrams/smart-mcp-full-persistent.drawio
-- https://app.diagrams.net/#HIDRIMalek/Smart-MCP/main/diagrams/all-diagrams-merged.drawio
 
 ## Endpoints Smart MCP
 - `smart_diagram(prompt, context)` — Génère un diagramme XML draw.io

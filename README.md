@@ -24,7 +24,7 @@ Le diagramme complet de l'architecture Smart MCP est versionné dans le repo :
 - **13 pages** : Vue Macro, Pipeline, Infrastructure, Workflows, Benchmarks, Carte Systémique, Architecture LLM, Optimisation, Kanban, Test, Banc de Test (F16), Amélioration Continue (F17)
 - **Liens permanents** (après push GitHub) :
   - [Ouvrir dans draw.io](https://app.diagrams.net/#HIDRIMalek/Smart-MCP/main/diagrams/smart-mcp-full-persistent.drawio)
-  - [Tous les diagrammes fusionnés](https://app.diagrams.net/#HIDRIMalek/Smart-MCP/main/diagrams/all-diagrams-merged.drawio)
+  <!-- Lien supprimé — fichier retiré du repo -->
 
 ## 🧪 Résultats
 
