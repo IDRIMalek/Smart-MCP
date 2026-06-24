@@ -22,9 +22,7 @@ Utiliser **un petit modèle local (9B) sur un GPU grand public (RTX 3060 12Go)**
 ## 📐 Diagramme persistant F1-F17
 Le diagramme complet de l'architecture Smart MCP est versionné dans le repo :
 - **13 pages** : Vue Macro, Pipeline, Infrastructure, Workflows, Benchmarks, Carte Systémique, Architecture LLM, Optimisation, Kanban, Test, Banc de Test (F16), Amélioration Continue (F17)
-- **Liens permanents** (après push GitHub) :
-  - [Ouvrir dans draw.io](https://app.diagrams.net/#HIDRIMalek/Smart-MCP/main/diagrams/smart-mcp-full-persistent.drawio)
-  <!-- Lien supprimé — fichier retiré du repo -->
+<!-- Section liens permanents supprimée -->
 
 ## 🧪 Résultats
 
